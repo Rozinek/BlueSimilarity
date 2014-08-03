@@ -14,8 +14,12 @@ namespace BlueSimilarity
 	/// </summary>
 	public class Levenshtein : IDistance, ISimilarity
 	{
-
 		#region IDistance Members
+
+		public int GetDistance(Token first, Token second)
+		{
+			return LevDist(first.Value, second.Value);
+		}
 
 		/// <summary>
 		///     Levenshtein distance returns the number of edit operations
@@ -57,6 +61,11 @@ namespace BlueSimilarity
 
 		#region ISimilarity Members
 
+		public double GetSimilarity(Token first, Token second)
+		{
+			return NormLevSim(first.Value, second.Value);
+		}
+
 		/// <summary>
 		/// </summary>
 		/// <param name="first"></param>
@@ -81,10 +90,12 @@ namespace BlueSimilarity
 
 		#region Methods (private)
 
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.LevenshteinDistanceEntry, CallingConvention = NativeEntryPoint.InteropCallingConvention)]
+		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.LevenshteinDistanceEntry,
+			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
 		private static extern int LevDist([In] string first, [In] string second);
 
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.LevenshteinSimilarityEntry, CallingConvention = NativeEntryPoint.InteropCallingConvention)]
+		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.LevenshteinSimilarityEntry,
+			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
 		private static extern double NormLevSim([In] string first, [In] string second);
 
 		#endregion

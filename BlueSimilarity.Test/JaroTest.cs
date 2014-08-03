@@ -1,6 +1,5 @@
 ﻿#region
 
-using BlueSimilarity.Containers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
@@ -18,59 +17,51 @@ namespace BlueSimilarity.Test
 
 		#region Methods (public)
 
+		/// <summary>
+		///     <seealso cref="http://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance" />
+		/// </summary>
+		[TestMethod]
+		public void GetSimilarityTest()
+		{
+			// addition edit distance test
+			const string addFirst = "abcd";
+			const string addSecond = "abcdx";
+			SimilarityHelpers.SimilarityInterfaceTest(_jaro, addFirst, addSecond, 0.933);
+
+			// deletation edit distance test
+			const string delFirst = "abcd";
+			const string delSecond = "abc";
+			SimilarityHelpers.SimilarityInterfaceTest(_jaro, delFirst, delSecond, 0.917);
+
+			// substitution edit distance test
+			const string subFirst = "abcd";
+			const string subSecond = "axcd";
+			SimilarityHelpers.SimilarityInterfaceTest(_jaro, subFirst, subSecond, 0.833);
+
+			// substitution and deletation together
+			const string mixFirst = "abcdxyz";
+			const string mixSecond = "zbcdxy";
+			SimilarityHelpers.SimilarityInterfaceTest(_jaro, mixFirst, mixSecond, 0.849);
+		}
+
 		[TestInitialize]
 		public void Initialize()
 		{
 			_jaro = new Jaro();
 		}
 
-		/// <summary>
-		/// <seealso cref="http://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance"/>
-		/// </summary>
 		[TestMethod]
-		public void JaroSimilarityTest()
+		public void RealCasesTest()
 		{
-			const double errorTolerance = 0.001;
-
-		    // test from wikipedia
+			// test from wikipedia
 			const string wikiFirst = "martha";
 			const string wikiSecond = "marhta";
-			var resultWiki = _jaro.GetSimilarity(wikiFirst, wikiSecond);
-			var resultWikiNorm = _jaro.GetSimilarity(new NormalizedString(wikiFirst), new NormalizedString(wikiSecond));
-			Assert.AreEqual(0.944, resultWiki, errorTolerance);
-			Assert.AreEqual(0.944, resultWikiNorm, errorTolerance);
+			SimilarityHelpers.SimilarityInterfaceTest(_jaro, wikiFirst, wikiSecond, 0.944);
 
-
-			// addition edit distance test
-			const string addFirst = "abcd";
-			const string addSecond = "abcdx";
-			var resultAdd = _jaro.GetSimilarity(addFirst, addSecond);
-			var resultAddNorm = _jaro.GetSimilarity(new NormalizedString(addFirst), new NormalizedString(addSecond));
-			Assert.AreEqual(0.933, resultAdd, errorTolerance);
-			Assert.AreEqual(0.933, resultAddNorm, errorTolerance);
-
-			// deletation edit distance test
-			const string delFirst = "abcd";
-			const string delSecond = "abc";
-			var resultDel = _jaro.GetSimilarity(delFirst, delSecond);
-
-			var resultDelNorm = _jaro.GetSimilarity(new NormalizedString(delFirst),
-				new NormalizedString(delSecond));
-			Assert.AreEqual(0.917, resultDel, errorTolerance);
-			Assert.AreEqual(0.917, resultDelNorm, errorTolerance);
-
-			// substitution edit distance test
-			const string subFirst = "abcd";
-			const string subSecond = "axcd";
-			var resultSub = _jaro.GetSimilarity(subFirst, subSecond);
-			var resultSubNorm = _jaro.GetSimilarity(new NormalizedString(subFirst),
-				new NormalizedString(subSecond));
-			Assert.AreEqual(0.833, resultSub, errorTolerance);
-			Assert.AreEqual(0.833, resultSubNorm, errorTolerance);
-
-			// substitution and deletation together
-			var resultMixture = _jaro.GetSimilarity("abcdxyz", "zbcdxy");
-			Assert.AreEqual(0.849, resultMixture, errorTolerance);
+			//// test from wikipedia
+			//const string wiki2First = "dwayne";
+			//const string wiki2Second = "duane";
+			//SimilarityHelpers.SimilarityInterfaceTest(_jaro, wiki2First, wiki2Second, 0.933);
 		}
 
 		#endregion

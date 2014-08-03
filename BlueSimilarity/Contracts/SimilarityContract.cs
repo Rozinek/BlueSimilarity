@@ -13,7 +13,7 @@ namespace BlueSimilarity.Contracts
 			Contract.Requires<ArgumentNullException>(first != null, "The argument first can not be a null");
 			Contract.Requires<ArgumentNullException>(second != null, "The argument second can not be a null");
 
-			return default(int);
+			return default(double);
 		}
 
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
@@ -21,7 +21,15 @@ namespace BlueSimilarity.Contracts
 			Contract.Requires<ArgumentNullException>(first != null, "The argument first can not be a null");
 			Contract.Requires<ArgumentNullException>(second != null, "The argument second can not be a null");
 
-			return default(int);
+			return default(double);
+		}
+
+		public double GetSimilarity(Token first, Token second)
+		{
+			Contract.Requires<ArgumentNullException>(first != null, "The argument first can not be a null");
+			Contract.Requires<ArgumentNullException>(second != null, "The argument second can not be a null");
+
+			return default(double);
 		}
 	}
 }

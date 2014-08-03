@@ -1,6 +1,5 @@
 ﻿#region
 
-using BlueSimilarity.Containers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
@@ -21,48 +20,25 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityTest()
 		{
-			const double errorTollerance = 0.001;
-
-			var result = _diceCoef.GetSimilarity("abcd", "abcd");
-
-			Assert.AreEqual(1.0, result, errorTollerance);
-
 			// addition edit distance test
 			const string addFirst = "abcd";
 			const string addSecond = "abcdx";
-			var resultAdd = _diceCoef.GetSimilarity(addFirst, addSecond);
-			var resultAddNorm = _diceCoef.GetSimilarity(new NormalizedString(addFirst), new NormalizedString(addSecond));
-
-			var expectedAdd = GetExpectedDiceCoefficient(3, 3, 4);
-			Assert.AreEqual(expectedAdd, resultAdd, errorTollerance);
-			Assert.AreEqual(expectedAdd, resultAddNorm, errorTollerance);
+			SimilarityHelpers.SimilarityInterfaceTest(_diceCoef, addFirst, addSecond, GetExpectedDiceCoefficient(3, 3, 4));
 
 			// deletation edit distance test
 			const string delFirst = "abcd";
 			const string delSecond = "abc";
-			var resultDel = _diceCoef.GetSimilarity(delFirst, delSecond);
-			var resultDelNorm = _diceCoef.GetSimilarity(new NormalizedString(delFirst), new NormalizedString(delSecond));
-
-			var expectedDel = GetExpectedDiceCoefficient(2, 3, 2);
-			Assert.AreEqual(expectedDel, resultDel, errorTollerance);
-			Assert.AreEqual(expectedDel, resultDelNorm, errorTollerance);
+			SimilarityHelpers.SimilarityInterfaceTest(_diceCoef, delFirst, delSecond, GetExpectedDiceCoefficient(2, 3, 2));
 
 			// substitution edit distance test
 			const string subFirst = "abcd";
 			const string subSecond = "axcd";
-			var resultSub = _diceCoef.GetSimilarity(subFirst, subSecond);
-			var resultSubNorm = _diceCoef.GetSimilarity(new NormalizedString(subFirst),
-				new NormalizedString(subSecond));
-
-			var expectedSub = GetExpectedDiceCoefficient(1, 3, 3);
-			Assert.AreEqual(expectedSub, resultSub);
-			Assert.AreEqual(expectedSub, resultSubNorm);
+			SimilarityHelpers.SimilarityInterfaceTest(_diceCoef, subFirst, subSecond, GetExpectedDiceCoefficient(1, 3, 3));
 
 			// substitution and deletation together
-			var resultMixture = _diceCoef.GetSimilarity("abcdxyz", "zbcdxy");
-
-			var expectedMixture = GetExpectedDiceCoefficient(4, 6, 5);
-			Assert.AreEqual(expectedMixture, resultMixture, 0.001);
+			const string mixFirst = "abcdxyz";
+			const string mixSecond = "zbcdxy";
+			SimilarityHelpers.SimilarityInterfaceTest(_diceCoef, mixFirst, mixSecond, GetExpectedDiceCoefficient(4, 6, 5));
 		}
 
 		[TestInitialize]

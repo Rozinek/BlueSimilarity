@@ -1,4 +1,5 @@
 ﻿using BlueSimilarity.Containers;
+using BlueSimilarity.Definitions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BlueSimilarity.Test
@@ -14,83 +15,64 @@ namespace BlueSimilarity.Test
 		{
 			_damerauLevenshtein = new DamerauLevenshtein();
 		}
-
+		
 		[TestMethod]
-		public void DamerauLevenshteinDistanceTest()
+		public void GetDistanceTest()
 		{
 			// addition edit distance test
 			const string addFirst = "abcd";
 			const string addSecond = "abcdx";
-			var resultAdd = _damerauLevenshtein.GetDistance(addFirst, addSecond);
-			var resultAddNorm = _damerauLevenshtein.GetDistance(new NormalizedString(addFirst), new NormalizedString(addSecond));
-			Assert.AreEqual(1, resultAdd);
-			Assert.AreEqual(1, resultAddNorm);
-
+			const int addResultExpectd = 1;
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, addFirst, addSecond, addResultExpectd);
+		
 			// deletation edit distance test
 			const string delFirst = "abcd";
 			const string delSecond = "abc";
-			var resultDel = _damerauLevenshtein.GetDistance(delFirst, delSecond);
-			var resultDelNorm = _damerauLevenshtein.GetDistance(new NormalizedString(delFirst),
-				new NormalizedString(delSecond));
-			Assert.AreEqual(1, resultDel);
-			Assert.AreEqual(1, resultDelNorm);
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, delFirst, delSecond, 1);
 
 			// substitution edit distance test
 			const string subFirst = "abcd";
 			const string subSecond = "axcd";
-			var resultSub = _damerauLevenshtein.GetDistance(subFirst, subSecond);
-			var resultSubNorm = _damerauLevenshtein.GetDistance(new NormalizedString(subFirst),
-				new NormalizedString(subSecond));
-			Assert.AreEqual(1, resultSub);
-			Assert.AreEqual(1, resultSubNorm);
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, subFirst, subSecond, 1);
 
 			// substitution and deletation together
-			var resultMixture = _damerauLevenshtein.GetDistance("abcdxyz", "zbcdxy");
-			Assert.AreEqual(2, resultMixture);
+			const string mixFirst = "abcdxyz";
+			const string mixSecond = "zbcdxy";
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, mixFirst, mixSecond, 2);
 
 			// transposition
-			var resultTransposition = _damerauLevenshtein.GetDistance("abcd", "acbd");
-			Assert.AreEqual(1,resultTransposition);
+			const string transFirst = "abcd";
+			const string transSecond = "acbd";
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, transFirst, transSecond, 1);
 		}
 
 		[TestMethod]
-		public void NormalizedDamerauLevenshteinDistanceTest()
+		public void GetSimilarityTest()
 		{
-			const double errorTollerance = 1E-05;
-
 			// addition edit distance test
 			const string addFirst = "abcd";
 			const string addSecond = "abcdx";
-			var resultAdd = _damerauLevenshtein.GetSimilarity(addFirst, addSecond);
-			var resultAddNorm = _damerauLevenshtein.GetSimilarity(new NormalizedString(addFirst), new NormalizedString(addSecond));
-			Assert.AreEqual(0.8, resultAdd, errorTollerance);
-			Assert.AreEqual(0.8, resultAddNorm, errorTollerance);
+			SimilarityHelpers.SimilarityInterfaceTest(_damerauLevenshtein, addFirst, addSecond, 0.8);
 
 			// deletation edit distance test
 			const string delFirst = "abcd";
 			const string delSecond = "abc";
-			var resultDel = _damerauLevenshtein.GetSimilarity(delFirst, delSecond);
-			var resultDelNorm = _damerauLevenshtein.GetSimilarity(new NormalizedString(delFirst),
-				new NormalizedString(delSecond));
-			Assert.AreEqual(0.75, resultDel, errorTollerance);
-			Assert.AreEqual(0.75, resultDelNorm, errorTollerance);
+			SimilarityHelpers.SimilarityInterfaceTest(_damerauLevenshtein, delFirst, delSecond, 0.75);
 
 			// substitution edit distance test
 			const string subFirst = "abcd";
 			const string subSecond = "axcd";
-			var resultSub = _damerauLevenshtein.GetSimilarity(subFirst, subSecond);
-			var resultSubNorm = _damerauLevenshtein.GetSimilarity(new NormalizedString(subFirst),
-				new NormalizedString(subSecond));
-			Assert.AreEqual(0.75, resultSub);
-			Assert.AreEqual(0.75, resultSubNorm);
+			SimilarityHelpers.SimilarityInterfaceTest(_damerauLevenshtein, subFirst, subSecond, 0.75);
 
 			// substitution and deletation together
-			var resultMixture = _damerauLevenshtein.GetSimilarity("abcdxyz", "zbcdxy");
-			Assert.AreEqual(0.714, resultMixture, 0.001);
+			const string mixFirst = "abcdxyz";
+			const string mixSecond = "zbcdxy";
+			SimilarityHelpers.SimilarityInterfaceTest(_damerauLevenshtein, mixFirst, mixSecond, 0.714);
 
 			// transposition
-			var resultTransposition = _damerauLevenshtein.GetSimilarity("abcd", "acbd");
-			Assert.AreEqual(0.75, resultTransposition);
+			const string transFirst = "abcd";
+			const string transSecond = "acbd";
+			SimilarityHelpers.SimilarityInterfaceTest(_damerauLevenshtein, transFirst, transSecond, 0.75);
 		}
 	}
 }

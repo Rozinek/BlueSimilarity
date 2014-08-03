@@ -10,7 +10,6 @@ namespace BlueSimilarity
 {
 	public class Jaro : ISimilarity
 	{
-
 		#region ISimilarity Members
 
 		public double GetSimilarity(string first, string second)
@@ -23,11 +22,17 @@ namespace BlueSimilarity
 			return JaroNative(first.Value, second.Value);
 		}
 
+		public double GetSimilarity(Token first, Token second)
+		{
+			return JaroNative(first.Value, second.Value);
+		}
+
 		#endregion
 
 		#region Methods (private)
 
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.JaroEntry, CallingConvention = NativeEntryPoint.InteropCallingConvention)]
+		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.JaroEntry,
+			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
 		private static extern double JaroNative([In] string first, [In] string second);
 
 		#endregion

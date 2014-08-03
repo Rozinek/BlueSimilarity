@@ -41,6 +41,11 @@ namespace BlueSimilarity
 
 		#region ISimilarity Members
 
+		public double GetSimilarity(Token first, Token second)
+		{
+			return GetSimilarity(first.Value, second.Value);
+		}
+
 		public double GetSimilarity(string first, string second)
 		{
 			return Dice(first, second, _qgramLength);
@@ -55,7 +60,8 @@ namespace BlueSimilarity
 
 		#region Methods (private)
 
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = "Dice", CallingConvention = NativeEntryPoint.InteropCallingConvention)]
+		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = "Dice",
+			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
 		private static extern double Dice([In] string first, [In] string second, int qgramLength);
 
 		#endregion

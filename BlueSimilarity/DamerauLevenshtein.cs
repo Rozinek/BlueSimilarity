@@ -46,9 +46,19 @@ namespace BlueSimilarity
 			return DamLevDist(first.Value, second.Value);
 		}
 
+		public int GetDistance(Token first, Token second)
+		{
+			return DamLevDist(first.Value, second.Value);
+		}
+
 		#endregion
 
 		#region ISimilarity Members
+
+		public double GetSimilarity(Token first, Token second)
+		{
+			return NormDamLevSim(first.Value, second.Value);
+		}
 
 		public double GetSimilarity(string first, string second)
 		{

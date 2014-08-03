@@ -1,11 +1,21 @@
-﻿using System.Runtime.InteropServices;
+﻿#region
+
+using System.Runtime.InteropServices;
 using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
+
+#endregion
 
 namespace BlueSimilarity
 {
 	public class JaroWinkler : ISimilarity
 	{
+		#region ISimilarity Members
+
+		public double GetSimilarity(Token first, Token second)
+		{
+			return JaroWinklerNative(first.Value, second.Value);
+		}
 
 		public double GetSimilarity(string first, string second)
 		{
@@ -17,7 +27,14 @@ namespace BlueSimilarity
 			return JaroWinklerNative(first.Value, second.Value);
 		}
 
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.JaroWinklerEntry, CallingConvention = NativeEntryPoint.InteropCallingConvention)]
+		#endregion
+
+		#region Methods (private)
+
+		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.JaroWinklerEntry,
+			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
 		private static extern double JaroWinklerNative([In] string first, [In] string second);
+
+		#endregion
 	}
 }

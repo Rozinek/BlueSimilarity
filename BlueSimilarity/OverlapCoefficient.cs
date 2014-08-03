@@ -10,7 +10,7 @@ using BlueSimilarity.Definitions;
 
 namespace BlueSimilarity
 {
-	public class OverlapCoefficient
+	public class OverlapCoefficient : ISimilarity
 	{
 		#region Static and contants fields
 
@@ -39,7 +39,12 @@ namespace BlueSimilarity
 
 		#endregion
 
-		#region Methods (public)
+		#region ISimilarity Members
+
+		public double GetSimilarity(Token first, Token second)
+		{
+			return GetSimilarity(first.Value, second.Value);
+		}
 
 		public double GetSimilarity(string first, string second)
 		{

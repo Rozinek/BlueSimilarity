@@ -10,7 +10,7 @@ using BlueSimilarity.Definitions;
 
 namespace BlueSimilarity
 {
-	public class JaccardCoefficient
+	public class JaccardCoefficient : ISimilarity
 	{
 		#region Static and contants fields
 
@@ -23,6 +23,11 @@ namespace BlueSimilarity
 		private readonly int _qgramLength;
 
 		#endregion
+
+		public double GetSimilarity(Token first, Token second)
+		{
+			return GetSimilarity(first.Value, second.Value);
+		}
 
 		#region Constructors
 

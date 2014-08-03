@@ -21,48 +21,25 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityTest()
 		{
-			const double errorTollerance = 0.001;
-
-			var result = _jaccardCoef.GetSimilarity("abcd", "abcd");
-
-			Assert.AreEqual(1.0, result, errorTollerance);
-
 			// addition edit distance test
 			const string addFirst = "abcd";
 			const string addSecond = "abcdx";
-			var resultAdd = _jaccardCoef.GetSimilarity(addFirst, addSecond);
-			var resultAddNorm = _jaccardCoef.GetSimilarity(new NormalizedString(addFirst), new NormalizedString(addSecond));
-
-			var expectedAdd = GetExpectedJaccardCoefficient(3, 3, 4);
-			Assert.AreEqual(expectedAdd, resultAdd, errorTollerance);
-			Assert.AreEqual(expectedAdd, resultAddNorm, errorTollerance);
+			SimilarityHelpers.SimilarityInterfaceTest(_jaccardCoef, addFirst, addSecond, GetExpectedJaccardCoefficient(3, 3, 4));
 
 			// deletation edit distance test
 			const string delFirst = "abcd";
 			const string delSecond = "abc";
-			var resultDel = _jaccardCoef.GetSimilarity(delFirst, delSecond);
-			var resultDelNorm = _jaccardCoef.GetSimilarity(new NormalizedString(delFirst), new NormalizedString(delSecond));
-
-			var expectedDel = GetExpectedJaccardCoefficient(2, 3, 2);
-			Assert.AreEqual(expectedDel, resultDel, errorTollerance);
-			Assert.AreEqual(expectedDel, resultDelNorm, errorTollerance);
+			SimilarityHelpers.SimilarityInterfaceTest(_jaccardCoef, delFirst, delSecond, GetExpectedJaccardCoefficient(2, 3, 2));
 
 			// substitution edit distance test
 			const string subFirst = "abcd";
 			const string subSecond = "axcd";
-			var resultSub = _jaccardCoef.GetSimilarity(subFirst, subSecond);
-			var resultSubNorm = _jaccardCoef.GetSimilarity(new NormalizedString(subFirst),
-				new NormalizedString(subSecond));
-
-			var expectedSub = GetExpectedJaccardCoefficient(1, 3, 3);
-			Assert.AreEqual(expectedSub, resultSub);
-			Assert.AreEqual(expectedSub, resultSubNorm);
+			SimilarityHelpers.SimilarityInterfaceTest(_jaccardCoef, subFirst, subSecond, GetExpectedJaccardCoefficient(1, 3, 3));
 
 			// substitution and deletation together
-			var resultMixture = _jaccardCoef.GetSimilarity("abcdxyz", "zbcdxy");
-
-			var expectedMixture = GetExpectedJaccardCoefficient(4, 6, 5);
-			Assert.AreEqual(expectedMixture, resultMixture, 0.001);
+			const string mixFirst = "abcdxyz";
+			const string mixSecond = "zbcdxy";
+			SimilarityHelpers.SimilarityInterfaceTest(_jaccardCoef, mixFirst, mixSecond, GetExpectedJaccardCoefficient(4, 6, 5));
 		}
 
 		[TestInitialize]

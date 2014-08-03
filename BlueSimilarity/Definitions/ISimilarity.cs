@@ -10,5 +10,7 @@ namespace BlueSimilarity.Definitions
 		double GetSimilarity(string first, string second);
 
 		double GetSimilarity(NormalizedString first, NormalizedString second);
+
+		double GetSimilarity(Token first, Token second);
 	}
 }
