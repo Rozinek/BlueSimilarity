@@ -1,23 +1,25 @@
-﻿using System.CodeDom;
-using BlueSimilarity.Containers;
+﻿#region
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace BlueSimilarity.Test
 {
 	[TestClass]
 	public class LevenshteinTest
 	{
+		#region Static and contants fields
+
 		private static Levenshtein _levensthein;
 
-		[TestInitialize]
-		public void Initialize()
-		{
-			_levensthein = new Levenshtein();
-		}
+		#endregion
+
+		#region Methods (public)
 
 		[TestMethod]
 		public void GetDistanceTest()
-		{		
+		{
 			// addition edit distance test
 			const string addFirst = "abcd";
 			const string addSecond = "abcdx";
@@ -63,5 +65,13 @@ namespace BlueSimilarity.Test
 			const string mixSecond = "zbcdxy";
 			SimilarityHelpers.SimilarityInterfaceTest(_levensthein, mixFirst, mixSecond, 0.714);
 		}
+
+		[TestInitialize]
+		public void Initialize()
+		{
+			_levensthein = new Levenshtein();
+		}
+
+		#endregion
 	}
 }

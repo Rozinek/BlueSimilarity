@@ -1,6 +1,9 @@
-﻿using System;
-using BlueSimilarity.Containers;
+﻿#region
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace BlueSimilarity.Test
 {
@@ -51,7 +54,7 @@ namespace BlueSimilarity.Test
 
 		private static double GetExpectedOverlapCoefficient(int intersection, int firstElements, int secondElements)
 		{
-			return intersection / (double)(Math.Min(firstElements, secondElements));
+			return intersection/(double) (Math.Min(firstElements, secondElements));
 		}
 
 		#endregion

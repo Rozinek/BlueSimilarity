@@ -5,6 +5,7 @@ using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
+using BlueSimilarity.Types;
 
 #endregion
 
@@ -24,11 +25,6 @@ namespace BlueSimilarity
 
 		#endregion
 
-		public double GetSimilarity(Token first, Token second)
-		{
-			return GetSimilarity(first.Value, second.Value);
-		}
-
 		#region Constructors
 
 		public JaccardCoefficient()
@@ -44,7 +40,12 @@ namespace BlueSimilarity
 
 		#endregion
 
-		#region Methods (public)
+		#region ISimilarity Members
+
+		public double GetSimilarity(Token first, Token second)
+		{
+			return GetSimilarity(first.Value, second.Value);
+		}
 
 		public double GetSimilarity(string first, string second)
 		{
@@ -60,7 +61,8 @@ namespace BlueSimilarity
 
 		#region Methods (private)
 
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.JaccardCoefficientEntry, CallingConvention = NativeEntryPoint.InteropCallingConvention)]
+		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.JaccardCoefficientEntry,
+			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
 		private static extern double Jaccard([In] string first, [In] string second, int qgramLength);
 
 		#endregion

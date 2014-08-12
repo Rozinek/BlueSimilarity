@@ -1,9 +1,15 @@
-﻿using System.Runtime.InteropServices;
+﻿#region
+
+using System.Runtime.InteropServices;
+
+#endregion
 
 namespace BlueSimilarity.Definitions
 {
 	internal static class NativeEntryPoint
 	{
+		#region Static and contants fields
+
 		internal const string JaccardCoefficientEntry = "Jaccard";
 		internal const string DiceCoefficientEntry = "Dice";
 		internal const string OverlapCoefficientEntry = "Overlap";
@@ -23,5 +29,7 @@ namespace BlueSimilarity.Definitions
 		///     Calling convention to the native entry point
 		/// </summary>
 		internal const CallingConvention InteropCallingConvention = CallingConvention.StdCall;
+
+		#endregion
 	}
 }

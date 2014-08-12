@@ -1,21 +1,22 @@
-﻿using BlueSimilarity.Containers;
-using BlueSimilarity.Definitions;
+﻿#region
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace BlueSimilarity.Test
 {
-
 	[TestClass]
 	public class DamerauLevenshteinTestcs
 	{
+		#region Private fields
+
 		private DamerauLevenshtein _damerauLevenshtein;
 
-		[TestInitialize]
-		public void Initializate()
-		{
-			_damerauLevenshtein = new DamerauLevenshtein();
-		}
-		
+		#endregion
+
+		#region Methods (public)
+
 		[TestMethod]
 		public void GetDistanceTest()
 		{
@@ -24,7 +25,7 @@ namespace BlueSimilarity.Test
 			const string addSecond = "abcdx";
 			const int addResultExpectd = 1;
 			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, addFirst, addSecond, addResultExpectd);
-		
+
 			// deletation edit distance test
 			const string delFirst = "abcd";
 			const string delSecond = "abc";
@@ -74,5 +75,13 @@ namespace BlueSimilarity.Test
 			const string transSecond = "acbd";
 			SimilarityHelpers.SimilarityInterfaceTest(_damerauLevenshtein, transFirst, transSecond, 0.75);
 		}
+
+		[TestInitialize]
+		public void Initializate()
+		{
+			_damerauLevenshtein = new DamerauLevenshtein();
+		}
+
+		#endregion
 	}
 }

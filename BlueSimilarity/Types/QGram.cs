@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace BlueSimilarity.Containers
+namespace BlueSimilarity.Types
 {
 	/// <summary>
 	///     Define the atomic q-gram structure
@@ -15,7 +15,7 @@ namespace BlueSimilarity.Containers
 	{
 		#region Constructors
 
-		public QGram(string value) 
+		public QGram(string value)
 		{
 			Value = value;
 		}

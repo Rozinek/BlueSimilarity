@@ -1,13 +1,20 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Diagnostics.Contracts;
 using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
+using BlueSimilarity.Types;
+
+#endregion
 
 namespace BlueSimilarity.Contracts
 {
-	[ContractClassFor(typeof(ISimilarity))]
+	[ContractClassFor(typeof (ISimilarity))]
 	internal abstract class SimilarityContract : ISimilarity
 	{
+		#region ISimilarity Members
+
 		public double GetSimilarity(string first, string second)
 		{
 			Contract.Requires<ArgumentNullException>(first != null, "The argument first can not be a null");
@@ -31,5 +38,7 @@ namespace BlueSimilarity.Contracts
 
 			return default(double);
 		}
+
+		#endregion
 	}
 }

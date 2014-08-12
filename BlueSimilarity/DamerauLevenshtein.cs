@@ -3,6 +3,7 @@
 using System.Runtime.InteropServices;
 using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
+using BlueSimilarity.Types;
 
 #endregion
 

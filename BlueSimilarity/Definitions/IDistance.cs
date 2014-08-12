@@ -2,6 +2,7 @@
 
 using System.Diagnostics.Contracts;
 using BlueSimilarity.Containers;
+using BlueSimilarity.Types;
 
 #endregion
 
@@ -17,7 +18,7 @@ namespace BlueSimilarity.Definitions
 		#region Methods (public)
 
 		/// <summary>
-		///  Count edit distance 
+		///     Count edit distance
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -25,18 +26,18 @@ namespace BlueSimilarity.Definitions
 		int GetDistance(string first, string second);
 
 		/// <summary>
-		///  Count edit distance 
+		///     Count edit distance
 		/// </summary>
-		/// <param name="first">first <see cref="NormalizedString"/></param>
-		/// <param name="second">second <see cref="NormalizedString"/></param>
+		/// <param name="first">first <see cref="NormalizedString" /></param>
+		/// <param name="second">second <see cref="NormalizedString" /></param>
 		/// <returns>The minimum number of operations required to transform one string into the other.</returns>
 		int GetDistance(NormalizedString first, NormalizedString second);
 
 		/// <summary>
-		///  Count edit distance 
+		///     Count edit distance
 		/// </summary>
-		/// <param name="first">first <see cref="Token"/></param>
-		/// <param name="second">second <see cref="Token"/></param>
+		/// <param name="first">first <see cref="Token" /></param>
+		/// <param name="second">second <see cref="Token" /></param>
 		/// <returns>The minimum number of operations required to transform one string into the other.</returns>
 		int GetDistance(Token first, Token second);
 

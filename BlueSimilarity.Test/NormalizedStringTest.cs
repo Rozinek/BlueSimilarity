@@ -1,6 +1,7 @@
 ﻿#region
 
 using BlueSimilarity.Containers;
+using BlueSimilarity.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion

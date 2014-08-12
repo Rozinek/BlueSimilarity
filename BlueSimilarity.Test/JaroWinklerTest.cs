@@ -1,41 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlueSimilarity.Containers;
+﻿#region
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+#endregion
 
 namespace BlueSimilarity.Test
 {
 	[TestClass]
-	 public class JaroWinklerTest
+	public class JaroWinklerTest
 	{
+		#region Static and contants fields
+
 		private static JaroWinkler _jaroWinkler;
 
+		#endregion
 
-		[TestInitialize]
-		public void Initializate()
-		{
-			_jaroWinkler = new JaroWinkler();
-		}
-
-		[TestMethod]
-		public void RealCasesTest()
-		{
-			// test from wikipedia
-			const string wikiFirst = "martha";
-			const string wikiSecond = "marhta";
-			SimilarityHelpers.SimilarityInterfaceTest(_jaroWinkler, wikiFirst, wikiSecond, 0.961);
-
-			// test from wikipedia
-			const string wiki2First = "dwayne";
-			const string wiki2Second = "duane";
-			SimilarityHelpers.SimilarityInterfaceTest(_jaroWinkler, wiki2First, wiki2Second, 0.84);
-		}
+		#region Methods (public)
 
 		/// <summary>
-		/// <seealso cref="http://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance"/>
+		///     <seealso cref="http://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance" />
 		/// </summary>
 		[TestMethod]
 		public void GetSimilarityTest()
@@ -60,5 +43,28 @@ namespace BlueSimilarity.Test
 			const string mixSecond = "zbcdxy";
 			SimilarityHelpers.SimilarityInterfaceTest(_jaroWinkler, mixFirst, mixSecond, 0.849);
 		}
+
+
+		[TestInitialize]
+		public void Initializate()
+		{
+			_jaroWinkler = new JaroWinkler();
+		}
+
+		[TestMethod]
+		public void RealCasesTest()
+		{
+			// test from wikipedia
+			const string wikiFirst = "martha";
+			const string wikiSecond = "marhta";
+			SimilarityHelpers.SimilarityInterfaceTest(_jaroWinkler, wikiFirst, wikiSecond, 0.961);
+
+			// test from wikipedia
+			const string wiki2First = "dwayne";
+			const string wiki2Second = "duane";
+			SimilarityHelpers.SimilarityInterfaceTest(_jaroWinkler, wiki2First, wiki2Second, 0.84);
+		}
+
+		#endregion
 	}
 }

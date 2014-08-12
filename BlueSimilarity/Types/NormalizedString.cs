@@ -1,15 +1,18 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Globalization;
 using System.Text;
 
-namespace BlueSimilarity.Containers
+#endregion
+
+namespace BlueSimilarity.Types
 {
 	/// <summary>
-	/// Normalized the textual string to invariant comparable form 
-	/// remove diacritics and special symbols ?!@#$%^&*()_+ etc. and
-	/// upper case the text
+	///     Normalized the textual string to invariant comparable form
+	///     remove diacritics and special symbols ?!@#$%^&*()_+ etc. and
+	///     upper case the text
 	/// </summary>
-	/// 
 	public class NormalizedString
 	{
 		#region Private fields
@@ -21,7 +24,7 @@ namespace BlueSimilarity.Containers
 		#region Constructors
 
 		/// <summary>
-		/// Constructor
+		///     Constructor
 		/// </summary>
 		/// <param name="value">the string for normalization</param>
 		public NormalizedString(string value)
@@ -55,7 +58,7 @@ namespace BlueSimilarity.Containers
 		{
 			// TODO: test the decompositon find the appropriate one
 			var normalizedString = unicodeString.Normalize(NormalizationForm.FormD);
-            var stringBuilder = new StringBuilder(unicodeString.Length);
+			var stringBuilder = new StringBuilder(unicodeString.Length);
 
 			foreach (var character in normalizedString)
 			{
