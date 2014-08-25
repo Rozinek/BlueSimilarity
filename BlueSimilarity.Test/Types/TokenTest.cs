@@ -31,7 +31,23 @@ namespace BlueSimilarity.Test.Types
 			var tokenInstance = new Token("instance");
 			var tokenEqualInstance = new Token("instance");
 			var tokenNotEqualInstance = new Token("notInstance");
-			EqualityTest.AssertEquality(tokenInstance, tokenEqualInstance, tokenNotEqualInstance);
+			HelpersTest.AssertEquality(tokenInstance, tokenEqualInstance, tokenNotEqualInstance);
+		}
+
+		[TestMethod]
+		public void CompareToTest()
+		{
+			var instance = new Token("xy");
+			var higherInstance = new Token("ab");
+			var equalInstance = new Token("xy");
+			HelpersTest.AssertCompareTo(instance, higherInstance, equalInstance);
+		}
+
+		[TestMethod]
+		public void ToStringTest()
+		{
+			var token = new Token("ab");
+			Assert.AreEqual("ab", token.ToString());
 		}
 
 		#endregion

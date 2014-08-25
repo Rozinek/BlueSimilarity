@@ -1,7 +1,6 @@
 ﻿#region
 
 using System.Runtime.InteropServices;
-using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 
@@ -10,8 +9,8 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	///     Levensthein algorithm providing similarity measurement <see cref="ISimilarity" />
-	///     and distance measurement <see cref="IDistance" />
+	///     Levensthein algorithm <seealso cref="http://en.wikipedia.org/wiki/Levenshtein_distance" /> providing similarity
+	///     measurement <see cref="ISimilarity" /> and distance measurement <see cref="IDistance" />
 	/// </summary>
 	public class Levenshtein : IDistance, ISimilarity
 	{

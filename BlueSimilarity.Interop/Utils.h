@@ -33,7 +33,7 @@ std::vector<string>  GetQgramsVector(const char *token, int legnthQgram)
 	string tokenStr = string(token);
 
 	// extract character bigrams from string1
-	for (unsigned int i = 0; i < (tokenStr.length() - 1); i++)
+	for (unsigned int i = 0; i < (tokenStr.length()  - (legnthQgram - 1)); i++)
 	{
 		token_qgrams.push_back(tokenStr.substr(i, legnthQgram));
 	}

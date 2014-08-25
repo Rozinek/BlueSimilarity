@@ -10,9 +10,20 @@ namespace BlueSimilarity.Test.Helpers
 	/// <summary>
 	///     Test equality of the object
 	/// </summary>
-	public static class EqualityTest
+	public static class HelpersTest
 	{
 		#region Methods (public)
+
+
+		public static void AssertCompareTo<T>(T instance, T higherInstance, T equalInstance)
+			where T : IComparable<T>
+		{
+
+			Assert.AreEqual(1, instance.CompareTo(higherInstance));
+			Assert.AreEqual(0, instance.CompareTo(equalInstance));
+			Assert.AreEqual(-1, higherInstance.CompareTo(instance)); 
+
+		} 
 
 		public static void AssertEquality<T>(T instance, T equalInstance, T notEqualInstance) where T : IEquatable<T>
 		{

@@ -1,6 +1,5 @@
 ﻿#region
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using BlueSimilarity.Types;
@@ -9,9 +8,11 @@ using BlueSimilarity.Types;
 
 namespace BlueSimilarity.Containers
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class TokenSet : IDictionary<Token, int>
 	{
-
 		private readonly Dictionary<Token, int> _tokenDictionary;
 
 		public TokenSet()
@@ -40,60 +41,61 @@ namespace BlueSimilarity.Containers
 
 		public bool TryGetValue(Token key, out int value)
 		{
-			throw new NotImplementedException();
+			return _tokenDictionary.TryGetValue(key, out value);
 		}
 
 		public bool Remove(Token key)
 		{
-			throw new NotImplementedException();
+			return _tokenDictionary.Remove(key);
 		}
 
 		public void Add(Token key, int value)
 		{
-			throw new NotImplementedException();
+			_tokenDictionary.Add(key, value);
 		}
 
 		public bool ContainsKey(Token key)
 		{
-			throw new NotImplementedException();
+			return _tokenDictionary.ContainsKey(key);
 		}
 
-		public bool IsReadOnly { get; private set; }
-		public int Count { get; private set; }
+		public bool IsReadOnly { get { return false; } }
 
-		public bool Remove(KeyValuePair<Token, int> item)
+		public int Count { get { return _tokenDictionary.Count; } }
+
+		bool ICollection<KeyValuePair<Token, int>>.Remove(KeyValuePair<Token, int> item)
 		{
-			throw new NotImplementedException();
+			return ((ICollection<KeyValuePair<Token, int>>)_tokenDictionary).Remove(item);
 		}
 
-		public void CopyTo(KeyValuePair<Token, int>[] array, int arrayIndex)
+		void ICollection<KeyValuePair<Token, int>>.CopyTo(KeyValuePair<Token, int>[] array, int arrayIndex)
 		{
-			throw new NotImplementedException();
+			((ICollection<KeyValuePair<Token, int>>)_tokenDictionary).CopyTo(array, arrayIndex);
 		}
 
-		public bool Contains(KeyValuePair<Token, int> item)
+		bool ICollection<KeyValuePair<Token, int>>.Contains(KeyValuePair<Token, int> item)
 		{
-			throw new NotImplementedException();
+			return ((ICollection<KeyValuePair<Token, int>>)_tokenDictionary).Contains(item);
 		}
 
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			_tokenDictionary.Clear();
 		}
 
-		public void Add(KeyValuePair<Token, int> item)
+		void ICollection<KeyValuePair<Token, int>>.Add(KeyValuePair<Token, int> item)
 		{
-			throw new NotImplementedException();
+			((ICollection<KeyValuePair<Token, int>>)_tokenDictionary).Add(item);
 		}
 
-		public IEnumerator<KeyValuePair<Token, int>> GetEnumerator()
+		IEnumerator<KeyValuePair<Token, int>> IEnumerable<KeyValuePair<Token, int>>.GetEnumerator()
 		{
-			throw new NotImplementedException();
+			return _tokenDictionary.GetEnumerator();
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
-			return GetEnumerator();
+			return _tokenDictionary.GetEnumerator();
 		}
 
 		#endregion

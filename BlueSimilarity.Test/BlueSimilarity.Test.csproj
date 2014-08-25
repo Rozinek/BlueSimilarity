@@ -50,13 +50,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Containers\TokenSetTest.cs" />
+    <Compile Include="TokenSetTest.cs" />
     <Compile Include="Types\BigramTest.cs" />
-    <Compile Include="Types\QGramTest.cs" />
     <Compile Include="Types\TrigramTest.cs" />
     <Compile Include="Types\UnigramTest.cs" />
     <Compile Include="DamerauLevenshteinTestcs.cs" />
     <Compile Include="DiceCoefficientTest.cs" />
-    <Compile Include="Helpers\EqualityTest.cs" />
+    <Compile Include="Helpers\HelpersTest.cs" />
     <Compile Include="JaccardCoefficientTest.cs" />
     <Compile Include="JaroTest.cs" />
     <Compile Include="JaroWinklerTest.cs" />

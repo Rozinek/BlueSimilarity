@@ -1,22 +1,29 @@
 ﻿#region
 
 using System;
+using System.Diagnostics.Contracts;
 
 #endregion
 
 namespace BlueSimilarity.Types
 {
+	/// <summary>
+	/// Token set container for unique token and their frequency of the occurence
+	/// </summary>
 	public class Token : IEquatable<Token>, IComparable<Token>
 	{
 		#region Constructors
 
 		public Token(string token)
 		{
+			Contract.Requires<ArgumentNullException>(token != null, "The token must be not null.");
+			Contract.Requires<ArgumentNullException>(token.Length > 0, "The token must be not empty.");
 			Value = token;
 		}
 
 		public Token(NormalizedString token) : this(token.Value)
 		{
+			Contract.Requires<ArgumentNullException>(token != null, "The token must be not null.");
 		}
 
 		#endregion
@@ -31,7 +38,13 @@ namespace BlueSimilarity.Types
 
 		public int CompareTo(Token other)
 		{
-			return String.Compare(Value, other.Value, StringComparison.Ordinal);
+			var val = String.Compare(Value, other.Value, StringComparison.Ordinal);
+
+			if (val > 0)
+				return 1;
+			if (val < 0)
+				return -1;
+			return 0;
 		}
 
 		#endregion
@@ -59,7 +72,7 @@ namespace BlueSimilarity.Types
 
 		public override int GetHashCode()
 		{
-			return (Value != null ? Value.GetHashCode() : 0);
+			return Value.GetHashCode();
 		}
 
 		public override string ToString()
@@ -69,7 +82,7 @@ namespace BlueSimilarity.Types
 
 		#endregion
 
-		#region Operators (${Access})
+		#region Operators
 
 		public static bool operator ==(Token left, Token right)
 		{

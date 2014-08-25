@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Text;
 using BlueSimilarity.Types;
 
 #endregion
@@ -28,28 +29,10 @@ namespace BlueSimilarity.Containers
 
 		#region Private fields
 
-		private readonly Func<string, IQgram> _currentQgramConstructor;
-
-
-		private readonly Dictionary<Type, Func<string, IQgram>> _dynamicConstructors =
-			new Dictionary<Type, Func<string, IQgram>>
-			{
-				{typeof (Unigram), x => new Unigram(x)},
-				{typeof (Bigram), x => new Bigram(x)},
-				{typeof (Trigram), x => new Trigram(x)},
-			};
-
 		/// <summary>
 		///     intenally storage for all q-grams
 		/// </summary>
 		private readonly Dictionary<string, int> _qGramsDictionary;
-
-		private readonly Dictionary<Type, Func<int>> _typeConversion = new Dictionary<Type, Func<int>>
-		                                                               {
-			                                                               {typeof (Unigram), () => 1},
-			                                                               {typeof (Bigram), () => 2},
-			                                                               {typeof (Trigram), () => 3},
-		                                                               };
 
 		#endregion
 
@@ -58,7 +41,8 @@ namespace BlueSimilarity.Containers
 		/// <summary>
 		/// </summary>
 		/// <param name="text"></param>
-		public QGramSet(string text) : this()
+		public QGramSet(string text)
+			: this()
 		{
 			Contract.Requires<ArgumentNullException>(text != null, "text");
 			_qGramsDictionary = QGramStreaming(text, QGramLength);
@@ -67,10 +51,7 @@ namespace BlueSimilarity.Containers
 		public QGramSet()
 		{
 			_qGramsDictionary = new Dictionary<string, int>();
-			var typeQGram = typeof (T);
-
-			_currentQgramConstructor = _dynamicConstructors[typeQGram];
-			QGramLength = _typeConversion[typeQGram].Invoke();
+			QGramLength = TypeConversion.GetQgramLength<T>(); 
 		}
 
 		/// <summary>
@@ -93,7 +74,7 @@ namespace BlueSimilarity.Containers
 		/// <param name="qGramDictionary"></param>
 		public QGramSet(IQGramSet<T> qGramDictionary)
 		{
-			_qGramsDictionary = qGramDictionary.ToDictionary();
+			_qGramsDictionary = qGramDictionary.ToDictionary(x => x.Key.Value, x => x.Value);
 			QGramLength = qGramDictionary.QGramLength;
 		}
 
@@ -111,10 +92,10 @@ namespace BlueSimilarity.Containers
 			}
 		}
 
-		public Dictionary<string, int> ToDictionary()
-		{
-			return _qGramsDictionary;
-		}
+		//public Dictionary<string, int> ToDictionary()
+		//{
+		//	return _qGramsDictionary;
+		//}
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{
@@ -125,7 +106,7 @@ namespace BlueSimilarity.Containers
 		{
 			foreach (var pair in _qGramsDictionary)
 			{
-				yield return new KeyValuePair<T, int>((T) _currentQgramConstructor.Invoke(pair.Key), pair.Value);
+				yield return new KeyValuePair<T, int>(TypeConversion.CreateQgram<T>(pair.Key), pair.Value);
 			}
 		}
 
@@ -136,7 +117,7 @@ namespace BlueSimilarity.Containers
 
 		void ICollection<KeyValuePair<T, int>>.CopyTo(KeyValuePair<T, int>[] array, int arrayIndex)
 		{
-			((ICollection<KeyValuePair<T, int>>) this).CopyTo(array, arrayIndex);
+			((ICollection<KeyValuePair<T, int>>)this).CopyTo(array, arrayIndex);
 		}
 
 		public void Clear()
@@ -146,12 +127,12 @@ namespace BlueSimilarity.Containers
 
 		bool ICollection<KeyValuePair<T, int>>.Contains(KeyValuePair<T, int> item)
 		{
-			return ((ICollection<KeyValuePair<T, int>>) this).Contains(item);
+			return ((ICollection<KeyValuePair<T, int>>)this).Contains(item);
 		}
 
 		bool ICollection<KeyValuePair<T, int>>.Remove(KeyValuePair<T, int> item)
 		{
-			return ((ICollection<KeyValuePair<T, int>>) this).Remove(item);
+			return ((ICollection<KeyValuePair<T, int>>)this).Remove(item);
 		}
 
 		bool ICollection<KeyValuePair<T, int>>.IsReadOnly
@@ -179,7 +160,7 @@ namespace BlueSimilarity.Containers
 			get
 			{
 				return _qGramsDictionary
-					.Select(x => (T) _currentQgramConstructor.Invoke(x.Key)).ToArray();
+					.Select(x => TypeConversion.CreateQgram<T>(x.Key)).ToArray();
 			}
 		}
 
@@ -266,9 +247,6 @@ namespace BlueSimilarity.Containers
 
 		public QGramSet<T> Union(QGramSet<T> set)
 		{
-			if (QGramLength != set.QGramLength)
-				throw new InvalidOperationException("The q-gram length must be equal.");
-
 			var newQgramSet = new QGramSet<T>(this);
 
 			foreach (var pair in set)
@@ -297,5 +275,21 @@ namespace BlueSimilarity.Containers
 		}
 
 		#endregion
+
+		public override string ToString()
+		{
+			if (_qGramsDictionary.Count == 0)
+				return string.Empty;
+
+			var stringBuilder = new StringBuilder();
+			foreach (var keyValuePair in _qGramsDictionary)
+			{
+				stringBuilder.Append("[" + keyValuePair.Key + ";" + keyValuePair.Value + "],");
+			}
+
+			var qgramsString = stringBuilder.ToString();
+			qgramsString = qgramsString.Remove(qgramsString.Length - 1);
+			return qgramsString;
+		}
 	}
 }

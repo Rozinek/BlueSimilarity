@@ -1,9 +1,5 @@
 ﻿#region
 
-using System;
-using System.Diagnostics.Contracts;
-using System.Runtime.InteropServices;
-using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 
@@ -11,14 +7,12 @@ using BlueSimilarity.Types;
 
 namespace BlueSimilarity
 {
-	public class OverlapCoefficient : ISimilarity
+	/// <summary>
+	/// Overlap coefficeint <see cref="http://en.wikipedia.org/wiki/Overlap_coefficient"/>  
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	public class OverlapCoefficient<T> : ISimilarity where T : IQgram
 	{
-		#region Static and contants fields
-
-		private const int QgramLengthDefault = 2;
-
-		#endregion
-
 		#region Private fields
 
 		private readonly int _qgramLength;
@@ -28,14 +22,8 @@ namespace BlueSimilarity
 		#region Constructors
 
 		public OverlapCoefficient()
-			: this(QgramLengthDefault)
 		{
-		}
-
-		public OverlapCoefficient(int qgramLength)
-		{
-			Contract.Requires<ArgumentOutOfRangeException>(qgramLength > 0, "The q-gram length must be positive integer.");
-			_qgramLength = qgramLength;
+			_qgramLength = TypeConversion.GetQgramLength<T>();
 		}
 
 		#endregion
@@ -49,21 +37,13 @@ namespace BlueSimilarity
 
 		public double GetSimilarity(string first, string second)
 		{
-			return Overlap(first, second, _qgramLength);
+			return NativeMethods.Overlap(first, second, _qgramLength);
 		}
 
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
 		{
 			return GetSimilarity(first.Value, second.Value);
 		}
-
-		#endregion
-
-		#region Methods (private)
-
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.OverlapCoefficientEntry,
-			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
-		private static extern double Overlap([In] string first, [In] string second, int qgramLength);
 
 		#endregion
 	}

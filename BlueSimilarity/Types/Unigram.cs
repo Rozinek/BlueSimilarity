@@ -12,26 +12,40 @@ namespace BlueSimilarity.Types
 	/// </summary>
 	public class Unigram : IQgram, IEquatable<Unigram>, IComparable<Unigram>
 	{
+		#region Static and contants fields
+
+		public const int UnigramLength = 1;
+
+		#endregion
+
 		#region Constructors
 
 		public Unigram(string value)
 		{
-			Contract.Requires<NotSupportedException>(value.Length == 1, "Not requested length.");
+			Contract.Requires<ArgumentException>(value != null, "Value must not be null or empty");
+// ReSharper disable once PossibleNullReferenceException
+			Contract.Requires<NotSupportedException>(value.Length == UnigramLength, "Not requested length.");
 			Value = value;
 		}
 
 		#endregion
 
-		#region IComparable<UniGram> Members
+		#region IComparable<Unigram> Members
 
 		public int CompareTo(Unigram other)
 		{
-			return String.Compare(Value, other.Value, StringComparison.Ordinal);
+			var val = String.Compare(Value, other.Value, StringComparison.Ordinal);
+
+			if (val > 0)
+				return 1;
+			if (val < 0)
+				return -1;
+			return 0;
 		}
 
 		#endregion
 
-		#region IEquatable<UniGram> Members
+		#region IEquatable<Unigram> Members
 
 		public bool Equals(Unigram other)
 		{
@@ -44,7 +58,7 @@ namespace BlueSimilarity.Types
 
 		public int Length
 		{
-			get { return 1; }
+			get { return UnigramLength; }
 		}
 
 		public string Value { get; private set; }
@@ -61,7 +75,7 @@ namespace BlueSimilarity.Types
 
 		public override int GetHashCode()
 		{
-			return (Value != null ? Value.GetHashCode() : 0);
+			return Value.GetHashCode();
 		}
 
 		public override string ToString()

@@ -17,7 +17,7 @@ namespace BlueSimilarity.Test.Types
 		[TestMethod]
 		public void TrigramEqualityTest()
 		{
-			EqualityTest.AssertEquality(new Trigram("abc"), new Trigram("abc"), new Trigram("abx"));
+			HelpersTest.AssertEquality(new Trigram("abc"), new Trigram("abc"), new Trigram("abx"));
 		}
 
 		[ExpectedException(typeof (NotSupportedException))]
@@ -34,6 +34,22 @@ namespace BlueSimilarity.Test.Types
 
 			Assert.AreEqual(3, triGram.Length);
 			Assert.AreEqual("abc", triGram.Value);
+		}
+
+		[TestMethod]
+		public void ToStringTest()
+		{
+			var triGram = new Trigram("abc");
+			Assert.AreEqual("abc", triGram.ToString());
+		}
+
+		[TestMethod]
+		public void CompareToTest()
+		{
+			var instance = new Trigram("xyz");
+			var higherInstance = new Trigram("abc");
+			var equalInstance = new Trigram("xyz");
+			HelpersTest.AssertCompareTo(instance, higherInstance, equalInstance);
 		}
 
 		#endregion

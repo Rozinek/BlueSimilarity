@@ -14,9 +14,10 @@ namespace BlueSimilarity.Test.Types
 	{
 		#region Methods (public)
 
+		[TestMethod]
 		public void UnigramEqualityTest()
 		{
-			EqualityTest.AssertEquality(new Unigram("a"), new Unigram("a"), new Unigram("b"));
+			HelpersTest.AssertEquality(new Unigram("a"), new Unigram("a"), new Unigram("b"));
 		}
 
 		[ExpectedException(typeof (NotSupportedException))]
@@ -34,6 +35,23 @@ namespace BlueSimilarity.Test.Types
 			Assert.AreEqual(1, unigram.Length);
 			Assert.AreEqual("a", unigram.Value);
 		}
+
+		[TestMethod]
+		public void ToStringTest()
+		{
+			var unigram = new Unigram("a");
+			Assert.AreEqual("a", unigram.ToString());
+		}
+
+		[TestMethod]
+		public void CompareToTest()
+		{
+			var instance = new Unigram("x");
+			var higherInstance = new Unigram("a");
+			var equalInstance = new Unigram("x");
+			HelpersTest.AssertCompareTo(instance, higherInstance, equalInstance);
+		}
+
 
 		#endregion
 	}

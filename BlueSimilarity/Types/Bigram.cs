@@ -14,7 +14,7 @@ namespace BlueSimilarity.Types
 	{
 		#region Static and contants fields
 
-		private const int BigramLength = 2;
+		public const int BigramLength = 2;
 
 		#endregion
 
@@ -22,22 +22,30 @@ namespace BlueSimilarity.Types
 
 		public Bigram(string value)
 		{
+			Contract.Requires<ArgumentNullException>(value != null, "Value must not be null.");
+// ReSharper disable once PossibleNullReferenceException
 			Contract.Requires<NotSupportedException>(value.Length == BigramLength, "Not requested length.");
 			Value = value;
 		}
 
 		#endregion
 
-		#region IComparable<BiGram> Members
+		#region IComparable<Bigram> Members
 
 		public int CompareTo(Bigram other)
 		{
-			return String.Compare(Value, other.Value, StringComparison.Ordinal);
+			var val = String.Compare(Value, other.Value, StringComparison.Ordinal);
+
+			if (val > 0)
+				return 1;
+			if (val < 0)
+				return -1;
+			return 0;
 		}
 
 		#endregion
 
-		#region IEquatable<BiGram> Members
+		#region IEquatable<Bigram> Members
 
 		public bool Equals(Bigram other)
 		{
@@ -67,7 +75,7 @@ namespace BlueSimilarity.Types
 
 		public override int GetHashCode()
 		{
-			return (Value != null ? Value.GetHashCode() : 0);
+			return Value.GetHashCode();
 		}
 
 		public override string ToString()

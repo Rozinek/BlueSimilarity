@@ -76,9 +76,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Types\Bigram.cs" />
     <Compile Include="Types\IQgram.cs" />
     <Compile Include="Containers\ISetOperations.cs" />
+    <Compile Include="Types\TypeConversion.cs" />
     <Compile Include="Types\Unigram.cs" />
     <Compile Include="Types\Trigram.cs" />
     <Compile Include="Contracts\DistanceContract.cs" />
@@ -95,7 +97,6 @@
     <Compile Include="OverlapCoefficient.cs" />
     <Compile Include="Containers\IQGramSet.cs" />
     <Compile Include="Types\NormalizedString.cs" />
-    <Compile Include="Types\QGram.cs" />
     <Compile Include="Containers\QGramSet.cs" />
     <Compile Include="Types\Token.cs" />
     <Compile Include="Containers\TokenSet.cs" />

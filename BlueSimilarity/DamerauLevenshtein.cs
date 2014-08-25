@@ -1,7 +1,6 @@
 ﻿#region
 
 using System.Runtime.InteropServices;
-using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 
@@ -12,6 +11,7 @@ namespace BlueSimilarity
 	/// <summary>
 	///     Damerau - Levensthein algorithm providing similarity measurement <see cref="ISimilarity" />
 	///     and distance measurement <see cref="IDistance" />
+	///     <seealso cref="http://en.wikipedia.org/wiki/Damerau–Levenshtein_distance" />
 	/// </summary>
 	public class DamerauLevenshtein : IDistance, ISimilarity
 	{
