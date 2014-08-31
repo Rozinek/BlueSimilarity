@@ -2,13 +2,12 @@
 
 using System;
 using System.Diagnostics.Contracts;
-using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 
 #endregion
 
-namespace BlueSimilarity
+namespace BlueSimilarity.Contracts
 {
 	[ContractClassFor(typeof (IDistance))]
 	internal abstract class DistanceContract : IDistance

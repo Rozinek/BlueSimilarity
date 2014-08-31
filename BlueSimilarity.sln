@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlueSimilarity.Interop", "B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSimilarity.Test", "BlueSimilarity.Test\BlueSimilarity.Test.csproj", "{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSimilarity.UseCase", "BlueSimilarity.UseCase\BlueSimilarity.UseCase.csproj", "{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,16 @@ Global
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Release|Win32.ActiveCfg = Release|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

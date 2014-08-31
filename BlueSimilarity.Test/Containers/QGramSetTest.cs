@@ -15,6 +15,14 @@ namespace BlueSimilarity.Test.Containers
 		#region Methods (public)
 
 		[TestMethod]
+		public void ConstructorQgram()
+		{
+			var unigramSet = new QGramSet<Unigram>(new Token("abcd"));
+			var bigramSet = new QGramSet<Bigram>(new Token("abcd"));
+			var trigramSet = new QGramSet<Trigram>(new Token("abcd"));
+		}
+
+		[TestMethod]
 		public void CtorQGramSet()
 		{
 			// create set of unigrams

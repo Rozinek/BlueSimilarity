@@ -76,7 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Definitions\NativeMethods.cs" />
     <Compile Include="Types\Bigram.cs" />
     <Compile Include="Types\IQgram.cs" />
     <Compile Include="Containers\ISetOperations.cs" />

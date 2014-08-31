@@ -51,7 +51,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Containers\TokenSetTest.cs" />
-    <Compile Include="TokenSetTest.cs" />
     <Compile Include="Types\BigramTest.cs" />
     <Compile Include="Types\TrigramTest.cs" />
     <Compile Include="Types\UnigramTest.cs" />

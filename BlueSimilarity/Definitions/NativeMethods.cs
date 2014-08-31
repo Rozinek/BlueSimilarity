@@ -1,7 +1,6 @@
 ﻿using System.Runtime.InteropServices;
-using BlueSimilarity.Definitions;
 
-namespace BlueSimilarity
+namespace BlueSimilarity.Definitions
 {
 	/// <summary>
 	/// Native methods from <see cref="NativeEntryPoint"/>

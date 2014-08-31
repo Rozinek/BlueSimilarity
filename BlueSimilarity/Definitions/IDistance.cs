@@ -2,6 +2,7 @@
 
 using System.Diagnostics.Contracts;
 using BlueSimilarity.Containers;
+using BlueSimilarity.Contracts;
 using BlueSimilarity.Types;
 
 #endregion
