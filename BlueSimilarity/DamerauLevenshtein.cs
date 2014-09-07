@@ -39,14 +39,25 @@ namespace BlueSimilarity
 		/// <example>
 		///     return 1 for transposition two character ABC => ACB
 		/// </example>
-		/// <param name="first">the first string</param>
-		/// <param name="second">the second string</param>
+		/// <param name="first">the first normalized string</param>
+		/// <param name="second">the second normalized string</param>
 		/// <returns>return the number of edit distance</returns>
 		public int GetDistance(NormalizedString first, NormalizedString second)
 		{
 			return DamLevDist(first.Value, second.Value);
 		}
 
+
+		/// <summary>
+		///     Offers the same behaviour as <see cref="Levenshtein.GetDistance(Token, Token)" />
+		///     and extends for transposition of two character that will have only 1 distance
+		/// </summary>
+		/// <example>
+		///     return 1 for transposition two character ABC => ACB
+		/// </example>
+		/// <param name="first">the first normalized string</param>
+		/// <param name="second">the second normalized string</param>
+		/// <returns>return the number of edit distance</returns>
 		public int GetDistance(Token first, Token second)
 		{
 			return DamLevDist(first.Value, second.Value);
@@ -56,16 +67,37 @@ namespace BlueSimilarity
 
 		#region ISimilarity Members
 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="first"></param>
+		/// <param name="second"></param>
+		/// <returns></returns>
 		public double GetSimilarity(Token first, Token second)
 		{
 			return NormDamLevSim(first.Value, second.Value);
 		}
 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="first"></param>
+		/// <param name="second"></param>
+		/// <returns></returns>
 		public double GetSimilarity(string first, string second)
 		{
 			return NormDamLevSim(first, second);
 		}
 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="first"></param>
+		/// <param name="second"></param>
+		/// <returns></returns>
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
 		{
 			return NormDamLevSim(first.Value, second.Value);

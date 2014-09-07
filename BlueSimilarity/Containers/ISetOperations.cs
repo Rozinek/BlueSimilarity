@@ -1,6 +1,6 @@
 ﻿namespace BlueSimilarity.Containers
 {
-	public interface ISetOperations<T> where T : class
+	internal interface ISetOperations<T> where T : class
 	{
 		#region Methods (public)
 

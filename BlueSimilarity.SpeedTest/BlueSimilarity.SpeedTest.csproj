@@ -47,10 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BlueSimilarity\BlueSimilarity.csproj">
-      <Project>{bc2a9e01-d66a-4c9c-9fd2-df7516609681}</Project>
+      <Project>{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}</Project>
       <Name>BlueSimilarity</Name>
     </ProjectReference>
   </ItemGroup>

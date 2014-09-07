@@ -15,11 +15,19 @@ namespace BlueSimilarity.Containers
 	{
 		private readonly Dictionary<Token, int> _tokenDictionary;
 
+
+		/// <summary>
+		/// Create empty token set
+		/// </summary>
 		public TokenSet()
 		{
 			_tokenDictionary = new Dictionary<Token, int>();
 		}
 
+		/// <summary>
+		/// Create token set from <see cref="IDictionary"/>
+		/// </summary>
+		/// <param name="tokenDictionary">dictionary of tokens and their occurences</param>
 		public TokenSet(IDictionary<Token, int> tokenDictionary)
 		{
 			_tokenDictionary = new Dictionary<Token, int>(tokenDictionary);
@@ -49,11 +57,23 @@ namespace BlueSimilarity.Containers
 			return _tokenDictionary.Remove(key);
 		}
 
+
+		/// <summary>
+		/// Add token with its occurence
+		/// </summary>
+		/// <param name="key">the token</param>
+		/// <param name="value">the occurence</param>
 		public void Add(Token key, int value)
 		{
 			_tokenDictionary.Add(key, value);
 		}
 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
 		public bool ContainsKey(Token key)
 		{
 			return _tokenDictionary.ContainsKey(key);
