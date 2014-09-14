@@ -40,9 +40,6 @@ namespace BlueSimilarity.Test
 			const string mixFirst = "abcdxyz";
 			const string mixSecond = "zbcdxy";
 			SimilarityHelpers.DistanceInterfaceTest(_levensthein, mixFirst, mixSecond, 2);
-
-
-			SimilarityHelpers.DistanceInterfaceTest(_levensthein, "abcde", "baced", 3);
 		}
 
 		[TestMethod]
