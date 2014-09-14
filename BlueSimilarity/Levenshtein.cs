@@ -60,7 +60,7 @@ namespace BlueSimilarity
 		#region ISimilarity Members
 
 		/// <summary>
-		///     Normalized similarity from 0 to 1 where the 1 is total simalirity
+		///     Normalized similarity from 0 to 1 where the 1 is total similarity
 		/// </summary>
 		/// <param name="first">the first token</param>
 		/// <param name="second">the second token</param>
@@ -71,7 +71,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		///     Normalized similarity from 0 to 1 where the 1 is total simalirity
+		///     Normalized similarity from 0 to 1 where the 1 is total similarity
 		/// </summary>
 		/// <param name="first">the first token</param>
 		/// <param name="second">the second token</param>
@@ -82,10 +82,11 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
+		///     Normalized similarity from 0 to 1 where the 1 is total similarity
 		/// </summary>
-		/// <param name="first"></param>
-		/// <param name="second"></param>
-		/// <returns></returns>
+		/// <param name="first">the first normalized string</param>
+		/// <param name="second">the second normalized string</param>
+		/// <returns>returns the number of edit distance</returns>
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
 		{
 			return NativeEntryPoint.NormLevSim(first.Value, second.Value);

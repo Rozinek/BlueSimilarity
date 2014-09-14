@@ -18,7 +18,7 @@ namespace BlueSimilarity.Definitions
 		#region Methods (public)
 
 		/// <summary>
-		///     Get the similarity score
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -26,7 +26,7 @@ namespace BlueSimilarity.Definitions
 		double GetSimilarity(string first, string second);
 
 		/// <summary>
-		///     Get the similarity score
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -34,7 +34,7 @@ namespace BlueSimilarity.Definitions
 		double GetSimilarity(NormalizedString first, NormalizedString second);
 
 		/// <summary>
-		///     Get the similarity score
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>

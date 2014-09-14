@@ -17,7 +17,7 @@ namespace BlueSimilarity
 		#region IDistance Members
 
 		/// <summary>
-		///     Offers the same behaviour as <see cref="Levenshtein.GetDistance(string, string)" />
+		///     Offers the same behavior as <see cref="Levenshtein.GetDistance(string, string)" />
 		///     and extends for transposition of two character that will have only 1 distance
 		/// </summary>
 		/// <example>
@@ -32,7 +32,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		///     Offers the same behaviour as <see cref="Levenshtein.GetDistance(NormalizedString, NormalizedString)" />
+		///     Offers the same behavior as <see cref="Levenshtein.GetDistance(NormalizedString, NormalizedString)" />
 		///     and extends for transposition of two character that will have only 1 distance
 		/// </summary>
 		/// <example>
@@ -48,7 +48,7 @@ namespace BlueSimilarity
 
 
 		/// <summary>
-		///     Offers the same behaviour as <see cref="Levenshtein.GetDistance(Token, Token)" />
+		///     Offers the same behavior as <see cref="Levenshtein.GetDistance(Token, Token)" />
 		///     and extends for transposition of two character that will have only 1 distance
 		/// </summary>
 		/// <example>
@@ -66,11 +66,13 @@ namespace BlueSimilarity
 
 		#region ISimilarity Members
 
+
 		/// <summary>
+		/// Get the similarity score
 		/// </summary>
-		/// <param name="first"></param>
-		/// <param name="second"></param>
-		/// <returns></returns>
+		/// <param name="first">first string</param>
+		/// <param name="second">second string</param>
+		/// <returns>returns the similarity score between 0 and 1</returns>
 		public double GetSimilarity(Token first, Token second)
 		{
 			return NativeEntryPoint.NormDamLevSim(first.Value, second.Value);
@@ -78,21 +80,22 @@ namespace BlueSimilarity
 
 
 		/// <summary>
+		/// Get the similarity score
 		/// </summary>
-		/// <param name="first"></param>
-		/// <param name="second"></param>
-		/// <returns></returns>
+		/// <param name="first">first string</param>
+		/// <param name="second">second string</param>
+		/// <returns>returns the similarity score between 0 and 1</returns>
 		public double GetSimilarity(string first, string second)
 		{
 			return NativeEntryPoint.NormDamLevSim(first, second);
 		}
 
-
 		/// <summary>
+		/// Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
-		/// <param name="first"></param>
-		/// <param name="second"></param>
-		/// <returns></returns>
+		/// <param name="first">first string</param>
+		/// <param name="second">second string</param>
+		/// <returns>returns the similarity score between 0 and 1</returns>
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
 		{
 			return NativeEntryPoint.NormDamLevSim(first.Value, second.Value);

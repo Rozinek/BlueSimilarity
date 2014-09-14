@@ -1,0 +1,417 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlueSimilarity</name>
+    </assembly>
+    <members>
+        <member name="T:BlueSimilarity.Types.Bigram">
+            <summary>
+                Q-gram with the lenght of string 2 is called bigram
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Containers.ISetOperations`1.Intersect(`0)">
+            <summary>
+            </summary>
+            <param name="set"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlueSimilarity.Containers.ISetOperations`1.Union(`0)">
+            <summary>
+            </summary>
+            <param name="set"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlueSimilarity.Types.TypeConversion.GetQgramLength``1">
+            <summary>
+                Get Length of the q-gram
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:BlueSimilarity.Types.Unigram">
+            <summary>
+                Q-gram with the lenght of string 1 is called unigram
+            </summary>
+        </member>
+        <member name="T:BlueSimilarity.Types.Trigram">
+            <summary>
+                Q-gram with the lenght of string 2 is called bigram
+            </summary>
+        </member>
+        <member name="T:BlueSimilarity.Definitions.IDistance">
+            <summary>
+                Edit distance is a way of quantifying how dissimilar two strings (e.g., words) are to one another by counting the
+                minimum number of operations required to transform one string into the other.
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.IDistance.GetDistance(System.String,System.String)">
+            <summary>
+                Count edit distance
+            </summary>
+            <param name="first">first string</param>
+            <param name="second">second string</param>
+            <returns>The minimum number of operations required to transform one string into the other.</returns>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.IDistance.GetDistance(BlueSimilarity.Types.NormalizedString,BlueSimilarity.Types.NormalizedString)">
+            <summary>
+                Count edit distance
+            </summary>
+            <param name="first">first <see cref="T:BlueSimilarity.Types.NormalizedString"/></param>
+            <param name="second">second <see cref="T:BlueSimilarity.Types.NormalizedString"/></param>
+            <returns>The minimum number of operations required to transform one string into the other.</returns>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.IDistance.GetDistance(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)">
+            <summary>
+                Count edit distance
+            </summary>
+            <param name="first">first <see cref="T:BlueSimilarity.Types.Token"/></param>
+            <param name="second">second <see cref="T:BlueSimilarity.Types.Token"/></param>
+            <returns>The minimum number of operations required to transform one string into the other.</returns>
+        </member>
+        <member name="T:BlueSimilarity.Definitions.ISimilarity">
+            <summary>
+                Methods for measurement similarity between 0 and 1 where 0 is total dissimilarity
+                and 1 are full similar strings with regards to used algorithm
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.ISimilarity.GetSimilarity(System.String,System.String)">
+            <summary>
+                Get the similarity score
+            </summary>
+            <param name="first">first string</param>
+            <param name="second">second string</param>
+            <returns>returns the similarity score between 0 and 1</returns>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.ISimilarity.GetSimilarity(BlueSimilarity.Types.NormalizedString,BlueSimilarity.Types.NormalizedString)">
+            <summary>
+                Get the similarity score
+            </summary>
+            <param name="first">first string</param>
+            <param name="second">second string</param>
+            <returns>returns the similarity score between 0 and 1</returns>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.ISimilarity.GetSimilarity(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)">
+            <summary>
+                Get the similarity score
+            </summary>
+            <param name="first">first string</param>
+            <param name="second">second string</param>
+            <returns>returns the similarity score between 0 and 1</returns>
+        </member>
+        <member name="T:BlueSimilarity.DamerauLevenshtein">
+            <summary>
+                Damerau - Levensthein algorithm providing similarity measurement <see cref="T:BlueSimilarity.Definitions.ISimilarity"/>
+                and distance measurement <see cref="T:BlueSimilarity.Definitions.IDistance"/>
+                <seealso cref="!:http://en.wikipedia.org/wiki/Damerau–Levenshtein_distance"/>
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.DamerauLevenshtein.GetDistance(System.String,System.String)">
+            <summary>
+                Offers the same behaviour as <see cref="M:BlueSimilarity.Levenshtein.GetDistance(System.String,System.String)"/>
+                and extends for transposition of two character that will have only 1 distance
+            </summary>
+            <example>
+                return 1 for transposition two character ABC =&gt; ACB
+            </example>
+            <param name="first">the first string</param>
+            <param name="second">the second string</param>
+            <returns>return the number of edit distance</returns>
+        </member>
+        <member name="M:BlueSimilarity.DamerauLevenshtein.GetDistance(BlueSimilarity.Types.NormalizedString,BlueSimilarity.Types.NormalizedString)">
+            <summary>
+                Offers the same behaviour as <see cref="M:BlueSimilarity.Levenshtein.GetDistance(BlueSimilarity.Types.NormalizedString,BlueSimilarity.Types.NormalizedString)"/>
+                and extends for transposition of two character that will have only 1 distance
+            </summary>
+            <example>
+                return 1 for transposition two character ABC =&gt; ACB
+            </example>
+            <param name="first">the first normalized string</param>
+            <param name="second">the second normalized string</param>
+            <returns>return the number of edit distance</returns>
+        </member>
+        <member name="M:BlueSimilarity.DamerauLevenshtein.GetDistance(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)">
+            <summary>
+                Offers the same behaviour as <see cref="M:BlueSimilarity.Levenshtein.GetDistance(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)"/>
+                and extends for transposition of two character that will have only 1 distance
+            </summary>
+            <example>
+                return 1 for transposition two character ABC =&gt; ACB
+            </example>
+            <param name="first">the first normalized string</param>
+            <param name="second">the second normalized string</param>
+            <returns>return the number of edit distance</returns>
+        </member>
+        <member name="M:BlueSimilarity.DamerauLevenshtein.GetSimilarity(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)">
+            <summary>
+            
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlueSimilarity.DamerauLevenshtein.GetSimilarity(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BlueSimilarity.DamerauLevenshtein.GetSimilarity(BlueSimilarity.Types.NormalizedString,BlueSimilarity.Types.NormalizedString)">
+            <summary>
+            
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="F:BlueSimilarity.Definitions.NativeEntryPoint.BlueSimilarityInteropName">
+            <summary>
+                The name of the interop nativ assembly name
+            </summary>
+        </member>
+        <member name="F:BlueSimilarity.Definitions.NativeEntryPoint.InteropCallingConvention">
+            <summary>
+                Calling convention to the native entry point
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.NativeEntryPoint.LoadLibraryIfExists(System.String)">
+            <summary>
+                Load the native library
+                <example>
+                    e.g. unmanaged.dll
+                </example>
+            </summary>
+            <param name="dllName">the file name for native dll libary</param>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.NativeEntryPoint.Dice(System.String,System.String,System.Int32)">
+            <summary>
+                Dice coefficient native method
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.NativeEntryPoint.Jaccard(System.String,System.String,System.Int32)">
+            <summary>
+                Jaccard coefficeint native method
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Definitions.NativeEntryPoint.Overlap(System.String,System.String,System.Int32)">
+            <summary>
+                Overlap coefficient native method
+            </summary>
+        </member>
+        <member name="T:BlueSimilarity.DiceCoefficient`1">
+            <summary>
+            Dice coefficient <see cref="!:http://en.wikipedia.org/wiki/Sørensen–Dice_coefficient"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:BlueSimilarity.JaccardCoefficient`1">
+            <summary>
+            Jaccard coefficient <see cref="!:http://en.wikipedia.org/wiki/Jaccard_coefficient"/>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:BlueSimilarity.Jaro">
+            <summary>
+            Jaro distance <see cref="!:http://en.wikipedia.org/wiki/Jaro–Winkler_distance"/>
+            </summary>
+        </member>
+        <member name="T:BlueSimilarity.JaroWinkler">
+            <summary>
+            Jaro-Winkler method <see cref="!:http://en.wikipedia.org/wiki/Jaro–Winkler_distance"/>
+            </summary>
+        </member>
+        <member name="T:BlueSimilarity.Levenshtein">
+            <summary>
+                Levensthein algorithm <seealso cref="!:http://en.wikipedia.org/wiki/Levenshtein_distance"/> providing similarity
+                measurement <see cref="T:BlueSimilarity.Definitions.ISimilarity"/> and distance measurement <see cref="T:BlueSimilarity.Definitions.IDistance"/>
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Levenshtein.GetDistance(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)">
+            <summary>
+                <see cref="M:BlueSimilarity.Levenshtein.GetDistance(System.String,System.String)"/>
+            </summary>
+            <param name="first">the first token</param>
+            <param name="second">the second token</param>
+            <returns>returns the number of edit distance</returns>
+        </member>
+        <member name="M:BlueSimilarity.Levenshtein.GetDistance(BlueSimilarity.Types.NormalizedString,BlueSimilarity.Types.NormalizedString)">
+            <summary>
+                <see cref="M:BlueSimilarity.Levenshtein.GetDistance(System.String,System.String)"/>
+            </summary>
+            <param name="first">the first normalized string</param>
+            <param name="second">the second normalized string</param>
+            <returns>returns the number of edit distance</returns>
+        </member>
+        <member name="M:BlueSimilarity.Levenshtein.GetDistance(System.String,System.String)">
+            <summary>
+                Levenshtein distance returns the number of edit operations
+                (addition, deletation, substition) which are needed for transformation
+                from one string to another
+                <example>
+                    return 1 for deletation character: ABC => AC
+                    return 1 for substitution character ABC => AXC
+                    return 1 for addition character ABC => ABCD
+                </example>
+            </summary>
+            <param name="first">the first string</param>
+            <param name="second">the second string</param>
+            <returns>returns the number of edit distance</returns>
+        </member>
+        <member name="M:BlueSimilarity.Levenshtein.GetSimilarity(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)">
+            <summary>
+                Normalized similarity from 0 to 1 where the 1 is total simalirity
+            </summary>
+            <param name="first">the first token</param>
+            <param name="second">the second token</param>
+            <returns>returns the number of edit distance</returns>
+        </member>
+        <member name="M:BlueSimilarity.Levenshtein.GetSimilarity(System.String,System.String)">
+            <summary>
+                Normalized similarity from 0 to 1 where the 1 is total simalirity
+            </summary>
+            <param name="first">the first token</param>
+            <param name="second">the second token</param>
+            <returns>returns the number of edit distance</returns>
+        </member>
+        <member name="M:BlueSimilarity.Levenshtein.GetSimilarity(BlueSimilarity.Types.NormalizedString,BlueSimilarity.Types.NormalizedString)">
+            <summary>
+            </summary>
+            <param name="first"></param>
+            <param name="second"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BlueSimilarity.OverlapCoefficient`1">
+            <summary>
+            Overlap coefficeint <see cref="!:http://en.wikipedia.org/wiki/Overlap_coefficient"/>  
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:BlueSimilarity.Containers.IQGramSet`1">
+            <summary>
+                Defines operations and properties, which are needed
+                for working Q-grams set
+            </summary>
+        </member>
+        <member name="P:BlueSimilarity.Containers.IQGramSet`1.QGramLength">
+            <summary>
+                Q-gram order
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:BlueSimilarity.Types.NormalizedString" -->
+        <member name="M:BlueSimilarity.Types.NormalizedString.#ctor(System.String)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="value">the string for normalization</param>
+        </member>
+        <member name="T:BlueSimilarity.Containers.QGramSet`1">
+            <summary>
+                Creates Q-gram stream from ordered
+                sequence (contextual) tokens
+            </summary>
+        </member>
+        <member name="F:BlueSimilarity.Containers.QGramSet`1.BlankSpace">
+            <summary>
+                Default blank space symbol
+            </summary>
+        </member>
+        <member name="F:BlueSimilarity.Containers.QGramSet`1._qGramsDictionary">
+            <summary>
+                intenally storage for all q-grams
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Containers.QGramSet`1.#ctor(System.String)">
+            <summary>
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:BlueSimilarity.Containers.QGramSet`1.#ctor(BlueSimilarity.Types.NormalizedString)">
+            <summary>
+            </summary>
+            <param name="normalizedString"></param>
+        </member>
+        <member name="M:BlueSimilarity.Containers.QGramSet`1.#ctor(BlueSimilarity.Containers.IQGramSet{`0})">
+            <summary>
+            </summary>
+            <param name="qGramDictionary"></param>
+        </member>
+        <member name="M:BlueSimilarity.Containers.QGramSet`1.QGramStreaming(System.String,System.Int32)">
+            <summary>
+                Creates the stream of q-grams from ordered
+                sequence of tokens
+            </summary>
+            <param name="token"> ordered sequence of tokens </param>
+            <param name="qgramLength">q-gram length</param>
+            <returns> </returns>
+        </member>
+        <member name="T:BlueSimilarity.Types.Token">
+            <summary>
+            Token represents atomic string for measurement similarity
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Types.Token.#ctor(System.String)">
+            <summary>
+            Create token from the string
+            </summary>
+            <param name="text">the text</param>
+        </member>
+        <member name="M:BlueSimilarity.Types.Token.#ctor(BlueSimilarity.Types.NormalizedString)">
+            <summary>
+            Create token from normalized string
+            </summary>
+            <param name="normalizedString">normalized string</param>
+        </member>
+        <member name="M:BlueSimilarity.Types.Token.op_Equality(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)">
+            <summary>
+            Equality operator on token
+            </summary>
+            <param name="left">Left token</param>
+            <param name="right">Right token</param>
+            <returns>true when equals the tokens otherwise false</returns>
+        </member>
+        <member name="M:BlueSimilarity.Types.Token.op_Inequality(BlueSimilarity.Types.Token,BlueSimilarity.Types.Token)">
+            <summary>
+            Nonequality operator on token
+            </summary>
+            <param name="left">Left token</param>
+            <param name="right">Right token</param>
+            <returns>false when equals the tokens otherwise true</returns>
+        </member>
+        <member name="P:BlueSimilarity.Types.Token.Value">
+            <summary>
+            Value of the token
+            </summary>
+        </member>
+        <member name="T:BlueSimilarity.Containers.TokenSet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Containers.TokenSet.#ctor">
+            <summary>
+            Create empty token set
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Containers.TokenSet.#ctor(System.Collections.Generic.IDictionary{BlueSimilarity.Types.Token,System.Int32})">
+            <summary>
+            Create token set from <see cref="T:System.Collections.IDictionary"/>
+            </summary>
+            <param name="tokenDictionary">dictionary of tokens and their occurences</param>
+        </member>
+        <member name="M:BlueSimilarity.Containers.TokenSet.Add(BlueSimilarity.Types.Token,System.Int32)">
+            <summary>
+            Add token with its occurence
+            </summary>
+            <param name="key">the token</param>
+            <param name="value">the occurence</param>
+        </member>
+        <member name="M:BlueSimilarity.Containers.TokenSet.ContainsKey(BlueSimilarity.Types.Token)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
