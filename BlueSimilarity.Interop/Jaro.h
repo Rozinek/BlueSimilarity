@@ -9,19 +9,19 @@
 BLUESIMILARITY_API double __stdcall  Jaro(const char *pattern, const char *text);
 
 // internal method
-void CommonCharacters(char* returnCommons, const char * pattern, unsigned int lenStr1, const char * text, unsigned int lenStr2, unsigned int SlidingWindow);
-int GetTranspositionCount(char *commonChar1, int c1Len, char *commonChar2, int c2Len);
+void CommonCharacters(char* returnCommons, const char * pattern, size_t lenStr1, const char * text, size_t lenStr2, int SlidingWindow);
+int GetTranspositionCount(char *commonChar1, size_t c1Len, char *commonChar2, size_t c2Len);
 
 /****************************************************************************************************/
 /*Jaro distance																						*/
 /****************************************************************************************************/
 double __stdcall Jaro(const char *pattern, const char *text)
 {
-	short lenStr1 = strlen(pattern);
-	short lenStr2 = strlen(text);
+	size_t lenStr1 = strlen(pattern);
+	size_t lenStr2 = strlen(text);
 
-	int c1Len, c2Len;
-	int halflen = ceil(MIN(lenStr1, lenStr2) / 2.0);
+	size_t c1Len, c2Len;
+	int halflen = (int) ceil(MIN(lenStr1, lenStr2) / 2.0);
 
 	char *common1 = new char[(MAX(lenStr1, lenStr2) + 1) * sizeof(char)];
 	char *common2 = new char[(MAX(lenStr1, lenStr2) + 1) * sizeof(char)];
@@ -52,15 +52,15 @@ double __stdcall Jaro(const char *pattern, const char *text)
 }
 
 
-void CommonCharacters(char* returnCommons, const char * pattern, unsigned int lenStr1, const char * text, unsigned int lenStr2, unsigned int SlidingWindow)
+void CommonCharacters(char* returnCommons, const char * pattern, size_t lenStr1, const char * text, size_t lenStr2, int SlidingWindow)
 {
 	int c = 0;
-	for (unsigned int i = 0; i < lenStr1; i++)
+	for (size_t i = 0; i < lenStr1; i++)
 	{
 		bool foundIt = false;
 		const char *ch = &pattern[i];
 
-		for (unsigned int j = 0; j < lenStr2; j++) 
+		for (size_t j = 0; j < lenStr2; j++)
 		{
 			if ((*ch == text[j]) && !foundIt && abs((signed) (i - j)) <= SlidingWindow) 
 			{
@@ -73,11 +73,11 @@ void CommonCharacters(char* returnCommons, const char * pattern, unsigned int le
 	returnCommons[c] = '\0';
 }
 
-int GetTranspositionCount(char *commonChar1, int c1Len, char *commonChar2, int c2Len)
+int GetTranspositionCount(char *commonChar1, size_t c1Len, char *commonChar2, size_t c2Len)
 {
 	int transpositions = 0;
-	int minLen = MIN(c1Len, c2Len);
-	for (int i = 0; i < minLen; i++)
+	size_t minLen = MIN(c1Len, c2Len);
+	for (size_t i = 0; i < minLen; i++)
 	{
 		if (commonChar1[i] != commonChar2[i])
 		{

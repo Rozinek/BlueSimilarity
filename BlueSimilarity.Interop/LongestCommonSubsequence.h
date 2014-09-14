@@ -12,38 +12,37 @@
 
 using namespace boost::numeric::ublas;
 
-
 BLUESIMILARITY_API double __stdcall NormLCSubsequenceSim(const char *pattern, const char *text);
-
-BLUESIMILARITY_API int __stdcall LCSubsequence(const char *pattern, const char *text);
+BLUESIMILARITY_API size_t __stdcall LCSubsequence(const char *pattern, const char *text);
 
 // longest common subsequence
 BLUESIMILARITY_API char* __stdcall GetLCSubsequence(const char *pattern, const char *text);
 
 // INTERNAL FUNCTIONS
-int LCSubsequenceInternal(const char *pattern, unsigned int m, const char *text, unsigned int n);
+int LCSubsequenceInternal(const char *pattern, size_t m, const char *text, size_t n);
 
 /****************************************************************************************************/
 /*Longest Common Subsequence Normalized Similarity													*/
 /****************************************************************************************************/
 double __stdcall NormLCSubsequenceSim(const char *pattern, const char *text)
 {
-	int m = strlen(pattern);
-	int n = strlen(text);
+	size_t m = strlen(pattern);
+	size_t n = strlen(text);
 
 	if (m == 0 || n == 0)
 		return 0;
 
-	return 1.0 - LCSubsequenceInternal(pattern, m, text, n)/ MAX(m,n);
-}
+	size_t subsequence = LCSubsequenceInternal(pattern, m, text, n);
+	return 1.0 - (double) subsequence / (double) MAX(m, n);
 
+}
 /****************************************************************************************************/
 /*Longest Common Subsequence																		*/
 /****************************************************************************************************/
-int __stdcall LCSubsequence(const char *pattern, const char *text)
+size_t __stdcall LCSubsequence(const char *pattern, const char *text)
 {
-	int m = strlen(pattern);
-	int n = strlen(text); 
+	size_t m = strlen(pattern);
+	size_t n = strlen(text);
 
 	if (m == 0 || n == 0)
 		return 0;
@@ -53,13 +52,13 @@ int __stdcall LCSubsequence(const char *pattern, const char *text)
 
 
 // INTERNAL FUNCTIONS
-int LCSubsequenceInternal(const char *pattern, unsigned int m, const char *text, unsigned int n)
+int LCSubsequenceInternal(const char *pattern, size_t m, const char *text, size_t n)
 {
-	matrix<double> costs(m + 1, n + 1);
+	matrix<int> costs(m + 1, n + 1);
 
-	for (int i = 0; i <= m; m++)
+	for (unsigned int i = 0; i <= m; m++)
 	{
-		for (int j = 0; j <= n; j++)
+		for (unsigned int j = 0; j <= n; j++)
 		{
 			if (i == 0 || j == 0)
 				costs(i, j) = 0;

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSimilarity", "BlueSimilarity\BlueSimilarity.csproj", "{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}"
 EndProject
@@ -28,6 +28,7 @@ Global
 		{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}.Debug|Win32.Build.0 = Debug|Any CPU
 		{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -38,19 +39,21 @@ Global
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Debug|Win32.Build.0 = Debug|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Release|Win32.ActiveCfg = Release|Any CPU
 		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Any CPU.Build.0 = Debug|Win32
 		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Win32.Build.0 = Debug|Win32
+		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Win32.ActiveCfg = Debug|x64
+		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Win32.Build.0 = Debug|x64
 		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Any CPU.ActiveCfg = Release|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Mixed Platforms.ActiveCfg = Release|x64
+		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Mixed Platforms.Build.0 = Release|x64
 		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Win32.ActiveCfg = Release|Win32
 		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Win32.Build.0 = Release|Win32
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,6 +61,7 @@ Global
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Debug|Win32.Build.0 = Debug|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -68,6 +72,7 @@ Global
 		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Debug|Win32.Build.0 = Debug|Any CPU
 		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F15F602-182D-4CB2-80B2-2C3BB4BC6D09}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU

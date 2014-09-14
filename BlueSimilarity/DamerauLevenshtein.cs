@@ -1,6 +1,5 @@
 ﻿#region
 
-using System.Runtime.InteropServices;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 
@@ -29,7 +28,7 @@ namespace BlueSimilarity
 		/// <returns>return the number of edit distance</returns>
 		public int GetDistance(string first, string second)
 		{
-			return DamLevDist(first, second);
+			return NativeEntryPoint.DamLevDist(first, second);
 		}
 
 		/// <summary>
@@ -44,7 +43,7 @@ namespace BlueSimilarity
 		/// <returns>return the number of edit distance</returns>
 		public int GetDistance(NormalizedString first, NormalizedString second)
 		{
-			return DamLevDist(first.Value, second.Value);
+			return NativeEntryPoint.DamLevDist(first.Value, second.Value);
 		}
 
 
@@ -60,60 +59,44 @@ namespace BlueSimilarity
 		/// <returns>return the number of edit distance</returns>
 		public int GetDistance(Token first, Token second)
 		{
-			return DamLevDist(first.Value, second.Value);
+			return NativeEntryPoint.DamLevDist(first.Value, second.Value);
 		}
 
 		#endregion
 
 		#region ISimilarity Members
 
-
 		/// <summary>
-		/// 
 		/// </summary>
 		/// <param name="first"></param>
 		/// <param name="second"></param>
 		/// <returns></returns>
 		public double GetSimilarity(Token first, Token second)
 		{
-			return NormDamLevSim(first.Value, second.Value);
+			return NativeEntryPoint.NormDamLevSim(first.Value, second.Value);
 		}
 
 
 		/// <summary>
-		/// 
 		/// </summary>
 		/// <param name="first"></param>
 		/// <param name="second"></param>
 		/// <returns></returns>
 		public double GetSimilarity(string first, string second)
 		{
-			return NormDamLevSim(first, second);
+			return NativeEntryPoint.NormDamLevSim(first, second);
 		}
 
 
 		/// <summary>
-		/// 
 		/// </summary>
 		/// <param name="first"></param>
 		/// <param name="second"></param>
 		/// <returns></returns>
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
 		{
-			return NormDamLevSim(first.Value, second.Value);
+			return NativeEntryPoint.NormDamLevSim(first.Value, second.Value);
 		}
-
-		#endregion
-
-		#region Methods (private)
-
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.DamerauLevenshteinDistanceEntry,
-			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
-		private static extern int DamLevDist([In] string first, [In] string second);
-
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.DamerauLevenshteinSimilarityEntry,
-			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
-		private static extern double NormDamLevSim([In] string first, [In] string second);
 
 		#endregion
 	}

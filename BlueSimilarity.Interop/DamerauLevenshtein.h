@@ -1,23 +1,31 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
+
+// BOOST 
+#include <boost/numeric/ublas/matrix.hpp>
+#include <boost/numeric/ublas/io.hpp>
+
+// CUSTOM
 #include "MathDef.h"
 #include "BlueSimilarity_API.h"
+
+using namespace boost::numeric::ublas;
 
 // Damerau-Levenshtein distance
 BLUESIMILARITY_API int __stdcall DamLevDist(const char *pattern, const char *text);
 BLUESIMILARITY_API double __stdcall NormDamLevSim(const char *pattern, const char *text);
 
 // INTERNAL FUNCTIONS
-int DamerauLevenshteinDistanceInternal(const char *pattern, unsigned int m, const char *text, unsigned int n);
+int DamerauLevenshteinDistanceInternal(const char *pattern, size_t m, const char *text, size_t n);
 
 /****************************************************************************************************/
 /*	Damerau-Levenshtein distance																			*/
 /****************************************************************************************************/
 int __stdcall  DamLevDist(const char *pattern, const char *text)
 {
-	unsigned int m = strlen(pattern);
-	unsigned int n = strlen(text);
+	size_t m = strlen(pattern);
+	size_t n = strlen(text);
 	return DamerauLevenshteinDistanceInternal(pattern, m, text, n);
 }
 
@@ -26,8 +34,8 @@ int __stdcall  DamLevDist(const char *pattern, const char *text)
 /****************************************************************************************************/
 double __stdcall NormDamLevSim(const char *pattern, const char *text)
 {
-	unsigned int m = strlen(pattern);
-	unsigned int n = strlen(text);
+	size_t m = strlen(pattern);
+	size_t n = strlen(text);
 
 	int distance = DamerauLevenshteinDistanceInternal(pattern, m, text, n);
 
@@ -39,60 +47,54 @@ double __stdcall NormDamLevSim(const char *pattern, const char *text)
 /****************************************************************************************************/
 /*Damerau-Levenshtein distance																		*/
 /****************************************************************************************************/
-int  DamerauLevenshteinDistanceInternal(const char *pattern, unsigned int m, const char *text, unsigned int n) 
+int  DamerauLevenshteinDistanceInternal(const char *pattern, size_t m, const char *text, size_t n)
 {
 	if (m == 0 || n == 0)
 		return 0;
 
+	// define variables
+	int cost;
 	unsigned int i, j;
-	int len = (m + 1) * (n + 1);
-	char *p1, *p2;
-	unsigned int *d, *dp, dist;
 
-	// allocate 1D array
-	d = (unsigned int*) malloc(len * sizeof(unsigned int));
+	// creating a matrix of m+1 rows and n+1 columns
+	matrix<int> costs(m + 1, n + 1);
 
-	*d = 0;
-
-	// initializing the first row of the matrix (1D array offset)
-	for (i = 1, dp = d + n + 1; i < m + 1; ++i, dp += n + 1)
+	// initializing the first column of the matrix
+	for (i = 0; i <= m; ++i) 
 	{
-		*dp = i;
+		costs(i, 0) = i;
+	}
+
+	// initializing the first row of the matrix
+	for (j = 0; j <= n; ++j)
+	{
+		costs(0, j) = j;
 	}
 
 
-	// initializing the first column of the matrix (1D array offset)
-	for (j = 1, dp = d + 1; j < n + 1; ++j, ++dp)
-	{
-		*dp = j;
-	}
+	// starting the main process for computing 
+	// the distance between the two strings "pattern" and "text"
+	for (i = 1; i <= m; ++i) {
+		for (j = 1; j <= n; ++j) {
 
-	for (i = 1, p1 = (char*) pattern, dp = d + n + 2; i < m + 1; ++i, p1 += 1, ++dp)
-	{
-		for (j = 1, p2 = (char*) text; j < n + 1; ++j, p2 += 1, ++dp)
-		{
-			if (*p1 == *p2)
-			{
-				*dp = *(dp - n - 2);
+			if (pattern[i - 1] == text[j - 1]) {
+				cost = 0;
 			}
-			else
-			{
-				*dp = MIN3(*(dp - 1) + 1, *(dp - n - 1) + 1, *(dp - n - 2) + 1);
+			else {
+				cost = 1;
 			}
 
-			// transposition
+			// computes the current value of the "edit distance" and place
+			// the result into the current matrix cell
+			costs(i, j) = MIN3(costs(i - 1, j) + 1, costs(i, j - 1) + 1, costs(i - 1, j - 1) + cost);
+
+
 			if ((i > 1) && (j > 1) && (pattern[i - 1] == text[j - 2]) && (pattern[i - 2] == text[j - 1]))
 			{
-				*dp = MIN(*dp - 1, *dp - 4 + 1);
+				costs(i, j) = MIN(costs(i, j), costs(i - 2, j - 2) + cost);
 			}
 		}
 	}
-
-	dist = *(dp - 2);
-
-	dp = NULL;
-
-	free(d);
-
-	return dist;
+	
+	return costs(m, n);
 }

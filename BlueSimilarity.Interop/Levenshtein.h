@@ -9,7 +9,7 @@ BLUESIMILARITY_API int __stdcall LevDist(const char *pattern, const char *text);
 BLUESIMILARITY_API double __stdcall NormLevSim(const char *pattern, const char *text);
 
 // INTERNAL FUNCTIONS
-int LevenshteinDistanceInternal(const char *pattern, unsigned int m, const char *text, unsigned int n);
+int LevenshteinDistanceInternal(const char *pattern, size_t m, const char *text, size_t n);
 
 
 /****************************************************************************************************/
@@ -17,8 +17,8 @@ int LevenshteinDistanceInternal(const char *pattern, unsigned int m, const char 
 /****************************************************************************************************/
 int __stdcall LevDist(const char *pattern, const char *text)
 {
-	unsigned int m = strlen(pattern);
-	unsigned int n = strlen(text);
+	size_t m = strlen(pattern);					   
+	size_t n = strlen(text);
 	return LevenshteinDistanceInternal(pattern, m, text, n);
 }
 
@@ -28,8 +28,8 @@ int __stdcall LevDist(const char *pattern, const char *text)
 /****************************************************************************************************/
 double __stdcall NormLevSim(const char *pattern, const char *text)
 {
-	unsigned int m = strlen(pattern);
-	unsigned int n = strlen(text);
+	size_t m = strlen(pattern);
+	size_t n = strlen(text);
 
 	int distance = LevenshteinDistanceInternal(pattern, m, text, n);
 
@@ -41,18 +41,18 @@ double __stdcall NormLevSim(const char *pattern, const char *text)
 //
 // Levenshtein distance for computing edit distance of two strings (sequences)
 //
-int LevenshteinDistanceInternal(const char *pattern, unsigned int m, const char *text, unsigned int n)
+int LevenshteinDistanceInternal(const char *pattern, size_t m, const char *text, size_t n)
 {
 	if (m == 0 || n == 0)
 		return 0;
 
 	unsigned int i, j;
-	int len = (m + 1) * (n + 1);
+	size_t len = (m + 1) * (n + 1);
 	char *p1, *p2;
 	unsigned int *d, *dp, dist;
 
 	// allocate 1D array
-	d = (unsigned int*) malloc(len * sizeof(unsigned int));
+	d = (unsigned int*) malloc(len * sizeof(size_t));
 
 	*d = 0;
 

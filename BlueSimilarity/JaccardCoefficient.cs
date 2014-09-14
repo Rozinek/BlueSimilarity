@@ -37,7 +37,7 @@ namespace BlueSimilarity
 
 		public double GetSimilarity(string first, string second)
 		{
-			return NativeMethods.Jaccard(first, second, _qgramLength);
+			return NativeEntryPoint.Jaccard(first, second, _qgramLength);
 		}
 
 		public double GetSimilarity(NormalizedString first, NormalizedString second)

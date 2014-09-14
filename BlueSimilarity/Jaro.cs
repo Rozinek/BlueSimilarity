@@ -18,26 +18,24 @@ namespace BlueSimilarity
 
 		public double GetSimilarity(string first, string second)
 		{
-			return JaroNative(first, second);
+			return NativeEntryPoint.JaroNative(first, second);
 		}
 
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
 		{
-			return JaroNative(first.Value, second.Value);
+			return NativeEntryPoint.JaroNative(first.Value, second.Value);
 		}
 
 		public double GetSimilarity(Token first, Token second)
 		{
-			return JaroNative(first.Value, second.Value);
+			return NativeEntryPoint.JaroNative(first.Value, second.Value);
 		}
 
 		#endregion
 
 		#region Methods (private)
 
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.JaroEntry,
-			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
-		private static extern double JaroNative([In] string first, [In] string second);
+		
 
 		#endregion
 	}

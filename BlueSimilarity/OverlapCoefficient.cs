@@ -37,7 +37,7 @@ namespace BlueSimilarity
 
 		public double GetSimilarity(string first, string second)
 		{
-			return NativeMethods.Overlap(first, second, _qgramLength);
+			return NativeEntryPoint.Overlap(first, second, _qgramLength);
 		}
 
 		public double GetSimilarity(NormalizedString first, NormalizedString second)

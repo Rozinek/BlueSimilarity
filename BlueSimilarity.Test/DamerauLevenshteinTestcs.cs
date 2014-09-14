@@ -27,24 +27,17 @@ namespace BlueSimilarity.Test
 			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, addFirst, addSecond, addResultExpectd);
 
 			// deletation edit distance test
-			const string delFirst = "abcd";
-			const string delSecond = "abc";
-			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, delFirst, delSecond, 1);
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, "abcd", "abc", 1);
 
 			// substitution edit distance test
-			const string subFirst = "abcd";
-			const string subSecond = "axcd";
-			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, subFirst, subSecond, 1);
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, "abcd", "axcd", 1);
 
 			// substitution and deletation together
-			const string mixFirst = "abcdxyz";
-			const string mixSecond = "zbcdxy";
-			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, mixFirst, mixSecond, 2);
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, "abcdxyz", "zbcdxy", 2);
 
 			// transposition
-			const string transFirst = "abcd";
-			const string transSecond = "acbd";
-			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, transFirst, transSecond, 1);
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, "abcd", "acbd", 1);
+			SimilarityHelpers.DistanceInterfaceTest(_damerauLevenshtein, "abcde", "baced", 2);
 		}
 
 		[TestMethod]

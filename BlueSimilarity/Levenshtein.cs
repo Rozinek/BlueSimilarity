@@ -1,6 +1,5 @@
 ﻿#region
 
-using System.Runtime.InteropServices;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 
@@ -17,25 +16,25 @@ namespace BlueSimilarity
 		#region IDistance Members
 
 		/// <summary>
-		///     <see cref="GetDistance(string, string)"/>
+		///     <see cref="GetDistance(string, string)" />
 		/// </summary>
 		/// <param name="first">the first token</param>
 		/// <param name="second">the second token</param>
 		/// <returns>returns the number of edit distance</returns>
 		public int GetDistance(Token first, Token second)
 		{
-			return LevDist(first.Value, second.Value);
+			return NativeEntryPoint.LevDist(first.Value, second.Value);
 		}
 
 		/// <summary>
-		///     <see cref="GetDistance(string, string)"/>
+		///     <see cref="GetDistance(string, string)" />
 		/// </summary>
 		/// <param name="first">the first normalized string</param>
 		/// <param name="second">the second normalized string</param>
 		/// <returns>returns the number of edit distance</returns>
 		public int GetDistance(NormalizedString first, NormalizedString second)
 		{
-			return LevDist(first.Value, second.Value);
+			return NativeEntryPoint.LevDist(first.Value, second.Value);
 		}
 
 		/// <summary>
@@ -53,7 +52,7 @@ namespace BlueSimilarity
 		/// <returns>returns the number of edit distance</returns>
 		public int GetDistance(string first, string second)
 		{
-			return LevDist(first, second);
+			return NativeEntryPoint.LevDist(first, second);
 		}
 
 		#endregion
@@ -61,25 +60,25 @@ namespace BlueSimilarity
 		#region ISimilarity Members
 
 		/// <summary>
-		///   Normalized similarity from 0 to 1 where the 1 is total simalirity
+		///     Normalized similarity from 0 to 1 where the 1 is total simalirity
 		/// </summary>
 		/// <param name="first">the first token</param>
 		/// <param name="second">the second token</param>
 		/// <returns>returns the number of edit distance</returns>
 		public double GetSimilarity(Token first, Token second)
 		{
-			return NormLevSim(first.Value, second.Value);
+			return NativeEntryPoint.NormLevSim(first.Value, second.Value);
 		}
 
 		/// <summary>
-		///   Normalized similarity from 0 to 1 where the 1 is total simalirity
+		///     Normalized similarity from 0 to 1 where the 1 is total simalirity
 		/// </summary>
 		/// <param name="first">the first token</param>
 		/// <param name="second">the second token</param>
 		/// <returns>returns the number of edit distance</returns>
 		public double GetSimilarity(string first, string second)
 		{
-			return NormLevSim(first, second);
+			return NativeEntryPoint.NormLevSim(first, second);
 		}
 
 		/// <summary>
@@ -89,20 +88,8 @@ namespace BlueSimilarity
 		/// <returns></returns>
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
 		{
-			return NormLevSim(first.Value, second.Value);
+			return NativeEntryPoint.NormLevSim(first.Value, second.Value);
 		}
-
-		#endregion
-
-		#region Methods (private)
-
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.LevenshteinDistanceEntry,
-			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
-		private static extern int LevDist([In] string first, [In] string second);
-
-		[DllImport(NativeEntryPoint.BlueSimilarityInteropName, EntryPoint = NativeEntryPoint.LevenshteinSimilarityEntry,
-			CallingConvention = NativeEntryPoint.InteropCallingConvention)]
-		private static extern double NormLevSim([In] string first, [In] string second);
 
 		#endregion
 	}
