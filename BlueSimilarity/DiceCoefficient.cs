@@ -8,7 +8,7 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	///     Dice coefficient <see cref="http://en.wikipedia.org/wiki/Sørensen–Dice_coefficient" />
+	///     Dice coefficient <a href="http://en.wikipedia.org/wiki/Sørensen–Dice_coefficient">here</a>
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class DiceCoefficient<T> : ISimilarity where T : IQgram
@@ -21,6 +21,9 @@ namespace BlueSimilarity
 
 		#region Constructors
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DiceCoefficient{T}"/> class.
+		/// </summary>
 		public DiceCoefficient()
 		{
 			_qgramLength = TypeConversion.GetQgramLength<T>();

@@ -8,7 +8,7 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	///     Levensthein algorithm <seealso cref="http://en.wikipedia.org/wiki/Levenshtein_distance" /> providing similarity
+	///     Levenshtein algorithm <a href="http://en.wikipedia.org/wiki/Levenshtein_distance">here</a> providing similarity
 	///     measurement <see cref="ISimilarity" /> and distance measurement <see cref="IDistance" />
 	/// </summary>
 	public class Levenshtein : IDistance, ISimilarity

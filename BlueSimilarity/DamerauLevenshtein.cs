@@ -8,9 +8,9 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	///     Damerau - Levensthein algorithm providing similarity measurement <see cref="ISimilarity" />
+	///     Damerau - Levenshtein algorithm providing similarity measurement <see cref="ISimilarity" />
 	///     and distance measurement <see cref="IDistance" />
-	///     <seealso cref="http://en.wikipedia.org/wiki/Damerau–Levenshtein_distance" />
+	///		<a href="http://en.wikipedia.org/wiki/Damerau–Levenshtein_distance">here</a>
 	/// </summary>
 	public class DamerauLevenshtein : IDistance, ISimilarity
 	{

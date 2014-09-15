@@ -8,7 +8,7 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	///     Jaccard coefficient <see cref="http://en.wikipedia.org/wiki/Jaccard_coefficient" />
+	///     Jaccard coefficient <a href="http://en.wikipedia.org/wiki/Jaccard_coefficient">here</a>
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class JaccardCoefficient<T> : ISimilarity where T : IQgram
@@ -21,6 +21,9 @@ namespace BlueSimilarity
 
 		#region Constructors
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="JaccardCoefficient{T}"/> class.
+		/// </summary>
 		public JaccardCoefficient()
 		{
 			_qgramLength = TypeConversion.GetQgramLength<T>();

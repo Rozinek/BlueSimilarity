@@ -10,8 +10,7 @@ namespace BlueSimilarity.Types
 {
 	/// <summary>
 	///     Normalized the textual string to invariant comparable form
-	///     remove diacritics and special symbols ?!@#$%^&*()_+ etc. and
-	///     upper case the text
+	///     remove diacritics, special symbols and upper case the text
 	/// </summary>
 	public class NormalizedString
 	{
@@ -50,6 +49,10 @@ namespace BlueSimilarity.Types
 
 		#region Methods (public)
 
+		/// <summary>
+		/// Returns a <see cref="System.String" /> that represents this instance.
+		/// </summary>
+		/// <returns>A <see cref="System.String" /> that represents this instance.</returns>
 		public override string ToString()
 		{
 			return _normalizedValue;

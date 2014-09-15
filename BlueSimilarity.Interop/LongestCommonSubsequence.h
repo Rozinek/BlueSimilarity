@@ -32,8 +32,7 @@ double __stdcall NormLCSubsequenceSim(const char *pattern, const char *text)
 	if (m == 0 || n == 0)
 		return 0;
 
-	size_t subsequence = LCSubsequenceInternal(pattern, m, text, n);
-	return 1.0 - (double) subsequence / (double) MAX(m, n);
+	return 1.0 - static_cast<double>(LCSubsequenceInternal(pattern, m, text, n) / MAX(m, n));
 
 }
 /****************************************************************************************************/

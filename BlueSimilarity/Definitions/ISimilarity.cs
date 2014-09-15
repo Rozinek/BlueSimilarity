@@ -1,7 +1,6 @@
 ﻿#region
 
 using System.Diagnostics.Contracts;
-using BlueSimilarity.Contracts;
 using BlueSimilarity.Types;
 
 #endregion
