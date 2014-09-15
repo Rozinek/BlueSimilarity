@@ -23,10 +23,11 @@ namespace BlueSimilarity.Types
 
 		#region Constructors
 
+
 		/// <summary>
-		///     Constructor
+		/// Initializes a new instance of the <see cref="NormalizedString"/> class.
 		/// </summary>
-		/// <param name="value">the string for normalization</param>
+		/// <param name="value">The value.</param>
 		public NormalizedString(string value)
 		{
 			_normalizedValue = ConvertToCanonicalForm(value);
@@ -36,6 +37,10 @@ namespace BlueSimilarity.Types
 
 		#region Properties and Indexers
 
+		/// <summary>
+		/// Gets the value.
+		/// </summary>
+		/// <value>The value.</value>
 		public string Value
 		{
 			get { return _normalizedValue; }

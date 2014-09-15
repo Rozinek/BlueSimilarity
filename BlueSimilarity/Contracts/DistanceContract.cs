@@ -7,7 +7,8 @@ using BlueSimilarity.Types;
 
 #endregion
 
-namespace BlueSimilarity.Contracts
+// ReSharper disable once CheckNamespace
+namespace BlueSimilarity
 {
 	[ContractClassFor(typeof (IDistance))]
 	internal abstract class DistanceContract : IDistance
