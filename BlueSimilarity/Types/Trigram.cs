@@ -14,12 +14,19 @@ namespace BlueSimilarity.Types
 	{
 		#region Static and contants fields
 
+		/// <summary>
+		/// The trigram length
+		/// </summary>
 		public const int TrigramLength = 3;
 
 		#endregion
 
 		#region Constructors
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Trigram"/> class.
+		/// </summary>
+		/// <param name="value">The value.</param>
 		public Trigram(string value)
 		{
 			Contract.Requires<ArgumentNullException>(value != null, "Value must not be null.");

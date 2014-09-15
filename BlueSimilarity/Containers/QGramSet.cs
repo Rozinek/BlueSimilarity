@@ -16,7 +16,7 @@ namespace BlueSimilarity.Containers
 	///     Creates Q-gram stream from ordered
 	///     sequence (contextual) tokens
 	/// </summary>
-	public class QGramSet<T> : IQGramSet<T>, ISetOperations<QGramSet<T>> where T : IQgram
+	internal class QGramSet<T> : IQGramSet<T>, ISetOperations<QGramSet<T>> where T : IQgram
 	{
 		#region Static and contants fields
 
@@ -30,7 +30,7 @@ namespace BlueSimilarity.Containers
 		#region Private fields
 
 		/// <summary>
-		///     intenally storage for all q-grams
+		///     internally storage for all q-grams
 		/// </summary>
 		private readonly Dictionary<string, int> _qGramsDictionary;
 

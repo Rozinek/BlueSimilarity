@@ -14,12 +14,19 @@ namespace BlueSimilarity.Types
 	{
 		#region Static and contants fields
 
+		/// <summary>
+		/// The unigram length
+		/// </summary>
 		public const int UnigramLength = 1;
 
 		#endregion
 
 		#region Constructors
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Unigram"/> class.
+		/// </summary>
+		/// <param name="value">The value.</param>
 		public Unigram(string value)
 		{
 			Contract.Requires<ArgumentException>(value != null, "Value must not be null or empty");

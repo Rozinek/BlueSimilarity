@@ -14,12 +14,19 @@ namespace BlueSimilarity.Types
 	{
 		#region Static and contants fields
 
+		/// <summary>
+		/// The bigram length
+		/// </summary>
 		public const int BigramLength = 2;
 
 		#endregion
 
 		#region Constructors
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Bigram"/> class.
+		/// </summary>
+		/// <param name="value">The value.</param>
 		public Bigram(string value)
 		{
 			Contract.Requires<ArgumentNullException>(value != null, "Value must not be null.");
