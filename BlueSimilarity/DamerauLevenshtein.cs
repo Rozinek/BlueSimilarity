@@ -66,9 +66,8 @@ namespace BlueSimilarity
 
 		#region ISimilarity Members
 
-
 		/// <summary>
-		/// Get the similarity score
+		///     Get the similarity score
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -80,7 +79,7 @@ namespace BlueSimilarity
 
 
 		/// <summary>
-		/// Get the similarity score
+		///     Get the similarity score
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -91,7 +90,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		/// Get the normalized similarity score from 0 to 1 where 1 is total similarity
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>

@@ -1,7 +1,5 @@
 ﻿#region
 
-using System.Runtime.InteropServices;
-using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 
@@ -10,14 +8,14 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	/// Jaro-Winkler method <see cref="http://en.wikipedia.org/wiki/Jaro–Winkler_distance"/>
+	///     Jaro-Winkler method <see cref="http://en.wikipedia.org/wiki/Jaro–Winkler_distance" />
 	/// </summary>
 	public class JaroWinkler : ISimilarity
 	{
 		#region ISimilarity Members
 
 		/// <summary>
-		/// Get the normalized similarity score from 0 to 1 where 1 is total similarity
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -28,7 +26,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		/// Get the normalized similarity score from 0 to 1 where 1 is total similarity
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -39,7 +37,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		/// Get the normalized similarity score from 0 to 1 where 1 is total similarity
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -48,12 +46,6 @@ namespace BlueSimilarity
 		{
 			return NativeEntryPoint.JaroWinklerNative(first.Value, second.Value);
 		}
-
-		#endregion
-
-		#region Methods (private)
-
-		
 
 		#endregion
 	}

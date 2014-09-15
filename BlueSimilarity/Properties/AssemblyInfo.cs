@@ -1,6 +1,5 @@
 ﻿#region
 
-using System.Configuration;
 using System.Reflection;
 using System.Runtime.InteropServices;
 

@@ -22,10 +22,6 @@ namespace BlueSimilarity.Containers
 
 		#endregion
 
-		#region Methods (public)
-
 		//Dictionary<string, int> ToDictionary();
-
-		#endregion
 	}
 }

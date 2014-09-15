@@ -8,14 +8,14 @@ using System.Diagnostics.Contracts;
 namespace BlueSimilarity.Types
 {
 	/// <summary>
-	/// Token represents atomic string for measurement similarity
+	///     Token represents atomic string for measurement similarity
 	/// </summary>
 	public class Token : IEquatable<Token>, IComparable<Token>
 	{
 		#region Constructors
 
 		/// <summary>
-		/// Create token from the string
+		///     Create token from the string
 		/// </summary>
 		/// <param name="text">the text</param>
 		public Token(string text)
@@ -26,7 +26,7 @@ namespace BlueSimilarity.Types
 		}
 
 		/// <summary>
-		/// Create token from normalized string
+		///     Create token from normalized string
 		/// </summary>
 		/// <param name="normalizedString">normalized string</param>
 		public Token(NormalizedString normalizedString)
@@ -39,9 +39,8 @@ namespace BlueSimilarity.Types
 
 		#region Properties and Indexers
 
-
 		/// <summary>
-		/// Value of the token
+		///     Value of the token
 		/// </summary>
 		public string Value { get; private set; }
 
@@ -97,9 +96,8 @@ namespace BlueSimilarity.Types
 
 		#region Operators
 
-
 		/// <summary>
-		/// Equality operator on token
+		///     Equality operator on token
 		/// </summary>
 		/// <param name="left">Left token</param>
 		/// <param name="right">Right token</param>
@@ -110,7 +108,7 @@ namespace BlueSimilarity.Types
 		}
 
 		/// <summary>
-		/// Nonequality operator on token
+		///     Nonequality operator on token
 		/// </summary>
 		/// <param name="left">Left token</param>
 		/// <param name="right">Right token</param>

@@ -30,7 +30,7 @@ namespace BlueSimilarity.Types
 
 		#endregion
 
-		#region IComparable<TriGram> Members
+		#region IComparable<Trigram> Members
 
 		public int CompareTo(Trigram other)
 		{
@@ -45,7 +45,7 @@ namespace BlueSimilarity.Types
 
 		#endregion
 
-		#region IEquatable<TriGram> Members
+		#region IEquatable<Trigram> Members
 
 		public bool Equals(Trigram other)
 		{

@@ -8,7 +8,7 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	/// Jaccard coefficient <see cref="http://en.wikipedia.org/wiki/Jaccard_coefficient"/>
+	///     Jaccard coefficient <see cref="http://en.wikipedia.org/wiki/Jaccard_coefficient" />
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class JaccardCoefficient<T> : ISimilarity where T : IQgram
@@ -31,7 +31,7 @@ namespace BlueSimilarity
 		#region ISimilarity Members
 
 		/// <summary>
-		/// Get the normalized similarity score from 0 to 1 where 1 is total similarity
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -42,7 +42,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		/// Get the normalized similarity score from 0 to 1 where 1 is total similarity
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -53,7 +53,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		/// Get the normalized similarity score from 0 to 1 where 1 is total similarity
+		///     Get the normalized similarity score from 0 to 1 where 1 is total similarity
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -64,6 +64,5 @@ namespace BlueSimilarity
 		}
 
 		#endregion
-
 	}
 }

@@ -8,7 +8,7 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	/// Overlap coefficient <see cref="http://en.wikipedia.org/wiki/Overlap_coefficient"/>  
+	///     Overlap coefficient <see cref="http://en.wikipedia.org/wiki/Overlap_coefficient" />
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class OverlapCoefficient<T> : ISimilarity where T : IQgram
@@ -22,7 +22,7 @@ namespace BlueSimilarity
 		#region Constructors
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="OverlapCoefficient{T}"/> class.
+		///     Initializes a new instance of the <see cref="OverlapCoefficient{T}" /> class.
 		/// </summary>
 		public OverlapCoefficient()
 		{
@@ -34,7 +34,7 @@ namespace BlueSimilarity
 		#region ISimilarity Members
 
 		/// <summary>
-		/// Get the similarity score
+		///     Get the similarity score
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -45,7 +45,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		/// Get the similarity score
+		///     Get the similarity score
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>
@@ -56,7 +56,7 @@ namespace BlueSimilarity
 		}
 
 		/// <summary>
-		/// Get the similarity score
+		///     Get the similarity score
 		/// </summary>
 		/// <param name="first">first string</param>
 		/// <param name="second">second string</param>

@@ -2,7 +2,6 @@
 
 using System;
 using System.Diagnostics.Contracts;
-using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 

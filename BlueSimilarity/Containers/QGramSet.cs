@@ -51,7 +51,7 @@ namespace BlueSimilarity.Containers
 		public QGramSet()
 		{
 			_qGramsDictionary = new Dictionary<string, int>();
-			QGramLength = TypeConversion.GetQgramLength<T>(); 
+			QGramLength = TypeConversion.GetQgramLength<T>();
 		}
 
 		/// <summary>
@@ -117,7 +117,7 @@ namespace BlueSimilarity.Containers
 
 		void ICollection<KeyValuePair<T, int>>.CopyTo(KeyValuePair<T, int>[] array, int arrayIndex)
 		{
-			((ICollection<KeyValuePair<T, int>>)this).CopyTo(array, arrayIndex);
+			((ICollection<KeyValuePair<T, int>>) this).CopyTo(array, arrayIndex);
 		}
 
 		public void Clear()
@@ -127,12 +127,12 @@ namespace BlueSimilarity.Containers
 
 		bool ICollection<KeyValuePair<T, int>>.Contains(KeyValuePair<T, int> item)
 		{
-			return ((ICollection<KeyValuePair<T, int>>)this).Contains(item);
+			return ((ICollection<KeyValuePair<T, int>>) this).Contains(item);
 		}
 
 		bool ICollection<KeyValuePair<T, int>>.Remove(KeyValuePair<T, int> item)
 		{
-			return ((ICollection<KeyValuePair<T, int>>)this).Remove(item);
+			return ((ICollection<KeyValuePair<T, int>>) this).Remove(item);
 		}
 
 		bool ICollection<KeyValuePair<T, int>>.IsReadOnly
@@ -276,6 +276,8 @@ namespace BlueSimilarity.Containers
 
 		#endregion
 
+		#region Methods (public)
+
 		public override string ToString()
 		{
 			if (_qGramsDictionary.Count == 0)
@@ -291,5 +293,7 @@ namespace BlueSimilarity.Containers
 			qgramsString = qgramsString.Remove(qgramsString.Length - 1);
 			return qgramsString;
 		}
+
+		#endregion
 	}
 }
