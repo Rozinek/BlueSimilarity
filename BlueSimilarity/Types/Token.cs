@@ -108,7 +108,7 @@ namespace BlueSimilarity.Types
 		}
 
 		/// <summary>
-		///     Nonequality operator on token
+		///     Non equality operator on token
 		/// </summary>
 		/// <param name="left">Left token</param>
 		/// <param name="right">Right token</param>

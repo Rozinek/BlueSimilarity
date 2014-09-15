@@ -8,7 +8,7 @@ using System.Diagnostics.Contracts;
 namespace BlueSimilarity.Types
 {
 	/// <summary>
-	///     Q-gram with the lenght of string 1 is called unigram
+	///     Q-gram with the length of string 1 is called unigram
 	/// </summary>
 	public class Unigram : IQgram, IEquatable<Unigram>, IComparable<Unigram>
 	{

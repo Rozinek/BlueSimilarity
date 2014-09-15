@@ -56,7 +56,7 @@ namespace BlueSimilarity.Types
 
 		private static string ConvertToCanonicalForm(string unicodeString)
 		{
-			// TODO: test the decompositon find the appropriate one
+			// TODO: test the decomposion find the appropriate one
 			var normalizedString = unicodeString.Normalize(NormalizationForm.FormD);
 			var stringBuilder = new StringBuilder(unicodeString.Length);
 

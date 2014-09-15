@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 #endregion
 
 [assembly: AssemblyTitle("BlueSimilarity")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Similarity metric library e.g. edit distance - Levenshtein, Damerau-Levenshtein, Jaro, Jaro-Winkler, Jaccard, Dice, Overlap and other metrics")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Ondrej Rozinek")]
 [assembly: AssemblyProduct("BlueSimilarity")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
@@ -39,5 +39,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]
