@@ -22,9 +22,8 @@ namespace BlueSimilarity.Types
 
 		#region Constructors
 
-
 		/// <summary>
-		/// Initializes a new instance of the <see cref="NormalizedString"/> class.
+		///     Initializes a new instance of the <see cref="NormalizedString" /> class.
 		/// </summary>
 		/// <param name="value">The value.</param>
 		public NormalizedString(string value)
@@ -37,7 +36,7 @@ namespace BlueSimilarity.Types
 		#region Properties and Indexers
 
 		/// <summary>
-		/// Gets the value.
+		///     Gets the value.
 		/// </summary>
 		/// <value>The value.</value>
 		public string Value
@@ -50,7 +49,7 @@ namespace BlueSimilarity.Types
 		#region Methods (public)
 
 		/// <summary>
-		/// Returns a <see cref="System.String" /> that represents this instance.
+		///     Returns a <see cref="System.String" /> that represents this instance.
 		/// </summary>
 		/// <returns>A <see cref="System.String" /> that represents this instance.</returns>
 		public override string ToString()

@@ -8,6 +8,7 @@ using BlueSimilarity.Types;
 #endregion
 
 // ReSharper disable once CheckNamespace
+
 namespace BlueSimilarity
 {
 	[ContractClassFor(typeof (IDistance))]

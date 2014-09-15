@@ -22,7 +22,7 @@ namespace BlueSimilarity
 		#region Constructors
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="JaccardCoefficient{T}"/> class.
+		///     Initializes a new instance of the <see cref="JaccardCoefficient{T}" /> class.
 		/// </summary>
 		public JaccardCoefficient()
 		{

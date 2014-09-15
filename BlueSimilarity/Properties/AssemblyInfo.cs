@@ -11,7 +11,10 @@ using System.Runtime.InteropServices;
 #endregion
 
 [assembly: AssemblyTitle("BlueSimilarity")]
-[assembly: AssemblyDescription("Similarity metric library e.g. edit distance - Levenshtein, Damerau-Levenshtein, Jaro, Jaro-Winkler, Jaccard, Dice, Overlap and other metrics")]
+[assembly:
+	AssemblyDescription(
+		"Similarity metric library e.g. edit distance - Levenshtein, Damerau-Levenshtein, Jaro, Jaro-Winkler, Jaccard, Dice, Overlap and other metrics"
+		)]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ondrej Rozinek")]
 [assembly: AssemblyProduct("BlueSimilarity")]
@@ -45,4 +48,5 @@ using System.Runtime.InteropServices;
 
 
 // add internal visibility for unit test project
+
 [assembly: InternalsVisibleTo("BlueSimilarity.Test")]
