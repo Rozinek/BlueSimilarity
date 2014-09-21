@@ -2,6 +2,7 @@
 
 using BlueSimilarity.Containers;
 using BlueSimilarity.Types;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #endregion
@@ -19,6 +20,14 @@ namespace BlueSimilarity.Test
 			var normalizedString = new NormalizedString("abcd");
 			Assert.AreEqual("ABCD", normalizedString.Value);
 			Assert.AreEqual("ABCD", normalizedString.ToString());
+		}
+
+		[TestMethod]
+		public void EmptySpaceTest()
+		{
+			const string twoTokens = "e - Levenshtein";
+			var normTwoTokens = new NormalizedString(twoTokens);
+			normTwoTokens.Value.Split(' ').Length.Should().Be(2);
 		}
 
 		[TestMethod]

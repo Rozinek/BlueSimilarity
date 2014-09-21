@@ -1,7 +1,9 @@
 ﻿#region
 
 using System;
+using System.Diagnostics.Contracts;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text;
 
 #endregion
@@ -12,10 +14,13 @@ namespace BlueSimilarity.Types
 	///     Normalized the textual string to invariant comparable form
 	///     remove diacritics, special symbols and upper case the text
 	/// </summary>
-	public class NormalizedString
+
+	[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+	public struct NormalizedString
 	{
 		#region Private fields
 
+		[MarshalAsAttribute(UnmanagedType.LPStr)]
 		private readonly string _normalizedValue;
 
 		#endregion
@@ -28,6 +33,7 @@ namespace BlueSimilarity.Types
 		/// <param name="value">The value.</param>
 		public NormalizedString(string value)
 		{
+			Contract.Requires<ArgumentNullException>(value!= null);
 			_normalizedValue = ConvertToCanonicalForm(value);
 		}
 
@@ -39,6 +45,7 @@ namespace BlueSimilarity.Types
 		///     Gets the value.
 		/// </summary>
 		/// <value>The value.</value>
+		
 		public string Value
 		{
 			get { return _normalizedValue; }
@@ -67,25 +74,34 @@ namespace BlueSimilarity.Types
 			var normalizedString = unicodeString.Normalize(NormalizationForm.FormD);
 			var stringBuilder = new StringBuilder(unicodeString.Length);
 
+			bool isLastCharEmpty = false;
 			foreach (var character in normalizedString)
 			{
 				var charCategory = CharUnicodeInfo.GetUnicodeCategory(character);
 				switch (charCategory)
 				{
-					case UnicodeCategory.LowercaseLetter:
+					
 					case UnicodeCategory.UppercaseLetter:
 					case UnicodeCategory.DecimalDigitNumber:
+						stringBuilder.Append(character);
+						isLastCharEmpty = false;
+						break;
+					case UnicodeCategory.LowercaseLetter:
 						stringBuilder.Append(Char.ToUpperInvariant(character));
+						isLastCharEmpty = false;
 						break;
 					case UnicodeCategory.SpaceSeparator:
 					case UnicodeCategory.ConnectorPunctuation:
 					case UnicodeCategory.DashPunctuation:
+						if (isLastCharEmpty) 
+						break;
 						stringBuilder.Append(' ');
+						isLastCharEmpty = true;
 						break;
 				}
 			}
 
-			return stringBuilder.ToString();
+			return stringBuilder.ToString().Trim();
 		}
 
 		#endregion

@@ -17,9 +17,6 @@ namespace BlueSimilarity.Test
 
 		#region Methods (public)
 
-		/// <summary>
-		///     <seealso cref="http://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance" />
-		/// </summary>
 		[TestMethod]
 		public void GetSimilarityTest()
 		{

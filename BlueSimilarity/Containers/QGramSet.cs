@@ -60,7 +60,8 @@ namespace BlueSimilarity.Containers
 		public QGramSet(NormalizedString normalizedString)
 			: this(normalizedString.Value)
 		{
-			Contract.Requires<ArgumentNullException>(normalizedString != null, "normalizedString");
+			// TODO: check the exception
+			//Contract.Requires<ArgumentNullException>(normalizedString != null, "normalizedString");
 		}
 
 		public QGramSet(Token token)

@@ -6,7 +6,7 @@
 #include "BlueSimilarity_API.h"
 
 // Jaro distance
-BLUESIMILARITY_API double __stdcall  Jaro(const char *pattern, const char *text);
+BLUESIMILARITY_API double __stdcall  JaroNative(const char *pattern, const char *text);
 
 // internal method
 void CommonCharacters(char* returnCommons, const char * pattern, size_t lenStr1, const char * text, size_t lenStr2, int SlidingWindow);
@@ -15,7 +15,7 @@ int GetTranspositionCount(char *commonChar1, size_t c1Len, char *commonChar2, si
 /****************************************************************************************************/
 /*Jaro distance																						*/
 /****************************************************************************************************/
-double __stdcall Jaro(const char *pattern, const char *text)
+double __stdcall JaroNative(const char *pattern, const char *text)
 {
 	size_t lenStr1 = strlen(pattern);
 	size_t lenStr2 = strlen(text);

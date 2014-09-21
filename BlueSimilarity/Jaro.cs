@@ -8,7 +8,7 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	///     Jaro distance  <a href="http://en.wikipedia.org/wiki/Jaro–Winkler_distance">here</a>
+	///     Jaro distance see description: http://en.wikipedia.org/wiki/Jaro–Winkler_distance
 	/// </summary>
 	public class Jaro : ISimilarity
 	{

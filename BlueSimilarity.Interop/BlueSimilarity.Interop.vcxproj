@@ -158,12 +158,13 @@
     <ClCompile Include="BlueSimilarity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BagOfTokensSim.h" />
     <ClInclude Include="BlueSimilarity_API.h" />
     <ClInclude Include="DamerauLevenshtein.h" />
     <ClInclude Include="Dice.h" />
     <ClInclude Include="Jaccard.h" />
-    <ClInclude Include="Jaro.h" />
-    <ClInclude Include="JaroWinkler.h" />
+    <ClInclude Include="JaroNative.h" />
+    <ClInclude Include="JaroWinklerNative.h" />
     <ClInclude Include="Levenshtein.h" />
     <ClInclude Include="LongestCommonSubsequence.h" />
     <ClInclude Include="MathDef.h" />

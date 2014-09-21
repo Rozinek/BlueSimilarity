@@ -8,8 +8,9 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	///     Levenshtein algorithm <a href="http://en.wikipedia.org/wiki/Levenshtein_distance">here</a> providing similarity
+	///     Levenshtein algorithm providing similarity
 	///     measurement <see cref="ISimilarity" /> and distance measurement <see cref="IDistance" />
+	///     see description: http://en.wikipedia.org/wiki/Levenshtein_distance
 	/// </summary>
 	public class Levenshtein : IDistance, ISimilarity
 	{
@@ -39,7 +40,7 @@ namespace BlueSimilarity
 
 		/// <summary>
 		///     Levenshtein distance returns the number of edit operations
-		///     (addition, deletation, substition) which are needed for transformation
+		///     (addition, deletation, substitution) which are needed for transformation
 		///     from one string to another
 		///     <example>
 		///         return 1 for deletation character: ABC => AC

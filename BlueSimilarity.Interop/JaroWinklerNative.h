@@ -8,7 +8,7 @@
 #include "BlueSimilarity_API.h"
 
 // Jaro-Winkler distance
-BLUESIMILARITY_API double __stdcall  JaroWinkler(const char *pattern, const char *text);
+BLUESIMILARITY_API double __stdcall  JaroWinklerNative(const char *pattern, const char *text);
 
 // declare constants
 const double PREFIXSCALE = 0.1;
@@ -20,7 +20,7 @@ size_t PrefixLength(const char * pattern, size_t lenPattern, const char * text, 
 ///****************************************************************************************************/
 ///*Jaro-Winkler distance																			    */
 ///****************************************************************************************************/
-double __stdcall JaroWinkler(const char *pattern, const char *text)
+double __stdcall JaroWinklerNative(const char *pattern, const char *text)
 {
 	size_t lenPattern = strlen(pattern);
 	size_t lenText = strlen(text);
@@ -28,7 +28,7 @@ double __stdcall JaroWinkler(const char *pattern, const char *text)
 	double distJaroWinkler;
 
 	// compute Jaro Distance
-	double jarodist = Jaro(pattern, text);
+	double jarodist = JaroNative(pattern, text);
 						
 	// compute prefix length
 	size_t prefixLength = PrefixLength(pattern, lenPattern, text, lenText);

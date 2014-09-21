@@ -1,4 +1,5 @@
 ﻿using System;
+using BlueSimilarity.Types;
 
 namespace BlueSimilarity.UseCase
 {
@@ -8,21 +9,35 @@ namespace BlueSimilarity.UseCase
 
 		private static void Main(string[] args)
 		{
-			var damer = new DamerauLevenshtein();
-			var blb = damer.GetDistance("gfsg", "fdsfd");
-			
-			var leven = new Levenshtein();
-			var dist = leven.GetDistance("gfsg", "fdsfd");
- 
+			const string nameCorrect = "martha";
+			const string nameError = "marhta@";		
 
-			var sim = leven.GetSimilarity("daniel", "daniel b");
+			// Levenshtein distance (implements interface IDistance)
+			// & similarity (implements interface ISimilarity)
+			var lev = new Levenshtein();
+			var distLev = lev.GetDistance(nameCorrect, nameError);
+			// normalized string removes special symbols, diacritics and make case insensitivity
+			var simLev = lev.GetSimilarity(new NormalizedString(nameCorrect), new NormalizedString(nameError));
 
-			Console.WriteLine("The result is {0}", blb);
-			Console.WriteLine("The result is {0}", dist);
-			Console.WriteLine("The result is {0}", sim);			
-	
-			
-			
+			// Another similarity metric implements IDistance and ISimilarity
+			var damLev = new DamerauLevenshtein();
+
+			// Jaro, Jaro-Winkler implements only ISimilarity 
+			var nameFirst = new Token("dwayne");
+			var nameSecond = new Token("duane");
+			var jaro = new Jaro();
+			var jaroWinkler = new JaroWinkler();
+			jaroWinkler.GetSimilarity(nameFirst, nameSecond);
+
+			// q-grams similarity coefficient - Dice, Jaccard, Overlap
+			// with different q-grams type
+			var diceUnigrams = new DiceCoefficient<Unigram>();
+			var jaccardBigrams = new JaccardCoefficient<Bigram>();
+			var overlapTrigrams = new OverlapCoefficient<Trigram>();
+
+
+
+
 			Console.ReadKey();
 		}
 

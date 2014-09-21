@@ -9,8 +9,8 @@ namespace BlueSimilarity
 {
 	/// <summary>
 	///     Damerau - Levenshtein algorithm providing similarity measurement <see cref="ISimilarity" />
-	///     and distance measurement <see cref="IDistance" />
-	///     <a href="http://en.wikipedia.org/wiki/Damerau–Levenshtein_distance">here</a>
+	///     and distance measurement <see cref="IDistance" /> see description:
+	///     http://en.wikipedia.org/wiki/Damerau–Levenshtein_distance
 	/// </summary>
 	public class DamerauLevenshtein : IDistance, ISimilarity
 	{

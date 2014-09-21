@@ -26,8 +26,8 @@ namespace BlueSimilarity
 
 		public int GetDistance(NormalizedString first, NormalizedString second)
 		{
-			Contract.Requires<ArgumentNullException>(first != null, "The argument first can not be a null");
-			Contract.Requires<ArgumentNullException>(second != null, "The argument second can not be a null");
+			//Contract.Requires<ArgumentNullException>(first != null, "The argument first can not be a null");
+			//Contract.Requires<ArgumentNullException>(second != null, "The argument second can not be a null");
 
 			return default(int);
 		}

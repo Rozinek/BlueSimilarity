@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Collections.Generic;
 using BlueSimilarity.Types;
 
@@ -37,6 +38,7 @@ namespace BlueSimilarity.Containers
 		public TokenSet(IDictionary<Token, int> dictionary) : base(dictionary)
 		{
 		}
+
 
 		#endregion
 	}

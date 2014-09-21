@@ -32,12 +32,6 @@
     <ClInclude Include="DamerauLevenshtein.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Jaro.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JaroWinkler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LongestCommonSubsequence.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,6 +45,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Overlap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BagOfTokensSim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JaroNative.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JaroWinklerNative.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

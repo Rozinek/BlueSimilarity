@@ -17,7 +17,7 @@ namespace BlueSimilarity.Test
 		private OverlapCoefficient<Unigram>  _overlapCoefUnigram;
 		private OverlapCoefficient<Trigram>  _overlapCoefTrigram;
 
-			#endregion
+	#endregion
 
 		#region Methods (public)
 

@@ -32,7 +32,7 @@ namespace BlueSimilarity.Types
 		public Token(NormalizedString normalizedString)
 			: this(normalizedString.Value)
 		{
-			Contract.Requires<ArgumentNullException>(normalizedString != null, "The token must be not null.");
+			//Contract.Requires<ArgumentNullException>(normalizedString != null, "The token must be not null.");
 		}
 
 		#endregion

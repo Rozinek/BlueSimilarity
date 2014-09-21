@@ -8,9 +8,9 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
-	///     Overlap coefficient <a href="http://en.wikipedia.org/wiki/Overlap_coefficient">here</a>
+	///     Overlap coefficient see description: http://en.wikipedia.org/wiki/Overlap_coefficient
 	/// </summary>
-	/// <typeparam name="T"></typeparam>
+	/// <typeparam name="T"><see cref="Unigram" />, <see cref="Bigram" />, <see cref="Trigram" /></typeparam>
 	public class OverlapCoefficient<T> : ISimilarity where T : IQgram
 	{
 		#region Private fields
