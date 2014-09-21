@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("BlueSimilarity")]
 [assembly:
 	AssemblyDescription(
-		"Similarity metric library e.g. edit distance - Levenshtein, Damerau-Levenshtein, Jaro, Jaro-Winkler, Jaccard, Dice, Overlap and other metrics"
+		"Similarity string metric library e.g. edit distance - Levenshtein, Damerau-Levenshtein, Jaro, Jaro-Winkler, Jaccard, Dice, Overlap and bag of tokens similarity"
 		)]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ondrej Rozinek")]
@@ -43,10 +43,9 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.0.1.0")]
-[assembly: AssemblyFileVersion("1.0.1.0")]
+[assembly: AssemblyVersion("1.0.2.0")]
+[assembly: AssemblyFileVersion("1.0.2.0")]
 
 
 // add internal visibility for unit test project
-
 [assembly: InternalsVisibleTo("BlueSimilarity.Test")]
