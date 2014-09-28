@@ -34,7 +34,7 @@ namespace BlueSimilarity
 			return default(double);
 		}
 
-		public double GetSimilarity(Tokenizer tokensPattern, Tokenizer tokensTarget)
+		public double GetSimilarity(ITokenizer tokensPattern, ITokenizer tokensTarget)
 		{
 			Contract.Requires<ArgumentNullException>(tokensPattern != null);
 			Contract.Requires<ArgumentNullException>(tokensTarget != null);

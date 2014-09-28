@@ -25,6 +25,7 @@ namespace BlueSimilarity.Definitions
 		private const string JaroWinklerEntry = "JaroWinklerNative";
 		private const string BagOfTokensSimilarityEntry = "BagOfTokensSim";
 		private const string BagOfTokensSimilarityNormalizedStringEntry = "BagOfTokensSimStruct";
+		private const string SemanticBagOfTokensSimilarityEntry = "SemanticBagOfTokensSim";
 
 		/// <summary>
 		///     The name of the interop native assembly name
@@ -103,6 +104,13 @@ namespace BlueSimilarity.Definitions
 		[DllImport(BlueSimilarityInteropName, EntryPoint = BagOfTokensSimilarityNormalizedStringEntry,
 			CallingConvention = InteropCallingConvention)]
 		internal static extern double BagOfTokensSimStruct([In] NormalizedString[] pattern, int patternLength, [In] NormalizedString[] target, int targetLength, TokenSimilarity tokenSimilarity, bool isSymmetric);
+
+		/// <summary>
+		///     Overlap coefficient native method
+		/// </summary>
+		[DllImport(BlueSimilarityInteropName, EntryPoint = SemanticBagOfTokensSimilarityEntry,
+			CallingConvention = InteropCallingConvention)]
+		internal static extern double SemanticBagOfTokensSim([In] string[] pattern, [In] double[] patternWeights, int patternLength, [In] string[] target, [In] double[] targetWeights, int targetLength, TokenSimilarity tokenSimilarity, bool isSymmetric);
 
 		#endregion
 

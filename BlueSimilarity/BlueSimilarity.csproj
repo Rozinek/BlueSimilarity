@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,6 +58,7 @@
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -105,17 +107,25 @@
     </WarningsAsErrors>
     <NoWarn>
     </NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Containers\FileTokenizer.cs" />
+    <Compile Include="Containers\ITokenizer.cs" />
+    <Compile Include="Containers\StandardTokenizer.cs" />
     <Compile Include="Containers\Tokenizer.cs" />
     <Compile Include="BagOfTokensSimilarity.cs" />
     <Compile Include="Contracts\BagOfTokenSimilarityContract.cs" />
     <Compile Include="Definitions\IBagOfTokenSimilarity.cs" />
     <Compile Include="Definitions\TokenSimilarity.cs" />
+    <Compile Include="Indexing\BinarySerializer.cs" />
+    <Compile Include="Indexing\SemanticVocabulary.cs" />
+    <Compile Include="SemanticBagOfWordsSimilarity.cs" />
+    <Compile Include="SoftTFIDF.cs" />
     <Compile Include="Types\Bigram.cs" />
     <Compile Include="Types\IQgram.cs" />
     <Compile Include="Containers\ISetOperations.cs" />

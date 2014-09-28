@@ -9,4 +9,5 @@
 #include "Jaccard.h"
 #include "Overlap.h"
 #include "BagOfTokensSim.h"
+#include "SemanticBagOfTokensSim.h"
 

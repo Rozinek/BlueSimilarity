@@ -56,5 +56,11 @@
     <ClInclude Include="JaroWinklerNative.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoftTFIDFNative.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SemanticBagOfTokensSim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -36,7 +36,7 @@ namespace BlueSimilarity.Definitions
 		/// <param name="tokensPattern">The tokens pattern.</param>
 		/// <param name="tokensTarget">The tokens target.</param>
 		/// <returns>the score between 0 and 1</returns>
-		double GetSimilarity(Tokenizer tokensPattern, Tokenizer tokensTarget);
+		double GetSimilarity(ITokenizer tokensPattern, ITokenizer tokensTarget);
 
 		/// <summary>
 		/// Indicates whether the bag of tokens similarity is symmetric. The symmetric similarity

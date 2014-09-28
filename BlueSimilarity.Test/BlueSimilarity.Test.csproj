@@ -98,8 +98,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BagOfTokensSimilarityTest.cs" />
+    <Compile Include="Containers\StandardTokenizerTest.cs" />
     <Compile Include="Containers\TokenizerTest.cs" />
     <Compile Include="Containers\TokenSetTest.cs" />
+    <Compile Include="Indexing\SemanticVocabularyTest.cs" />
+    <Compile Include="SemanticBagOfWordsSimilarityTest.cs" />
     <Compile Include="Types\BigramTest.cs" />
     <Compile Include="Types\TrigramTest.cs" />
     <Compile Include="Types\UnigramTest.cs" />

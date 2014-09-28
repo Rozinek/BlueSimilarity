@@ -4,51 +4,6 @@
 #include "MathDef.h"
 #include "BlueSimilarity_API.h"
 
-/// <summary>
-/// Select the internal similarity between tokens (words)
-/// </summary>
-enum TokenSimilarity
-{
-	/// <summary>
-	/// Levenshtein similarity
-	/// </summary>
-	Levenshtein,
-
-	/// <summary>
-	/// Damerau-Levenshtein similarity
-	/// </summary>
-	DamerauLevenshtein,
-
-	/// <summary>
-	/// Jaro similarity
-	/// </summary>
-	Jaro,
-
-	/// <summary>
-	/// Jaro-Winkler similarity
-	/// </summary>
-	JaroWinkler,
-
-	/// <summary>
-	/// Dice coefficient based on Q-grams
-	/// </summary>
-	DiceCoefficient,
-
-	/// <summary>
-	/// Jaccard coefficient based on Q-grams
-	/// </summary>
-	JaccardCoefficient,
-
-	/// <summary>
-	/// Overlap coefficient based on Q-grams
-	/// </summary>
-	OverlapCoefficient
-};
-
-struct NormalizedString
-{
-	const char* Value;
-};
 
 // BagOfTokenSimilarity distance
 BLUESIMILARITY_API double __stdcall BagOfTokensSim(const char *patternTokens [], int m, const char *targetTokens [], int n, TokenSimilarity tokenSim, bool isSymmetric);

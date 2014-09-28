@@ -169,6 +169,8 @@
     <ClInclude Include="LongestCommonSubsequence.h" />
     <ClInclude Include="MathDef.h" />
     <ClInclude Include="Overlap.h" />
+    <ClInclude Include="SemanticBagOfTokensSim.h" />
+    <ClInclude Include="SoftTFIDFNative.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

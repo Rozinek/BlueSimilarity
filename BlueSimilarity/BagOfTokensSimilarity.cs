@@ -100,7 +100,7 @@ namespace BlueSimilarity
 		/// <param name="tokensTarget">The tokens target.</param>
 		/// <returns>the score between 0 and 1</returns>
 		/// <exception cref="System.NotImplementedException"></exception>
-		public double GetSimilarity(Tokenizer tokensPattern, Tokenizer tokensTarget)
+		public double GetSimilarity(ITokenizer tokensPattern, ITokenizer tokensTarget)
 		{
 			return GetSimilarity(tokensPattern.ToArray(), tokensTarget.ToArray());
 		}
