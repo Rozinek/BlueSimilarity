@@ -60,10 +60,10 @@ namespace BlueSimilarity.Containers
 
 		public bool MoveNext()
 		{
-			if (!_tokenizerLine.MoveNext())
+			if (_tokenizerLine == null)
 				TryReadLine();
 
-			return _tokenizerLine.MoveNext();
+			return _tokenizerLine != null && _tokenizerLine.MoveNext();
 		}
 
 		public void Reset()
@@ -88,18 +88,23 @@ namespace BlueSimilarity.Containers
 
 		private static StreamReader CreateBufferedStreamReader(FileInfo fileInfo)
 		{
-			using (var fileStream = File.OpenRead(fileInfo.FullName))
-			using (var bufferedStream = new BufferedStream(fileStream))
+			var fileStream = File.OpenRead(fileInfo.FullName);
+			var bufferedStream = new BufferedStream(fileStream);
 				return new StreamReader(bufferedStream);
 		}
 
-		private void TryReadLine()
+		private bool TryReadLine()
 		{
 			var line = _streamReader.ReadLine();
 			if (line == null)
-				return;
+			{
+				_tokenizerLine = null;
+				return false;
+			}
 
-			_tokenizerLine = new Tokenizer(line);
+			_tokenizerLine = new StandardTokenizer(line);
+
+			return true;
 		}
 
 		#endregion

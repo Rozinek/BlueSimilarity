@@ -98,6 +98,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BagOfTokensSimilarityTest.cs" />
+    <Compile Include="Containers\FileTokenizerTest.cs" />
     <Compile Include="Containers\StandardTokenizerTest.cs" />
     <Compile Include="Containers\TokenizerTest.cs" />
     <Compile Include="Containers\TokenSetTest.cs" />

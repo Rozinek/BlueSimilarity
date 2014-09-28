@@ -28,6 +28,11 @@ namespace BlueSimilarity.Test
 			const string twoTokens = "e - Levenshtein";
 			var normTwoTokens = new NormalizedString(twoTokens);
 			normTwoTokens.Value.Split(' ').Length.Should().Be(2);
+
+			const string emptyRemove = " systems,[1] ";
+
+			var emptyRemoveString = new NormalizedString(emptyRemove);
+			emptyRemoveString.Value.Split(' ').Length.Should().Be(2);
 		}
 
 		[TestMethod]

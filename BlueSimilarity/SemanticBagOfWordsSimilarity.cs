@@ -11,6 +11,7 @@ using BlueSimilarity.Types;
 namespace BlueSimilarity
 {
 	/// <summary>
+	/// The semantic similarity between more words. Important for semantic functionality is to have well learned <seealso cref="SemanticVocabulary"/>
 	/// </summary>
 	public class SemanticBagOfWordsSimilarity : IBagOfTokenSimilarity
 	{
@@ -23,33 +24,19 @@ namespace BlueSimilarity
 
 		#region Constructors
 
-		/// <summary>
-		///     Initializes a new instance of the <see cref="BagOfTokensSimilarity" /> class
-		///     with default values <seealso cref="TokenSimilarity.Levenshtein" /> and <seealso cref="IsSymmetric" />
-		///     false.
-		/// </summary>
+
 		public SemanticBagOfWordsSimilarity(SemanticVocabulary learnedVocabulary)
 			: this(learnedVocabulary, DefaultTokenSimilarity, DefaultIsSymmetric)
 		{
 		}
 
-		/// <summary>
-		///     Initializes a new instance of the <see cref="BagOfTokensSimilarity" /> class
-		///     ith default value <seealso cref="IsSymmetric" /> false.
-		/// </summary>
-		/// <param name="learnedVocabulary"></param>
-		/// <param name="tokenSimilarity">The token similarity.</param>
+
 		public SemanticBagOfWordsSimilarity(SemanticVocabulary learnedVocabulary, TokenSimilarity tokenSimilarity)
 			: this(learnedVocabulary, tokenSimilarity, DefaultIsSymmetric)
 		{
 		}
 
-		/// <summary>
-		///     Initializes a new instance of the <see cref="BagOfTokensSimilarity" /> class.
-		/// </summary>
-		/// <param name="learnedVocabulary"></param>
-		/// <param name="tokenSimilarity">The token similarity.</param>
-		/// <param name="isSymmetric">if set to <c>true</c> [is symmetric].</param>
+
 		public SemanticBagOfWordsSimilarity(SemanticVocabulary learnedVocabulary, TokenSimilarity tokenSimilarity,
 			bool isSymmetric)
 		{
@@ -62,12 +49,23 @@ namespace BlueSimilarity
 
 		#region Properties and Indexers
 
+		/// <summary>
+		/// Gets the vocabulary.
+		/// </summary>
+		/// <value>The vocabulary.</value>
 		public SemanticVocabulary Vocabulary { get; private set; }
 
 		#endregion
 
 		#region IBagOfTokenSimilarity Members
 
+		/// <summary>
+		/// Gets the semantic similarity between array of tokens. The position of token in array
+		/// doesn't have an impact on resulting score.
+		/// </summary>
+		/// <param name="tokensPattern">The tokens pattern</param>
+		/// <param name="tokensTarget">The tokens target.</param>
+		/// <returns>the score between 0 and 1</returns>
 		public double GetSimilarity(string[] tokensPattern, string[] tokensTarget)
 		{
 			var patternWeights = Vocabulary.GetSemanticWeight(tokensPattern);
@@ -77,17 +75,32 @@ namespace BlueSimilarity
 				targetWeights, tokensTarget.Length, InternalTokenSimilarity, IsSymmetric);
 		}
 
+		/// <summary>
+		/// Gets the similarity between array of tokens. The position of token in array
+		/// doesn't have an impact on resulting score.
+		/// </summary>
+		/// <param name="tokensPattern">The tokens pattern.</param>
+		/// <param name="tokensTarget">The tokens target.</param>
+		/// <returns>the score between 0 and 1</returns>
 		public double GetSimilarity(NormalizedString[] tokensPattern, NormalizedString[] tokensTarget)
 		{
 			return GetSimilarity(tokensPattern.Select(x => x.Value).ToArray(), tokensTarget.Select(x => x.Value).ToArray());
 		}
 
+		/// <summary>
+		/// Gets the similarity between array of tokens. The position of token in array
+		/// doesn't have an impact on resulting score.
+		/// </summary>
+		/// <param name="tokensPattern">The tokens pattern.</param>
+		/// <param name="tokensTarget">The tokens target.</param>
+		/// <returns>the score between 0 and 1</returns>
 		public double GetSimilarity(ITokenizer tokensPattern, ITokenizer tokensTarget)
 		{
 			return GetSimilarity(tokensPattern.ToArray(), tokensTarget.ToArray());
 		}
 
 		public bool IsSymmetric { get; private set; }
+
 		public TokenSimilarity InternalTokenSimilarity { get; private set; }
 
 		#endregion

@@ -12,7 +12,7 @@ namespace BlueSimilarity
 	/// <summary>
 	///     The similarity between more tokens (words)
 	/// </summary>
-	public class BagOfTokensSimilarity : IBagOfTokenSimilarity
+	public class BagOfTokensSimilarity 
 	{
 		#region Static and contants fields
 
@@ -127,5 +127,15 @@ namespace BlueSimilarity
 		}
 
 		#endregion
+	}
+
+	public interface ISemanticBagOfWordsSimilarity
+	{
+		TokenSimilarity InternalTokenSimilarity { get; }
+
+
+		bool IsSymmetric { get; }
+		
+
 	}
 }

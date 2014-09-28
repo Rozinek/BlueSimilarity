@@ -68,6 +68,12 @@ namespace BlueSimilarity.Types
 
 		#region Methods (private)
 
+
+		/// <summary>
+		/// Append lower case, upper case and numbers
+		/// </summary>
+		/// <param name="unicodeString"></param>
+		/// <returns></returns>
 		private static string ConvertToCanonicalForm(string unicodeString)
 		{
 			// TODO: test the decomposion find the appropriate one
@@ -90,9 +96,9 @@ namespace BlueSimilarity.Types
 						stringBuilder.Append(Char.ToUpperInvariant(character));
 						isLastCharEmpty = false;
 						break;
-					case UnicodeCategory.SpaceSeparator:
-					case UnicodeCategory.ConnectorPunctuation:
-					case UnicodeCategory.DashPunctuation:
+					case UnicodeCategory.NonSpacingMark:
+						   break;
+					default:
 						if (isLastCharEmpty) 
 						break;
 						stringBuilder.Append(' ');

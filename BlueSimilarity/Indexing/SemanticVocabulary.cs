@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization;
 using BlueSimilarity.Containers;
 
@@ -17,6 +18,7 @@ namespace BlueSimilarity.Indexing
 	public class SemanticVocabulary
 	{
 		private const int DefaultVocabularySize = 1024;
+
 
 		/// <summary>
 		///     Learned vocabulary of unique words
@@ -55,7 +57,7 @@ namespace BlueSimilarity.Indexing
 		internal double GetSemanticWeight(string word)
 		{
 			if (string.IsNullOrWhiteSpace(word))
-				throw new Exception("word");
+				throw new ArgumentException("word");
 
 			int words;
 			if (!_learnedVocabulary.TryGetValue(word, out words))
@@ -105,14 +107,25 @@ namespace BlueSimilarity.Indexing
 
 		public void SaveToFile(string fileName)
 		{
-			var binarySerializer = new BinarySerializer();
-			binarySerializer.Serialize(this, fileName);
+			var serializedStream = BinarySerializer.Serialize(this);
+			var compressedStream = DeflateCompressor.Compress(serializedStream);
+
+			using (var fileStream = new FileStream(fileName, FileMode.Create))
+			{
+				fileStream.Write(compressedStream, 0, compressedStream.Length);
+			}
 		}
 
 		public static SemanticVocabulary LoadFromFile(string fileName)
 		{
-			var binarySerializer = new BinarySerializer();
-			return binarySerializer.Deserialize<SemanticVocabulary>(fileName);
+			using (var fileStream = new FileStream(fileName, FileMode.Open))
+			{
+				var byteStream = new byte[fileStream.Length];
+				fileStream.Read(byteStream, 0, byteStream.Length);
+
+				var decompressStream = DeflateCompressor.Decompress(byteStream);
+				return BinarySerializer.Deserialize<SemanticVocabulary>(decompressStream);
+			}
 		}
 
 #if DEBUG
@@ -140,7 +153,6 @@ namespace BlueSimilarity.Indexing
 		{
 			Console.WriteLine("OnSerialize " + GetType().Name);
 		}
-
 #endif
 	}
 }

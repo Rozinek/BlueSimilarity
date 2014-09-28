@@ -1,7 +1,9 @@
 ﻿#region
 
 using BlueSimilarity.Containers;
+using BlueSimilarity.Definitions;
 using BlueSimilarity.Indexing;
+using BlueSimilarity.Types;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -23,7 +25,7 @@ namespace BlueSimilarity.Test
 		#region Methods (public)
 
 		[TestMethod]
-		public void GetSimilarityTest()
+		public void GetSimilarityDefaultTest()
 		{
 			const string pattern = "the text";
 			const string target = "some text";
@@ -31,8 +33,33 @@ namespace BlueSimilarity.Test
 			var sim = new SemanticBagOfWordsSimilarity(_vocabulary);
 
 			var semanticSim = sim.GetSimilarity(new StandardTokenizer(pattern), new StandardTokenizer(target));
+			
+			
 
 			semanticSim.Should().BeApproximately(0.79, ErrorTolerance);
+			
+			
+		}
+
+		[TestMethod]
+		public void GetSimilarityInternalMetricTest()
+		{
+			var sim = new SemanticBagOfWordsSimilarity(_vocabulary, TokenSimilarity.Levenshtein);
+
+			var semanticSimString = sim.GetSimilarity(new[] { "THE", "TEXT" }, new[] { "SOME", "TEXT" });
+
+			semanticSimString.Should().BeApproximately(0.79, ErrorTolerance);
+		}
+
+		[TestMethod]
+		public void GetSimilarityInternalMetricAndSymmetricTest()
+		{
+			var sim = new SemanticBagOfWordsSimilarity(_vocabulary, TokenSimilarity.Levenshtein, true);
+
+			var semanticNormalizedString = sim.GetSimilarity(new[] { new NormalizedString("the"), new NormalizedString("text") },
+				new[] { new NormalizedString("some"), new NormalizedString("text") });
+
+			semanticNormalizedString.Should().BeApproximately(0.79, ErrorTolerance);
 		}
 
 		[TestInitialize]

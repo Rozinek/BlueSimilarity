@@ -1,48 +1,88 @@
 ﻿#region
 
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 #endregion
 
 namespace BlueSimilarity.Indexing
 {
-	internal class BinarySerializer
+
+	internal static class BinarySerializer 
 	{
 		#region Private fields
 
-		private readonly IFormatter _formatter;
+		private readonly static BinaryFormatter BinaryFormatter;
 
 		#endregion
 
 		#region Constructors
 
-		internal BinarySerializer()
+		static BinarySerializer()
 		{
-			_formatter = new BinaryFormatter();
+			BinaryFormatter = new BinaryFormatter();
 		}
 
 		#endregion
 
-		#region Methods (internal)
+		#region ISerializer Members
 
-		internal T Deserialize<T>(string fileName)
-		{
-			using (var fileStream = new FileStream(fileName, FileMode.Open))
+		internal static byte[] Serialize<T>(T entity)
+		{		
+			using (var memory = new MemoryStream())
 			{
-				return (T) _formatter.Deserialize(fileStream);
+				BinaryFormatter.Serialize(memory, entity);
+
+				return memory.ToArray();
 			}
 		}
 
-		internal void Serialize<T>(T instance, string fileName)
+		internal static T Deserialize<T>(byte[] stream)
 		{
-			using (var fileStream = new FileStream(fileName, FileMode.Create))
+			using (var memory = new MemoryStream(stream))
 			{
-				_formatter.Serialize(fileStream, instance);
+				return (T)BinaryFormatter.Deserialize(memory);
 			}
 		}
 
 		#endregion
 	}
+
+	//internal class BinarySerializer
+	//{
+	//	#region Private fields
+
+	//	private readonly IFormatter _formatter;
+
+	//	#endregion
+
+	//	#region Constructors
+
+	//	internal BinarySerializer()
+	//	{
+	//		_formatter = new BinaryFormatter();
+	//	}
+
+	//	#endregion
+
+	//	#region Methods (internal)
+
+	//	internal T Deserialize<T>(string fileName)
+	//	{
+	//		using (var fileStream = new FileStream(fileName, FileMode.Open))
+	//		{
+	//			return (T) _formatter.Deserialize(fileStream);
+	//		}
+	//	}
+
+	//	internal void Serialize<T>(T instance, string fileName)
+	//	{
+	//		using (var fileStream = new FileStream(fileName, FileMode.Create))
+	//		{
+	//			_formatter.Serialize(fileStream, instance);
+	//		}
+	//	}
+
+	//	#endregion
+	//}
 }

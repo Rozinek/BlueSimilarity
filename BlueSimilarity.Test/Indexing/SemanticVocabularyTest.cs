@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.IO;
 using BlueSimilarity.Containers;
 using BlueSimilarity.Indexing;
@@ -44,8 +45,8 @@ namespace BlueSimilarity.Test.Indexing
 
 			vocOrigin.AddSource(tokenizer);
 
-			vocOrigin.TotalWords.Should().Be(128);
-			vocOrigin.UniqueWords.Should().Be(78);
+			vocOrigin.TotalWords.Should().Be(130);
+			vocOrigin.UniqueWords.Should().Be(79);
 
 			vocOrigin.SaveToFile(VocabularyFileName);
 			var vocDeser = SemanticVocabulary.LoadFromFile(VocabularyFileName);
@@ -73,6 +74,29 @@ namespace BlueSimilarity.Test.Indexing
 
 			wThe.Should().BeLessThan(wSome);
 			wSome.Should().BeLessThan(wText);
+		}
+
+		[TestMethod]
+		public void SemantciWeghtNotPresentWord()
+		{
+			// the 3x, some 2x, text 1x
+			var tokenizer = new StandardTokenizer("the the the some some text");
+			var vocabulary = new SemanticVocabulary();
+			vocabulary.AddSource(tokenizer);
+
+			vocabulary.GetSemanticWeight("NotPresent").Should().BeApproximately(1.79, 1e-2);
+		}
+
+		[ExpectedException(typeof(ArgumentException))]
+		[TestMethod]
+		public void SemanticWeightWrongInput()
+		{
+			// the 3x, some 2x, text 1x
+			var tokenizer = new StandardTokenizer("the the the some some text");
+			var vocabulary = new SemanticVocabulary();
+			vocabulary.AddSource(tokenizer);
+
+			vocabulary.GetSemanticWeight("   ");
 		}
 	}
 }

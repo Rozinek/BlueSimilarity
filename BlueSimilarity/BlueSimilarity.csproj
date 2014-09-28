@@ -123,6 +123,7 @@
     <Compile Include="Definitions\IBagOfTokenSimilarity.cs" />
     <Compile Include="Definitions\TokenSimilarity.cs" />
     <Compile Include="Indexing\BinarySerializer.cs" />
+    <Compile Include="Indexing\DeflateCompressor.cs" />
     <Compile Include="Indexing\SemanticVocabulary.cs" />
     <Compile Include="SemanticBagOfWordsSimilarity.cs" />
     <Compile Include="SoftTFIDF.cs" />
