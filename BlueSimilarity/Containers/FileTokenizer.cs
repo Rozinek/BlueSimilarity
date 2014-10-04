@@ -11,6 +11,7 @@ namespace BlueSimilarity.Containers
 {
 	/// <summary>
 	///     Iterate over the tokens in the file e.g. txt
+	/// implements <seealso cref="IDisposable"/>
 	/// </summary>
 	public class FileTokenizer : ITokenizer
 	{
@@ -60,10 +61,20 @@ namespace BlueSimilarity.Containers
 
 		public bool MoveNext()
 		{
-			if (_tokenizerLine == null)
-				TryReadLine();
+			while (true)
+			{
+				if (_tokenizerLine == null)
+				{
+					if (!TryReadLine())
+						return false;
+					continue;
+				}
+				
+				if (_tokenizerLine.MoveNext()) 
+					return true;
 
-			return _tokenizerLine != null && _tokenizerLine.MoveNext();
+				_tokenizerLine = null;
+			}
 		}
 
 		public void Reset()
