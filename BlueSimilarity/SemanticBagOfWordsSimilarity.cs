@@ -13,7 +13,7 @@ namespace BlueSimilarity
 	/// <summary>
 	/// The semantic similarity between more words. Important for semantic functionality is to have well learned <seealso cref="SemanticVocabulary"/>
 	/// </summary>
-	public class SemanticBagOfWordsSimilarity : IBagOfTokenSimilarity
+	public class SemanticBagOfWordsSimilarity : IBagOfWordsSimilarity
 	{
 		#region Static and contants fields
 
@@ -81,19 +81,19 @@ namespace BlueSimilarity
 		/// </summary>
 		/// <param name="tokensPattern">The tokens pattern.</param>
 		/// <param name="tokensTarget">The tokens target.</param>
-		/// <returns>the score between 0 and 1</returns>
+		/// <returns>The score between 0 and 1</returns>
 		public double GetSimilarity(NormalizedString[] tokensPattern, NormalizedString[] tokensTarget)
 		{
 			return GetSimilarity(tokensPattern.Select(x => x.Value).ToArray(), tokensTarget.Select(x => x.Value).ToArray());
 		}
 
 		/// <summary>
-		/// Gets the similarity between array of tokens. The position of token in array
+		/// Gets the similarity between array of tokens. The position of the token in array
 		/// doesn't have an impact on resulting score.
 		/// </summary>
 		/// <param name="tokensPattern">The tokens pattern.</param>
 		/// <param name="tokensTarget">The tokens target.</param>
-		/// <returns>the score between 0 and 1</returns>
+		/// <returns>The score between 0 and 1</returns>
 		public double GetSimilarity(ITokenizer tokensPattern, ITokenizer tokensTarget)
 		{
 			return GetSimilarity(tokensPattern.ToArray(), tokensTarget.ToArray());

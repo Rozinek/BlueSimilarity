@@ -12,7 +12,7 @@ namespace BlueSimilarity
 	/// <summary>
 	///     The similarity between more tokens (words)
 	/// </summary>
-	public class BagOfTokensSimilarity 
+	public class BagOfWordsSimilarity : IBagOfWordsSimilarity
 	{
 		#region Static and contants fields
 
@@ -21,42 +21,36 @@ namespace BlueSimilarity
 
 		#endregion
 
-		#region Private fields
-
-		private readonly TokenSimilarity _internalTokenSimilarity;
-		private readonly bool _isSymmetric;
-
-		#endregion
 
 		#region Constructors
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="BagOfTokensSimilarity" /> class
+		///     Initializes a new instance of the <see cref="BagOfWordsSimilarity" /> class
 		/// with default values <seealso cref="TokenSimilarity.Levenshtein"/> and <seealso cref="IsSymmetric"/>
 		/// false.
 		/// </summary>
-		public BagOfTokensSimilarity() : this(DefaultTokenSimilarity, DefaultIsSymmetric)
+		public BagOfWordsSimilarity() : this(DefaultTokenSimilarity, DefaultIsSymmetric)
 		{
 		}
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="BagOfTokensSimilarity" /> class
+		///     Initializes a new instance of the <see cref="BagOfWordsSimilarity" /> class
 		/// ith default value <seealso cref="IsSymmetric"/> false.
 		/// </summary>
 		/// <param name="tokenSimilarity">The token similarity.</param>
-		public BagOfTokensSimilarity(TokenSimilarity tokenSimilarity) : this(tokenSimilarity, DefaultIsSymmetric)
+		public BagOfWordsSimilarity(TokenSimilarity tokenSimilarity) : this(tokenSimilarity, DefaultIsSymmetric)
 		{
 		}
 
 		/// <summary>
-		///     Initializes a new instance of the <see cref="BagOfTokensSimilarity" /> class.
+		///     Initializes a new instance of the <see cref="BagOfWordsSimilarity" /> class.
 		/// </summary>
 		/// <param name="tokenSimilarity">The token similarity.</param>
 		/// <param name="isSymmetric">if set to <c>true</c> [is symmetric].</param>
-		public BagOfTokensSimilarity(TokenSimilarity tokenSimilarity, bool isSymmetric)
+		public BagOfWordsSimilarity(TokenSimilarity tokenSimilarity, bool isSymmetric)
 		{
-			_internalTokenSimilarity = tokenSimilarity;
-			_isSymmetric = isSymmetric;
+			InternalTokenSimilarity = tokenSimilarity;
+			IsSymmetric = isSymmetric;
 		}
 
 		#endregion
@@ -73,7 +67,7 @@ namespace BlueSimilarity
 		{
 			return NativeEntryPoint
 				.BagOfTokensSim(tokensPattern, tokensPattern.Length, tokensTarget, tokensTarget.Length,
-					_internalTokenSimilarity, _isSymmetric);
+					InternalTokenSimilarity, IsSymmetric);
 		}
 
 
@@ -89,7 +83,7 @@ namespace BlueSimilarity
 		{
 			return NativeEntryPoint.BagOfTokensSimStruct(tokensPattern, tokensPattern.Length,
 				tokensTarget, tokensTarget.Length,
-				_internalTokenSimilarity, _isSymmetric);
+				InternalTokenSimilarity, IsSymmetric);
 		}
 
 		/// <summary>
@@ -112,30 +106,15 @@ namespace BlueSimilarity
 		///     as pattern.
 		/// </summary>
 		/// <value><c>true</c> if this instance is symmetric; otherwise, <c>false</c>.</value>
-		public bool IsSymmetric
-		{
-			get { return _isSymmetric; }
-		}
+		public bool IsSymmetric { get; set; }
+		
 
 		/// <summary>
 		///     Gets the internal token similarity between tokens.
 		/// </summary>
 		/// <value>The internal token similarity.</value>
-		public TokenSimilarity InternalTokenSimilarity
-		{
-			get { return _internalTokenSimilarity; }
-		}
+		public TokenSimilarity InternalTokenSimilarity { get; set; }
 
 		#endregion
-	}
-
-	public interface ISemanticBagOfWordsSimilarity
-	{
-		TokenSimilarity InternalTokenSimilarity { get; }
-
-
-		bool IsSymmetric { get; }
-		
-
 	}
 }

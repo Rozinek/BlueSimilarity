@@ -7,8 +7,8 @@ namespace BlueSimilarity.Definitions
 	/// <summary>
 	/// Defines similarity between more tokens
 	/// </summary>
-	[ContractClass(typeof(BagOfTokenSimilarityContract))]
-	public interface IBagOfTokenSimilarity
+	[ContractClass(typeof(BagOfWordsSimilarityContract))]
+	public interface IBagOfWordsSimilarity
 	{
 		/// <summary>
 		/// Gets the similarity between array of tokens. The position of token in array
@@ -39,6 +39,12 @@ namespace BlueSimilarity.Definitions
 		double GetSimilarity(ITokenizer tokensPattern, ITokenizer tokensTarget);
 
 		/// <summary>
+		/// Gets the internal token similarity between tokens.
+		/// </summary>
+		/// <value>The internal token similarity.</value>
+	    TokenSimilarity InternalTokenSimilarity { get; }
+
+		/// <summary>
 		/// Indicates whether the bag of tokens similarity is symmetric. The symmetric similarity
 		/// doesn't matter if the tokens passes in argument tokensPattern or tokensTarget. This satisfies
 		/// metric symmetry axiom sim(x, y) = sim(y, x). Otherwise if is not symmetric then the tokensPattern will be matched
@@ -46,13 +52,5 @@ namespace BlueSimilarity.Definitions
 		/// </summary>
 		/// <value><c>true</c> if this instance is symmetric; otherwise, <c>false</c>.</value>
 		bool IsSymmetric { get; }
-
-
-		/// <summary>
-		/// Gets the internal token similarity between tokens.
-		/// </summary>
-		/// <value>The internal token similarity.</value>
-	    TokenSimilarity InternalTokenSimilarity { get; }
-
 	}
 }

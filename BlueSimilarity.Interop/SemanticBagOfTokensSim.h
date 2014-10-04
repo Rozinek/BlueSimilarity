@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
+#include <math.h>
 
 #include "Utils.h"
+#include "SimHelpers.h"
 #include "MathDef.h"
 #include "BlueSimilarity_API.h"
 
@@ -12,35 +14,7 @@ BLUESIMILARITY_API double __stdcall SemanticBagOfTokensSim(const char *patternTo
 
 double __stdcall SemanticBagOfTokensSim(const char *patternTokens [], const double patternWeights [], int pLen, const char *targetTokens [], const double targetWeights [], int tLen, TokenSimilarity tokenSim, bool isSymmetric)
 {
-	double(__stdcall *refSimilarity)(const char *, const char*);
-
-	// choose the reference for internal metric
-	switch (tokenSim)
-	{
-	case Levenshtein:
-		refSimilarity = &NormLevSim;
-		break;
-	case DamerauLevenshtein:
-		refSimilarity = &NormDamLevSim;
-		break;
-	case Jaro:
-		refSimilarity = &JaroNative;
-		break;
-	case JaroWinkler:
-		refSimilarity = &JaroWinklerNative;
-		break;
-	case DiceCoefficient:
-		refSimilarity = &DiceBigram;
-		break;
-	case JaccardCoefficient:
-		refSimilarity = &JaccardBigram;
-		break;
-	case OverlapCoefficient:
-		refSimilarity = &OverlapBigram;
-		break;
-	default:
-		refSimilarity = &NormLevSim;
-	}
+	SimMetric simMetric = GetSimMetric(tokenSim);
 
 	// re-calculate similarity symmetric vs. not symmetric
 	if (isSymmetric && pLen > tLen)
@@ -57,20 +31,19 @@ double __stdcall SemanticBagOfTokensSim(const char *patternTokens [], const doub
 	{
 		if (pattern == NULL) continue;
 
-		double maxOverToken = 0;
-		double weightOverToken = 0;
+		double maxOverToken = MinimumScore;
+		double weightOverToken = pow(*pWeight,2.0);
 		const double *tWeight = targetWeights;
 		for (const char ** target = targetTokens;  target != targetTokens + tLen; target++, tWeight++)
 		{
 			if (target == NULL) continue;
 
-			double currentWeight = (*pWeight) * (*tWeight);
-			double currentScore = currentWeight * refSimilarity(*pattern, *target);
-			
+			double currentScore = simMetric(*pattern, *target);
+						
 			if (currentScore > maxOverToken)
 			{
 				maxOverToken = currentScore;
-				weightOverToken = currentWeight;
+				weightOverToken = (*pWeight) * (*tWeight);
 			}
 
 			// if score achieves maximum score then breaks the loop and increases the performance
@@ -78,7 +51,7 @@ double __stdcall SemanticBagOfTokensSim(const char *patternTokens [], const doub
 				break;
 
 		}
-		sumOverTokens += maxOverToken;
+		sumOverTokens += weightOverToken * maxOverToken;
 		sumWeights += weightOverToken;
 	}
 

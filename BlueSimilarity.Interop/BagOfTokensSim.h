@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
+
 #include "MathDef.h"
+#include "SimHelpers.h"
 #include "BlueSimilarity_API.h"
 
 
@@ -12,45 +14,11 @@ BLUESIMILARITY_API double __stdcall BagOfTokensSim(const char *patternTokens [],
 BLUESIMILARITY_API double __stdcall BagOfTokensSimStruct(NormalizedString patternTokens [], int m, NormalizedString targetTokens [], int n, TokenSimilarity tokenSim, bool isSymmetric);
 
 
-// default Q-gram length = 2
-const int DefaultQgramLength = 2;
-const double MaximumScore = 1.0;
-
-double __stdcall DiceBigram(const char *pattern, const char *text);
-double __stdcall JaccardBigram(const char *pattern, const char *text);
-double __stdcall OverlapBigram(const char *pattern, const char *text);
-
 double __stdcall BagOfTokensSim(const char *patternTokens [], int m, const char *targetTokens [], int n, TokenSimilarity tokenSim, bool isSymmetric)
-{
-	double(__stdcall *refSimilarity)(const char *, const char*);
+{	
+	// TODO: check arguments and create exception
 
-	// choose the reference for internal metric
-	switch (tokenSim)
-	{
-		case Levenshtein:
-			refSimilarity = &NormLevSim;
-			break;
-		case DamerauLevenshtein:
-			refSimilarity = &NormDamLevSim;
-			break;	
-		case Jaro:
-			refSimilarity = &JaroNative;
-			break;
-		case JaroWinkler:
-			refSimilarity = &JaroWinklerNative;
-			break;
-		case DiceCoefficient:
-			refSimilarity = &DiceBigram;
-			break;
-		case JaccardCoefficient:
-			refSimilarity = &JaccardBigram;
-			break;
-		case OverlapCoefficient:
-			refSimilarity = &OverlapBigram;
-			break;
-		default:
-			refSimilarity = &NormLevSim;
-	}
+	SimMetric refSimilarity = GetSimMetric(tokenSim);
 	
 	// re-calculate similarity symmetric vs. not symmetric
 	if (isSymmetric && m > n)
@@ -89,35 +57,9 @@ double __stdcall BagOfTokensSim(const char *patternTokens [], int m, const char 
 
 double __stdcall BagOfTokensSimStruct(NormalizedString patternTokens [], int m, NormalizedString targetTokens [], int n, TokenSimilarity tokenSim, bool isSymmetric)
 {
-	double(__stdcall *refSimilarity)(const char *, const char*);
+	// TODO: check arguments and create exception
 
-	// choose the reference for internal metric
-	switch (tokenSim)
-	{
-	case Levenshtein:
-		refSimilarity = &NormLevSim;
-		break;
-	case DamerauLevenshtein:
-		refSimilarity = &NormDamLevSim;
-		break;
-	case Jaro:
-		refSimilarity = &JaroNative;
-		break;
-	case JaroWinkler:
-		refSimilarity = &JaroWinklerNative;
-		break;
-	case DiceCoefficient:
-		refSimilarity = &DiceBigram;
-		break;
-	case JaccardCoefficient:
-		refSimilarity = &JaccardBigram;
-		break;
-	case OverlapCoefficient:
-		refSimilarity = &OverlapBigram;
-		break;
-	default:
-		refSimilarity = &NormLevSim;
-	}
+	SimMetric refSimilarity = GetSimMetric(tokenSim);
 
 	// re-calculate similarity symmetric vs. not symmetric
 	if (isSymmetric && m > n)
@@ -154,19 +96,5 @@ double __stdcall BagOfTokensSimStruct(NormalizedString patternTokens [], int m, 
 	return sumOverTokens / m;
 }
 
-double __stdcall DiceBigram(const char *pattern, const char *text)
-{
-	return Dice(pattern, text, DefaultQgramLength);
-}
-
-double __stdcall JaccardBigram(const char *pattern, const char *text)
-{
-	return Jaccard(pattern, text, DefaultQgramLength);
-}
-
-double __stdcall OverlapBigram(const char *pattern, const char *text)
-{
-	return Overlap(pattern, text, DefaultQgramLength);
-}
 
 

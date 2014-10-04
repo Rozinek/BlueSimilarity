@@ -38,6 +38,11 @@ namespace BlueSimilarity.Definitions
 		/// <summary>
 		/// Overlap coefficient based on Q-grams
 		/// </summary>
-		OverlapCoefficient
+		OverlapCoefficient,
+
+		/// <summary>
+		/// Token must be same
+		/// </summary>
+		Exact
 	}
 }

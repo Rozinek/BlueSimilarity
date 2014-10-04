@@ -20,7 +20,7 @@ BLUESIMILARITY_API double __stdcall NormDamLevSim(const char *pattern, const cha
 int DamerauLevenshteinDistanceInternal(const char *pattern, size_t m, const char *text, size_t n);
 
 /****************************************************************************************************/
-/*	Damerau-Levenshtein distance																			*/
+/*	Damerau-Levenshtein distance																	*/
 /****************************************************************************************************/
 int __stdcall  DamLevDist(const char *pattern, const char *text)
 {

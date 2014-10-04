@@ -13,8 +13,8 @@ using BlueSimilarity.Definitions;
 
 namespace BlueSimilarity
 {
-	[ContractClassFor(typeof (IBagOfTokenSimilarity))]
-	internal abstract class BagOfTokenSimilarityContract : IBagOfTokenSimilarity
+	[ContractClassFor(typeof (IBagOfWordsSimilarity))]
+	internal abstract class BagOfWordsSimilarityContract : IBagOfWordsSimilarity
 	{
 		#region IBagOfTokenSimilarity Members
 

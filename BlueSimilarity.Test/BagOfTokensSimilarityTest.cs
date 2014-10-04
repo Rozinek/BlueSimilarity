@@ -20,7 +20,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityNormalizedString()
 		{
-			var simNormString = new BagOfTokensSimilarity();
+			var simNormString = new BagOfWordsSimilarity();
 			var patternTokens = new[] { new NormalizedString("miss"), new NormalizedString("anna"), new NormalizedString("kurnikovova") };
 			var targetTokens =  new[] {  new NormalizedString("kurnikovova"), new NormalizedString("anna"), };
 
@@ -35,7 +35,7 @@ namespace BlueSimilarity.Test
 			const string pattern = "miss anna kurnikovova";
 			const string target = "kurnikovova anna";
 
-			var simNormString = new BagOfTokensSimilarity();
+			var simNormString = new BagOfWordsSimilarity();
 			var patternTokenizer = new Tokenizer(pattern);
 			var targetTokenizer = new Tokenizer(target);
 			var simResult = simNormString.GetSimilarity(patternTokenizer, targetTokenizer);
@@ -47,11 +47,11 @@ namespace BlueSimilarity.Test
 		public void GetSimilaritySymmetric()
 		{
 			// not symmetric instance of BagOfTokensSimilarity
-			var bagOfTokensNotSymmetric = new BagOfTokensSimilarity(TokenSimilarity.Levenshtein, false);
+			var bagOfTokensNotSymmetric = new BagOfWordsSimilarity(TokenSimilarity.Levenshtein, false);
 			bagOfTokensNotSymmetric.IsSymmetric.Should().Be(false);
 
 			// symmetric instance of BagOfTokensSimilarity
-			var bagOfTokensSymmetric = new BagOfTokensSimilarity(TokenSimilarity.Levenshtein, true);
+			var bagOfTokensSymmetric = new BagOfWordsSimilarity(TokenSimilarity.Levenshtein, true);
 			bagOfTokensSymmetric.IsSymmetric.Should().Be(true);
 
 			var patternTokens = new[] {"miss",  "anna", "kurnikovova" };
@@ -67,7 +67,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void DefaultConstructor()
 		{
-			var simDefault = new BagOfTokensSimilarity();
+			var simDefault = new BagOfWordsSimilarity();
 			simDefault.InternalTokenSimilarity.Should().Be(TokenSimilarity.Levenshtein);
 			simDefault.IsSymmetric.Should().Be(false);
 		}
@@ -75,7 +75,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityStringsDefault()
 		{
-			var bagOfTokensSim = new BagOfTokensSimilarity();
+			var bagOfTokensSim = new BagOfWordsSimilarity();
 
 			var patternTokens = new[] {"anna", "kurnikovova"};
 			var targetTokens = new[] {"kurnikovova", "anna"};
@@ -92,7 +92,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityStringsLevenshtein()
 		{
-			var bagOfTokensSim = new BagOfTokensSimilarity(TokenSimilarity.Levenshtein);
+			var bagOfTokensSim = new BagOfWordsSimilarity(TokenSimilarity.Levenshtein);
 			bagOfTokensSim.InternalTokenSimilarity.Should().Be(TokenSimilarity.Levenshtein);
 
 			var patternTokens = new[] { "anna", "kurnikovova" };
@@ -110,7 +110,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityStringsDamerauLevenshtein()
 		{
-			var bagOfTokensSim = new BagOfTokensSimilarity(TokenSimilarity.DamerauLevenshtein);
+			var bagOfTokensSim = new BagOfWordsSimilarity(TokenSimilarity.DamerauLevenshtein);
 			bagOfTokensSim.InternalTokenSimilarity.Should().Be(TokenSimilarity.DamerauLevenshtein);
 
 			var patternTokens = new[] { "anna", "kurnikovova" };
@@ -128,7 +128,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityStringsJaro()
 		{
-			var bagOfTokensSim = new BagOfTokensSimilarity(TokenSimilarity.Jaro);
+			var bagOfTokensSim = new BagOfWordsSimilarity(TokenSimilarity.Jaro);
 			bagOfTokensSim.InternalTokenSimilarity.Should().Be(TokenSimilarity.Jaro);
 
 			var patternTokens = new[] { "anna", "kurnikovova" };
@@ -146,7 +146,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityStringsJaroWinkler()
 		{
-			var bagOfTokensSim = new BagOfTokensSimilarity(TokenSimilarity.JaroWinkler);
+			var bagOfTokensSim = new BagOfWordsSimilarity(TokenSimilarity.JaroWinkler);
 			bagOfTokensSim.InternalTokenSimilarity.Should().Be(TokenSimilarity.JaroWinkler);
 
 			var patternTokens = new[] { "anna", "kurnikovova" };
@@ -164,7 +164,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityStringsDiceCoefficient()
 		{
-			var bagOfTokensSim = new BagOfTokensSimilarity(TokenSimilarity.DiceCoefficient);
+			var bagOfTokensSim = new BagOfWordsSimilarity(TokenSimilarity.DiceCoefficient);
 			bagOfTokensSim.InternalTokenSimilarity.Should().Be(TokenSimilarity.DiceCoefficient);
 
 			var patternTokens = new[] { "anna", "kurnikovova" };
@@ -183,7 +183,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityStringsJaccardCoefficient()
 		{
-			var bagOfTokensSim = new BagOfTokensSimilarity(TokenSimilarity.JaccardCoefficient);
+			var bagOfTokensSim = new BagOfWordsSimilarity(TokenSimilarity.JaccardCoefficient);
 			bagOfTokensSim.InternalTokenSimilarity.Should().Be(TokenSimilarity.JaccardCoefficient);
 
 			var patternTokens = new[] { "anna", "kurnikovova" };
@@ -202,7 +202,7 @@ namespace BlueSimilarity.Test
 		[TestMethod]
 		public void GetSimilarityStringsOverlapCoefficient()
 		{
-			var bagOfTokensSim = new BagOfTokensSimilarity(TokenSimilarity.OverlapCoefficient);
+			var bagOfTokensSim = new BagOfWordsSimilarity(TokenSimilarity.OverlapCoefficient);
 			bagOfTokensSim.InternalTokenSimilarity.Should().Be(TokenSimilarity.OverlapCoefficient);
 
 			var patternTokens = new[] { "anna", "kurnikovova" };
