@@ -1,3 +1,6 @@
+#ifndef _DAMERAULEVENSHTEIN_
+#define _DAMERAULEVENSHTEIN_
+
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
@@ -98,3 +101,5 @@ int  DamerauLevenshteinDistanceInternal(const char *pattern, size_t m, const cha
 	
 	return costs(m, n);
 }
+
+#endif

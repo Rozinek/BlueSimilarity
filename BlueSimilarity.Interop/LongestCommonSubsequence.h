@@ -1,3 +1,6 @@
+#ifndef _LCS_
+#define _LCS_
+
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
@@ -70,3 +73,5 @@ int LCSubsequenceInternal(const char *pattern, size_t m, const char *text, size_
 
 	return costs(m, n);
 }
+
+#endif

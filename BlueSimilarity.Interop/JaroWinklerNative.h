@@ -1,3 +1,6 @@
+#ifndef _JAROWINKLER_
+#define _JAROWINKLER_
+
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
@@ -51,3 +54,4 @@ size_t PrefixLength(const char * pattern, size_t lenPattern, const char * text, 
 	return n;
 }
 
+#endif

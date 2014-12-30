@@ -1,3 +1,6 @@
+#ifndef _JARO_
+#define _JARO_
+
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
@@ -87,3 +90,5 @@ int GetTranspositionCount(char *commonChar1, size_t c1Len, char *commonChar2, si
 
 	return transpositions;
 }
+
+#endif

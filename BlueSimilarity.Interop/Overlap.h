@@ -1,9 +1,13 @@
+#ifndef _OVERLAP_
+#define _OVERLAP_
+
 #include "Utils.h"
 #include "MathDef.h"
 #include "BlueSimilarity_API.h"
 
-// Jaccard coefficient similarity
+// Overlap coefficient similarity
 BLUESIMILARITY_API double __stdcall  Overlap(const char *pattern, const char *text, int qGramLenght);
+double __stdcall  OverlapBigram(const char *pattern, const char *text);
 
 double __stdcall  Overlap(const char *pattern, const char *text, int qGramLength)
 {
@@ -16,3 +20,10 @@ double __stdcall  Overlap(const char *pattern, const char *text, int qGramLength
 
 	return overlap;
 }
+
+double __stdcall OverlapBigram(const char *pattern, const char *text)
+{
+	return Overlap(pattern, text, 2);
+}
+
+#endif

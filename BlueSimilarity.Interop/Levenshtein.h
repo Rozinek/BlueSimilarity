@@ -1,3 +1,6 @@
+#ifndef _LEVENSHTEIN_
+#define _LEVENSHTEIN_
+
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
@@ -90,6 +93,8 @@ int LevenshteinDistanceInternal(const char *pattern, size_t m, const char *text,
 	free(d);
 	return  dist;
 }
+
+#endif
 
 
 

@@ -1,9 +1,13 @@
+#ifndef _DICE_
+#define _DICE_
+
 #include "Utils.h"
 #include "MathDef.h"
 #include "BlueSimilarity_API.h"
 
 // Dice coefficient similarity
 BLUESIMILARITY_API double __stdcall  Dice(const char *pattern, const char *text, int qGramLenght);
+double __stdcall  DiceBigram(const char *pattern, const char *text);
 
 double __stdcall  Dice(const char *pattern, const char *text, int qGramLength)
 {
@@ -16,3 +20,10 @@ double __stdcall  Dice(const char *pattern, const char *text, int qGramLength)
 
 	return dice;
 }
+
+double __stdcall DiceBigram(const char *pattern, const char *text)
+{
+	return Dice(pattern, text, 2);
+}
+
+#endif
