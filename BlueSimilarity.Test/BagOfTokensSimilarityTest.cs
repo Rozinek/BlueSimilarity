@@ -18,7 +18,7 @@ namespace BlueSimilarity.Test
 		#region Methods (public)
 
 		[TestMethod]
-		public void GetSimilarityNormalizedString()
+		public void GetSimilarityNormalizedStringNotSymmetric()
 		{
 			var simNormString = new BagOfWordsSimilarity();
 			var patternTokens = new[] { new NormalizedString("miss"), new NormalizedString("anna"), new NormalizedString("kurnikovova") };
@@ -30,7 +30,7 @@ namespace BlueSimilarity.Test
 		}
 
 		[TestMethod]
-		public void GetSimilarityTokenizer()
+        public void GetSimilarityTokenizerNotSymmetric()
 		{
 			const string pattern = "miss anna kurnikovova";
 			const string target = "kurnikovova anna";
@@ -58,7 +58,7 @@ namespace BlueSimilarity.Test
 			var targetTokens = new[] { "kurnikovova", "anna" };
 
 			var scoreSymmetricRes = bagOfTokensNotSymmetric.GetSimilarity(patternTokens, targetTokens);
-			scoreSymmetricRes.Should().BeLessThan(0.9);
+            scoreSymmetricRes.Should().BeApproximately(0.696, ErrorTolerance);
 
 			var scoreNotSymmetricRes =  bagOfTokensSymmetric.GetSimilarity(patternTokens, targetTokens);
 			scoreNotSymmetricRes.Should().Be(1.0);

@@ -54,7 +54,7 @@ namespace BlueSimilarity.Test.Containers
 		}
 
 		/// <summary>
-		///     Read the file and tokenizer him
+		///     Read the file and tokenize him
 		/// </summary>
 		[TestMethod]
 		public void FileTokenizerReading()

@@ -26,21 +26,29 @@ SimMetric GetSimMetric(TokenSimilarity tokenSim)
 	{
 			case Levenshtein:
 				sim = NormLevSim;
+				break;
 			case DamerauLevenshtein:
 				sim = NormDamLevSim;
+				break;
 			case Jaro:
 				sim = JaroNative;
+				break;
 			case JaroWinkler:
 				sim = JaroWinklerNative;
+				break;
 			case DiceCoefficient:
 				sim = DiceBigram;
+				break;
 			case JaccardCoefficient:
 				sim = JaccardBigram;
+				break;
 			case OverlapCoefficient:
 				sim = OverlapBigram;
+				break;
 			case Exact:
 			default:
 				sim = ExactMatch;
+				break;
 	}
 
 	return sim;
