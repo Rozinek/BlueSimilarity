@@ -15,7 +15,7 @@ namespace BlueSimilarity.UseCase
 			/****************************************************/
 			
 			// the recommend method for complex similarity on more words
-			var bagOfTokens = new BagOfTokensSimilarity();
+			var bagOfTokens = new BagOfWordsSimilarity();
 			const string pattern	= "John Smith";
 			const string targetText = "Mr. John Smith, Jr.";
 

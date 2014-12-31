@@ -4,9 +4,10 @@
         <name>BlueSimilarity</name>
     </assembly>
     <members>
-        <member name="T:BlueSimilarity.Containers.Tokenizer">
+        <member name="T:BlueSimilarity.Containers.FileTokenizer">
             <summary>
-            Split the free text in tokens
+                Iterate over the tokens in the file e.g. txt
+            implements <seealso cref="T:System.IDisposable"/>
             </summary>
         </member>
         <member name="T:BlueSimilarity.Containers.ITokenizer">
@@ -14,76 +15,104 @@
             Defines the iterator over the tokens by splitting string
             </summary>
         </member>
+        <member name="M:BlueSimilarity.Containers.FileTokenizer.#ctor(System.IO.FileInfo)">
+            <summary>
+                Initializes a new instance of the <see cref="T:BlueSimilarity.Containers.FileTokenizer"/> class.
+            </summary>
+            <param name="fileInfo">The file.</param>
+        </member>
+        <member name="T:BlueSimilarity.Containers.StandardTokenizer">
+            <summary>
+            Standard tokenizer
+            </summary>
+        </member>
+        <member name="T:BlueSimilarity.Containers.Tokenizer">
+            <summary>
+                Split the free text in tokens
+            </summary>
+        </member>
         <member name="M:BlueSimilarity.Containers.Tokenizer.#ctor(System.String)">
             <summary>
-            Constructs a <see cref="T:BlueSimilarity.Containers.Tokenizer"/> on the specified string, using the default delimiter set 
+                Constructs a <see cref="T:BlueSimilarity.Containers.Tokenizer"/> on the specified string, using the default delimiter set
             </summary>
             <param name="text">The text.</param>
         </member>
         <member name="M:BlueSimilarity.Containers.Tokenizer.#ctor(BlueSimilarity.Types.NormalizedString)">
             <summary>
-            Initializes a new instance of the <see cref="T:BlueSimilarity.Containers.Tokenizer"/> class.
+                Initializes a new instance of the <see cref="T:BlueSimilarity.Containers.Tokenizer"/> class.
             </summary>
             <param name="normalizedText">The normalized text.</param>
         </member>
         <member name="M:BlueSimilarity.Containers.Tokenizer.#ctor(System.String,System.Char[])">
             <summary>
-            Initializes a new instance of the <see cref="T:BlueSimilarity.Containers.Tokenizer"/> class.
+                Initializes a new instance of the <see cref="T:BlueSimilarity.Containers.Tokenizer"/> class.
             </summary>
             <param name="text">The text.</param>
             <param name="delimiters">The delimiters.</param>
         </member>
         <member name="M:BlueSimilarity.Containers.Tokenizer.System#Collections#IEnumerable#GetEnumerator">
             <summary>
-            Returns an enumerator that iterates through a collection.
+                Returns an enumerator that iterates through a collection.
             </summary>
             <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
         </member>
         <member name="M:BlueSimilarity.Containers.Tokenizer.Dispose">
             <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+                Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             </summary>
         </member>
         <member name="M:BlueSimilarity.Containers.Tokenizer.MoveNext">
             <summary>
-            Advances the enumerator to the next element of the collection.
+                Advances the enumerator to the next element of the collection.
             </summary>
-            <returns>true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
+            <returns>
+                true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the
+                end of the collection.
+            </returns>
         </member>
         <member name="M:BlueSimilarity.Containers.Tokenizer.Reset">
             <summary>
-            Sets the enumerator to its initial position, which is before the first element in the collection.
+                Sets the enumerator to its initial position, which is before the first element in the collection.
             </summary>
         </member>
         <member name="M:BlueSimilarity.Containers.Tokenizer.GetEnumerator">
             <summary>
-            Returns an enumerator that iterates through the collection.
+                Returns an enumerator that iterates through the collection.
             </summary>
-            <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
+            <returns>
+                A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the
+                collection.
+            </returns>
         </member>
         <member name="P:BlueSimilarity.Containers.Tokenizer.System#Collections#IEnumerator#Current">
             <summary>
-            Gets the element in the collection at the current position of the enumerator.
+                Gets the element in the collection at the current position of the enumerator.
             </summary>
             <value>The current.</value>
         </member>
         <member name="P:BlueSimilarity.Containers.Tokenizer.Current">
             <summary>
-            Gets the element in the collection at the current position of the enumerator.
+                Gets the element in the collection at the current position of the enumerator.
             </summary>
             <value>The current.</value>
         </member>
-        <member name="T:BlueSimilarity.BagOfTokensSimilarity">
+        <member name="M:BlueSimilarity.Containers.StandardTokenizer.#ctor(System.String)">
+            <summary>
+            Constructs a <see cref="T:BlueSimilarity.Containers.Tokenizer"/> on the specified string, using the default delimiter set
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="T:BlueSimilarity.BagOfWordsSimilarity">
             <summary>
                 The similarity between more tokens (words)
             </summary>
         </member>
-        <member name="T:BlueSimilarity.Definitions.IBagOfTokenSimilarity">
+        <member name="T:BlueSimilarity.Definitions.IBagOfWordsSimilarity">
             <summary>
             Defines similarity between more tokens
             </summary>
         </member>
-        <member name="M:BlueSimilarity.Definitions.IBagOfTokenSimilarity.GetSimilarity(System.String[],System.String[])">
+        <member name="M:BlueSimilarity.Definitions.IBagOfWordsSimilarity.GetSimilarity(System.String[],System.String[])">
             <summary>
             Gets the similarity between array of tokens. The position of token in array
             doesn't have an impact on resulting score.
@@ -92,7 +121,7 @@
             <param name="tokensTarget">The tokens target.</param>
             <returns>the score between 0 and 1</returns>
         </member>
-        <member name="M:BlueSimilarity.Definitions.IBagOfTokenSimilarity.GetSimilarity(BlueSimilarity.Types.NormalizedString[],BlueSimilarity.Types.NormalizedString[])">
+        <member name="M:BlueSimilarity.Definitions.IBagOfWordsSimilarity.GetSimilarity(BlueSimilarity.Types.NormalizedString[],BlueSimilarity.Types.NormalizedString[])">
             <summary>
             Gets the similarity between array of tokens. The position of token in array
             doesn't have an impact on resulting score.
@@ -101,7 +130,7 @@
             <param name="tokensTarget">The tokens target.</param>
             <returns>the score between 0 and 1</returns>
         </member>
-        <member name="M:BlueSimilarity.Definitions.IBagOfTokenSimilarity.GetSimilarity(BlueSimilarity.Containers.Tokenizer,BlueSimilarity.Containers.Tokenizer)">
+        <member name="M:BlueSimilarity.Definitions.IBagOfWordsSimilarity.GetSimilarity(BlueSimilarity.Containers.ITokenizer,BlueSimilarity.Containers.ITokenizer)">
             <summary>
             Gets the similarity between array of tokens. The position of token in array
             doesn't have an impact on resulting score.
@@ -110,7 +139,13 @@
             <param name="tokensTarget">The tokens target.</param>
             <returns>the score between 0 and 1</returns>
         </member>
-        <member name="P:BlueSimilarity.Definitions.IBagOfTokenSimilarity.IsSymmetric">
+        <member name="P:BlueSimilarity.Definitions.IBagOfWordsSimilarity.InternalTokenSimilarity">
+            <summary>
+            Gets the internal token similarity between tokens.
+            </summary>
+            <value>The internal token similarity.</value>
+        </member>
+        <member name="P:BlueSimilarity.Definitions.IBagOfWordsSimilarity.IsSymmetric">
             <summary>
             Indicates whether the bag of tokens similarity is symmetric. The symmetric similarity
             doesn't matter if the tokens passes in argument tokensPattern or tokensTarget. This satisfies
@@ -119,34 +154,28 @@
             </summary>
             <value><c>true</c> if this instance is symmetric; otherwise, <c>false</c>.</value>
         </member>
-        <member name="P:BlueSimilarity.Definitions.IBagOfTokenSimilarity.InternalTokenSimilarity">
+        <member name="M:BlueSimilarity.BagOfWordsSimilarity.#ctor">
             <summary>
-            Gets the internal token similarity between tokens.
-            </summary>
-            <value>The internal token similarity.</value>
-        </member>
-        <member name="M:BlueSimilarity.BagOfTokensSimilarity.#ctor">
-            <summary>
-                Initializes a new instance of the <see cref="T:BlueSimilarity.BagOfTokensSimilarity"/> class
-            with default values <seealso cref="F:BlueSimilarity.Definitions.TokenSimilarity.Levenshtein"/> and <seealso cref="P:BlueSimilarity.BagOfTokensSimilarity.IsSymmetric"/>
+                Initializes a new instance of the <see cref="T:BlueSimilarity.BagOfWordsSimilarity"/> class
+            with default values <seealso cref="F:BlueSimilarity.Definitions.TokenSimilarity.Levenshtein"/> and <seealso cref="P:BlueSimilarity.BagOfWordsSimilarity.IsSymmetric"/>
             false.
             </summary>
         </member>
-        <member name="M:BlueSimilarity.BagOfTokensSimilarity.#ctor(BlueSimilarity.Definitions.TokenSimilarity)">
+        <member name="M:BlueSimilarity.BagOfWordsSimilarity.#ctor(BlueSimilarity.Definitions.TokenSimilarity)">
             <summary>
-                Initializes a new instance of the <see cref="T:BlueSimilarity.BagOfTokensSimilarity"/> class
-            ith default value <seealso cref="P:BlueSimilarity.BagOfTokensSimilarity.IsSymmetric"/> false.
+                Initializes a new instance of the <see cref="T:BlueSimilarity.BagOfWordsSimilarity"/> class
+            ith default value <seealso cref="P:BlueSimilarity.BagOfWordsSimilarity.IsSymmetric"/> false.
             </summary>
             <param name="tokenSimilarity">The token similarity.</param>
         </member>
-        <member name="M:BlueSimilarity.BagOfTokensSimilarity.#ctor(BlueSimilarity.Definitions.TokenSimilarity,System.Boolean)">
+        <member name="M:BlueSimilarity.BagOfWordsSimilarity.#ctor(BlueSimilarity.Definitions.TokenSimilarity,System.Boolean)">
             <summary>
-                Initializes a new instance of the <see cref="T:BlueSimilarity.BagOfTokensSimilarity"/> class.
+                Initializes a new instance of the <see cref="T:BlueSimilarity.BagOfWordsSimilarity"/> class.
             </summary>
             <param name="tokenSimilarity">The token similarity.</param>
             <param name="isSymmetric">if set to <c>true</c> [is symmetric].</param>
         </member>
-        <member name="M:BlueSimilarity.BagOfTokensSimilarity.GetSimilarity(System.String[],System.String[])">
+        <member name="M:BlueSimilarity.BagOfWordsSimilarity.GetSimilarity(System.String[],System.String[])">
             <summary>
                 Gets the similarity.
             </summary>
@@ -154,7 +183,7 @@
             <param name="tokensTarget">The tokens target.</param>
             <returns>System.Double.</returns>
         </member>
-        <member name="M:BlueSimilarity.BagOfTokensSimilarity.GetSimilarity(BlueSimilarity.Types.NormalizedString[],BlueSimilarity.Types.NormalizedString[])">
+        <member name="M:BlueSimilarity.BagOfWordsSimilarity.GetSimilarity(BlueSimilarity.Types.NormalizedString[],BlueSimilarity.Types.NormalizedString[])">
             <summary>
                 Gets the similarity between array of tokens. The position of token in array
                 doesn't have an impact on resulting score.
@@ -164,7 +193,7 @@
             <returns>the score between 0 and 1</returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:BlueSimilarity.BagOfTokensSimilarity.GetSimilarity(BlueSimilarity.Containers.Tokenizer,BlueSimilarity.Containers.Tokenizer)">
+        <member name="M:BlueSimilarity.BagOfWordsSimilarity.GetSimilarity(BlueSimilarity.Containers.ITokenizer,BlueSimilarity.Containers.ITokenizer)">
             <summary>
                 Gets the similarity between array of tokens. The position of token in array
                 doesn't have an impact on resulting score.
@@ -174,7 +203,7 @@
             <returns>the score between 0 and 1</returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="P:BlueSimilarity.BagOfTokensSimilarity.IsSymmetric">
+        <member name="P:BlueSimilarity.BagOfWordsSimilarity.IsSymmetric">
             <summary>
                 Indicates whether the bag of tokens similarity is symmetric. The symmetric similarity
                 doesn't matter if the tokens passes in argument tokensPattern or tokensTarget. This satisfies
@@ -183,11 +212,22 @@
             </summary>
             <value><c>true</c> if this instance is symmetric; otherwise, <c>false</c>.</value>
         </member>
-        <member name="P:BlueSimilarity.BagOfTokensSimilarity.InternalTokenSimilarity">
+        <member name="P:BlueSimilarity.BagOfWordsSimilarity.InternalTokenSimilarity">
             <summary>
                 Gets the internal token similarity between tokens.
             </summary>
             <value>The internal token similarity.</value>
+        </member>
+        <member name="T:BlueSimilarity.Definitions.ISemantic">
+            <summary>
+            The similarity metric supports semantic behaviour
+            </summary>
+        </member>
+        <member name="P:BlueSimilarity.Definitions.ISemantic.Vocabulary">
+            <summary>
+            Gets the vocabulary.
+            </summary>
+            <value>The vocabulary.</value>
         </member>
         <member name="T:BlueSimilarity.Definitions.TokenSimilarity">
             <summary>
@@ -228,6 +268,235 @@
             <summary>
             Overlap coefficient based on Q-grams
             </summary>
+        </member>
+        <member name="F:BlueSimilarity.Definitions.TokenSimilarity.Exact">
+            <summary>
+            Token must be same
+            </summary>
+        </member>
+        <member name="T:BlueSimilarity.Indexing.SemanticVocabulary">
+            <summary>
+                Learn the semantic vocabulary for semantic similarity metric
+                from some sources which can represents
+            </summary>
+        </member>
+        <member name="F:BlueSimilarity.Indexing.SemanticVocabulary._learnedVocabulary">
+            <summary>
+                Learned vocabulary of unique words
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Indexing.SemanticVocabulary.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:BlueSimilarity.Indexing.SemanticVocabulary"/> class.
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.Indexing.SemanticVocabulary.GetSemanticWeight(System.String)">
+            <summary>
+                Gets the semantic weight of the word
+            </summary>
+            <param name="word">The word.</param>
+            <returns>System.Double.</returns>
+        </member>
+        <member name="M:BlueSimilarity.Indexing.SemanticVocabulary.AddSource(BlueSimilarity.Containers.ITokenizer)">
+            <summary>
+                Adds the source for learning vocabulary
+            </summary>
+            <param name="tokenizer">The standard tokenizer.</param>
+        </member>
+        <member name="M:BlueSimilarity.Indexing.SemanticVocabulary.SaveToFile(System.String)">
+            <summary>
+            Save the vocabulary in the file in serialized and compressed form.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+        </member>
+        <member name="M:BlueSimilarity.Indexing.SemanticVocabulary.LoadFromFile(System.String)">
+            <summary>
+            Load vocabulary from file.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <returns></returns>
+        </member>
+        <member name="P:BlueSimilarity.Indexing.SemanticVocabulary.TotalWords">
+            <summary>
+                Gets the total words in vocabulary.
+            </summary>
+            <value>The total words.</value>
+        </member>
+        <member name="P:BlueSimilarity.Indexing.SemanticVocabulary.UniqueWords">
+            <summary>
+                Gets the unique words.
+            </summary>
+            <value>The unique words.</value>
+        </member>
+        <member name="T:BlueSimilarity.SemanticBagOfWordsSimilarity">
+            <summary>
+            The semantic similarity between more words. Important for semantic functionality is to have well learned <seealso cref="T:BlueSimilarity.Indexing.SemanticVocabulary"/>
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.SemanticBagOfWordsSimilarity.GetSimilarity(System.String[],System.String[])">
+            <summary>
+            Gets the semantic similarity between array of tokens. The position of token in array
+            doesn't have an impact on resulting score.
+            </summary>
+            <param name="tokensPattern">The tokens pattern</param>
+            <param name="tokensTarget">The tokens target.</param>
+            <returns>the score between 0 and 1</returns>
+        </member>
+        <member name="M:BlueSimilarity.SemanticBagOfWordsSimilarity.GetSimilarity(BlueSimilarity.Types.NormalizedString[],BlueSimilarity.Types.NormalizedString[])">
+            <summary>
+            Gets the similarity between array of tokens. The position of token in array
+            doesn't have an impact on resulting score.
+            </summary>
+            <param name="tokensPattern">The tokens pattern.</param>
+            <param name="tokensTarget">The tokens target.</param>
+            <returns>The score between 0 and 1</returns>
+        </member>
+        <member name="M:BlueSimilarity.SemanticBagOfWordsSimilarity.GetSimilarity(BlueSimilarity.Containers.ITokenizer,BlueSimilarity.Containers.ITokenizer)">
+            <summary>
+            Gets the similarity between array of tokens. The position of the token in array
+            doesn't have an impact on resulting score.
+            </summary>
+            <param name="tokensPattern">The tokens pattern.</param>
+            <param name="tokensTarget">The tokens target.</param>
+            <returns>The score between 0 and 1</returns>
+        </member>
+        <member name="P:BlueSimilarity.SemanticBagOfWordsSimilarity.Vocabulary">
+            <summary>
+            Gets the vocabulary.
+            </summary>
+            <value>The vocabulary.</value>
+        </member>
+        <member name="T:BlueSimilarity.SoftTFIDF">
+            <summary>
+            SoftTFIDF
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.SoftTFIDF.#ctor(BlueSimilarity.Indexing.SemanticVocabulary)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BlueSimilarity.SoftTFIDF"/> class.
+            </summary>
+            <param name="learnedVocabulary">The learned vocabulary.</param>
+        </member>
+        <member name="M:BlueSimilarity.SoftTFIDF.#ctor(BlueSimilarity.Indexing.SemanticVocabulary,BlueSimilarity.Definitions.TokenSimilarity)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BlueSimilarity.SoftTFIDF"/> class.
+            </summary>
+            <param name="learnedVocabulary">The learned vocabulary.</param>
+            <param name="tokenSimilarity">The token similarity.</param>
+        </member>
+        <member name="M:BlueSimilarity.SoftTFIDF.GetSimilarity(System.String[],System.String[])">
+            <summary>
+            Gets the similarity.
+            </summary>
+            <param name="patternTokens">The pattern tokens.</param>
+            <param name="targetTokens">The target tokens.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BlueSimilarity.SoftTFIDF.GetSimilarity(BlueSimilarity.Types.NormalizedString[],BlueSimilarity.Types.NormalizedString[])">
+            <summary>
+            Gets the similarity between array of tokens. The position of token in array
+            doesn't have an impact on resulting score.
+            </summary>
+            <param name="tokensPattern">The tokens pattern.</param>
+            <param name="tokensTarget">The tokens target.</param>
+            <returns>
+            the score between 0 and 1
+            </returns>
+        </member>
+        <member name="M:BlueSimilarity.SoftTFIDF.GetSimilarity(BlueSimilarity.Containers.ITokenizer,BlueSimilarity.Containers.ITokenizer)">
+            <summary>
+            Gets the similarity between array of tokens. The position of token in array
+            doesn't have an impact on resulting score.
+            </summary>
+            <param name="tokensPattern">The tokens pattern.</param>
+            <param name="tokensTarget">The tokens target.</param>
+            <returns>
+            the score between 0 and 1
+            </returns>
+        </member>
+        <member name="P:BlueSimilarity.SoftTFIDF.InternalTokenSimilarity">
+            <summary>
+            Gets the internal token similarity between tokens.
+            </summary>
+            <value>
+            The internal token similarity.
+            </value>
+        </member>
+        <member name="P:BlueSimilarity.SoftTFIDF.Vocabulary">
+            <summary>
+            Gets the vocabulary.
+            </summary>
+            <value>
+            The vocabulary.
+            </value>
+        </member>
+        <member name="T:BlueSimilarity.TFIDF">
+            <summary>
+                TF-IDF
+            </summary>
+        </member>
+        <member name="M:BlueSimilarity.TFIDF.#ctor(BlueSimilarity.Indexing.SemanticVocabulary)">
+            <summary>
+            Initializate 
+            </summary>
+            <param name="semanticVocabulary">The semantic vocabulary.</param>
+        </member>
+        <member name="M:BlueSimilarity.TFIDF.GetSimilarity(System.String[],System.String[])">
+            <summary>
+            Gets the similarity between array of tokens. The position of token in array
+            doesn't have an impact on resulting score.
+            </summary>
+            <param name="tokensPattern">The tokens pattern</param>
+            <param name="tokensTarget">The tokens target.</param>
+            <returns>
+            the score between 0 and 1
+            </returns>
+        </member>
+        <member name="M:BlueSimilarity.TFIDF.GetSimilarity(BlueSimilarity.Types.NormalizedString[],BlueSimilarity.Types.NormalizedString[])">
+            <summary>
+            Gets the similarity between array of tokens. The position of token in array
+            doesn't have an impact on resulting score.
+            </summary>
+            <param name="tokensPattern">The tokens pattern.</param>
+            <param name="tokensTarget">The tokens target.</param>
+            <returns>
+            the score between 0 and 1
+            </returns>
+        </member>
+        <member name="M:BlueSimilarity.TFIDF.GetSimilarity(BlueSimilarity.Containers.ITokenizer,BlueSimilarity.Containers.ITokenizer)">
+            <summary>
+            Gets the similarity.
+            </summary>
+            <param name="patternTokenizer">The pattern tokenizer.</param>
+            <param name="targetTokenizer">The target tokenizer.</param>
+            <returns></returns>
+        </member>
+        <member name="P:BlueSimilarity.TFIDF.InternalTokenSimilarity">
+            <summary>
+            Gets the internal token similarity between tokens.
+            </summary>
+            <value>
+            The internal token similarity.
+            </value>
+        </member>
+        <member name="P:BlueSimilarity.TFIDF.IsSymmetric">
+            <summary>
+            Indicates whether the bag of words similarity is symmetric. The symmetric similarity
+            doesn't matter if the tokens passes in argument tokensPattern or tokensTarget. This satisfies
+            metric symmetry axiom sim(x, y) = sim(y, x). Otherwise if is not symmetric then the tokensPattern will be matched
+            as pattern.
+            </summary>
+            <value>
+            <c>true</c> if this instance is symmetric; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:BlueSimilarity.TFIDF.Vocabulary">
+            <summary>
+            Gets the vocabulary.
+            </summary>
+            <value>
+            The vocabulary.
+            </value>
         </member>
         <member name="T:BlueSimilarity.Types.Bigram">
             <summary>
@@ -600,21 +869,6 @@
                 Calling convention to the native entry point
             </summary>
         </member>
-        <member name="M:BlueSimilarity.Definitions.NativeEntryPoint.Overlap(System.String,System.String,System.Int32)">
-            <summary>
-                Overlap coefficient native method
-            </summary>
-        </member>
-        <member name="M:BlueSimilarity.Definitions.NativeEntryPoint.BagOfTokensSim(System.String[],System.Int32,System.String[],System.Int32,BlueSimilarity.Definitions.TokenSimilarity,System.Boolean)">
-            <summary>
-                Overlap coefficient native method
-            </summary>
-        </member>
-        <member name="M:BlueSimilarity.Definitions.NativeEntryPoint.BagOfTokensSimStruct(BlueSimilarity.Types.NormalizedString[],System.Int32,BlueSimilarity.Types.NormalizedString[],System.Int32,BlueSimilarity.Definitions.TokenSimilarity,System.Boolean)">
-            <summary>
-                Overlap coefficient native method
-            </summary>
-        </member>
         <member name="M:BlueSimilarity.Definitions.NativeEntryPoint.LoadLibraryIfExists(System.String)">
             <summary>
                 Load the native library
@@ -877,6 +1131,13 @@
                 Returns a <see cref="T:System.String"/> that represents this instance.
             </summary>
             <returns>A <see cref="T:System.String"/> that represents this instance.</returns>
+        </member>
+        <member name="M:BlueSimilarity.Types.NormalizedString.ConvertToCanonicalForm(System.String)">
+            <summary>
+            Append lower case, upper case and numbers
+            </summary>
+            <param name="unicodeString"></param>
+            <returns></returns>
         </member>
         <member name="P:BlueSimilarity.Types.NormalizedString.Value">
             <summary>
