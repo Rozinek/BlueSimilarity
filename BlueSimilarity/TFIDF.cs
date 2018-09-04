@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Collections.Generic;
 using System.Linq;
 using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
@@ -42,23 +43,42 @@ namespace BlueSimilarity
 		/// </returns>
 		public double GetSimilarity(string[] tokensPattern, string[] tokensTarget)
 		{
-			var patternWeights = Vocabulary.GetSemanticWeight(tokensPattern);
-			var targetWeights = Vocabulary.GetSemanticWeight(tokensTarget);
+		    HashSet<string> setPatternTokens = new HashSet<string>(tokensPattern);
+		    HashSet<string> setTargetTokens = new HashSet<string>(tokensTarget);
 
-			return NativeEntryPoint.TFIDFNative(tokensPattern, patternWeights, tokensPattern.Length,
-				tokensTarget, targetWeights, tokensTarget.Length);
-		}
+		    var setPatternTokensArr = setTargetTokens.ToArray();
 
-		/// <summary>
-		/// Gets the similarity between array of tokens. The position of token in array
-		/// doesn't have an impact on resulting score.
-		/// </summary>
-		/// <param name="tokensPattern">The tokens pattern.</param>
-		/// <param name="tokensTarget">The tokens target.</param>
-		/// <returns>
-		/// the score between 0 and 1
-		/// </returns>
-		public double GetSimilarity(NormalizedString[] tokensPattern, NormalizedString[] tokensTarget)
+            var patternWeights = Vocabulary.GetSemanticWeight(setPatternTokensArr);
+			var targetWeights = Vocabulary.GetSemanticWeight(setTargetTokens.ToArray());
+
+		    Utils.UnitVectorizing(patternWeights);
+		    Utils.UnitVectorizing(targetWeights);
+
+		    double score = 0;
+
+            
+		    for (int i = 0; i < setPatternTokensArr.Length; i++)
+		    {
+		        var patternToken = setPatternTokensArr[i];
+
+		        if (setTargetTokens.Contains(patternToken))
+		            score += patternWeights[i];
+		    }
+
+		    return score;
+
+        }
+
+        /// <summary>
+        /// Gets the similarity between array of tokens. The position of token in array
+        /// doesn't have an impact on resulting score.
+        /// </summary>
+        /// <param name="tokensPattern">The tokens pattern.</param>
+        /// <param name="tokensTarget">The tokens target.</param>
+        /// <returns>
+        /// the score between 0 and 1
+        /// </returns>
+        public double GetSimilarity(NormalizedString[] tokensPattern, NormalizedString[] tokensTarget)
 		{
 			return GetSimilarity(tokensPattern.Select(x => x.Value).ToArray(), tokensTarget.Select(x => x.Value).ToArray());
 		}

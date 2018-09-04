@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSimilarity", "BlueSimilarity\BlueSimilarity.csproj", "{BC2A9E01-D66A-4C9C-9FD2-DF7516609681}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSimilarity.SpeedTest", "BlueSimilarity.SpeedTest\BlueSimilarity.SpeedTest.csproj", "{69573B70-92BC-416D-93B7-98C33B3D3E03}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlueSimilarity.Interop", "BlueSimilarity.Interop\BlueSimilarity.Interop.vcxproj", "{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueSimilarity.Test", "BlueSimilarity.Test\BlueSimilarity.Test.csproj", "{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}"
 EndProject
@@ -45,17 +43,6 @@ Global
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{69573B70-92BC-416D-93B7-98C33B3D3E03}.Release|Win32.ActiveCfg = Release|Any CPU
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Any CPU.Build.0 = Debug|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Win32.ActiveCfg = Debug|x64
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Debug|Win32.Build.0 = Debug|x64
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Any CPU.ActiveCfg = Release|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Win32.ActiveCfg = Release|Win32
-		{6C9A281E-0A53-46A3-98BE-9F880EC01AE8}.Release|Win32.Build.0 = Release|Win32
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BDD320E-20B2-445D-80F3-ED4BE9E4DA43}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -81,5 +68,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {87FE8789-CC0D-4BAD-BC6C-0D1328883D79}
 	EndGlobalSection
 EndGlobal

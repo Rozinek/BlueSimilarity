@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BlueSimilarity</RootNamespace>
     <AssemblyName>BlueSimilarity</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />
@@ -114,19 +114,26 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BagOfWordsSimilarity.cs" />
     <Compile Include="Containers\FileTokenizer.cs" />
     <Compile Include="Containers\ITokenizer.cs" />
     <Compile Include="Containers\StandardTokenizer.cs" />
     <Compile Include="Containers\Tokenizer.cs" />
-    <Compile Include="BagOfWordsSimilarity.cs" />
-    <Compile Include="Contracts\BagOfWordsSimilarityContract.cs" />
+    <Compile Include="DamerauLevenshtein.cs" />
     <Compile Include="Definitions\IBagOfWordsSimilarity.cs" />
     <Compile Include="Definitions\ISemantic.cs" />
     <Compile Include="Definitions\TokenSimilarity.cs" />
+    <Compile Include="DiceCoefficient.cs" />
     <Compile Include="Indexing\BinarySerializer.cs" />
     <Compile Include="Indexing\DeflateCompressor.cs" />
     <Compile Include="Indexing\SemanticVocabulary.cs" />
+    <Compile Include="JaccardCoefficient.cs" />
+    <Compile Include="Jaro.cs" />
+    <Compile Include="JaroWinkler.cs" />
+    <Compile Include="Levenshtein.cs" />
+    <Compile Include="OverlapCoefficient.cs" />
     <Compile Include="SemanticBagOfWordsSimilarity.cs" />
+    <Compile Include="SimHelpers.cs" />
     <Compile Include="SoftTFIDF.cs" />
     <Compile Include="TFIDF.cs" />
     <Compile Include="Types\Bigram.cs" />
@@ -135,24 +142,15 @@
     <Compile Include="Types\TypeConversion.cs" />
     <Compile Include="Types\Unigram.cs" />
     <Compile Include="Types\Trigram.cs" />
-    <Compile Include="Contracts\DistanceContract.cs" />
-    <Compile Include="Contracts\SimilarityContract.cs" />
-    <Compile Include="DamerauLevenshtein.cs" />
     <Compile Include="Definitions\IDistance.cs" />
     <Compile Include="Definitions\ISimilarity.cs" />
-    <Compile Include="Definitions\NativeEntryPoint.cs" />
-    <Compile Include="DiceCoefficient.cs" />
-    <Compile Include="JaccardCoefficient.cs" />
-    <Compile Include="Jaro.cs" />
-    <Compile Include="JaroWinkler.cs" />
-    <Compile Include="Levenshtein.cs" />
-    <Compile Include="OverlapCoefficient.cs" />
     <Compile Include="Containers\IQGramSet.cs" />
     <Compile Include="Types\NormalizedString.cs" />
     <Compile Include="Containers\QGramSet.cs" />
     <Compile Include="Types\Token.cs" />
     <Compile Include="Containers\TokenSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

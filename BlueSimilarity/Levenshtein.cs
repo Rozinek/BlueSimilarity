@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using BlueSimilarity.Definitions;
 using BlueSimilarity.Types;
 
@@ -19,23 +20,23 @@ namespace BlueSimilarity
 		/// <summary>
 		///     <see cref="GetDistance(string, string)" />
 		/// </summary>
-		/// <param name="first">the first token</param>
-		/// <param name="second">the second token</param>
+		/// <param name="first">the pattern token</param>
+		/// <param name="second">the text token</param>
 		/// <returns>returns the number of edit distance</returns>
 		public int GetDistance(Token first, Token second)
 		{
-			return NativeEntryPoint.LevDist(first.Value, second.Value);
+			return GetDistance(first.Value, second.Value);
 		}
 
 		/// <summary>
 		///     <see cref="GetDistance(string, string)" />
 		/// </summary>
-		/// <param name="first">the first normalized string</param>
-		/// <param name="second">the second normalized string</param>
+		/// <param name="first">the pattern normalized string</param>
+		/// <param name="second">the text normalized string</param>
 		/// <returns>returns the number of edit distance</returns>
 		public int GetDistance(NormalizedString first, NormalizedString second)
 		{
-			return NativeEntryPoint.LevDist(first.Value, second.Value);
+			return GetDistance(first.Value, second.Value);
 		}
 
 		/// <summary>
@@ -48,13 +49,58 @@ namespace BlueSimilarity
 		///         return 1 for addition character ABC => ABCD
 		///     </example>
 		/// </summary>
-		/// <param name="first">the first string</param>
-		/// <param name="second">the second string</param>
+		/// <param name="first">the pattern string</param>
+		/// <param name="second">the text string</param>
 		/// <returns>returns the number of edit distance</returns>
 		public int GetDistance(string first, string second)
 		{
-			return NativeEntryPoint.LevDist(first, second);
-		}
+
+		    int m = first.Length;
+		    int n = second.Length;
+
+		    if (m == 0 || n == 0)
+		        return 0;
+
+		    int len = (m + 1) * (n + 1);
+		               
+		    // allocate 1D array
+		    int[] d = new int[len];
+
+		    // initializing the first row of the matrix (1D array offset)
+		    for (int i = 1, dp = n + 1; i < m + 1; ++i, dp += n + 1)
+		    {
+		        d[dp] = i;
+		    }
+
+		    // initializing the first column of the matrix (1D array offset)
+		    for (int j = 1, dp = 1; j < n + 1; ++j, ++dp)
+		    {
+		        d[dp] = j;
+		    }
+
+            for (int i = 1, f = 0, dp = n + 2; i < m + 1; ++i, f += 1, ++dp)
+            {
+                char p1 = first[f];
+
+		        for (int j = 1, s = 0; j < n + 1; ++j, s += 1, ++dp)
+		        {
+		            char p2 = second[s];
+
+		            if (p1 == p2)
+		            {
+		                d[dp] = d[dp - n - 2];
+		            }
+		            else
+		            {
+		                d[dp] = Utils.Min3(d[dp - 1] + 1, d[dp - n - 1] + 1, d[dp - n - 2] + 1);
+		            }
+		        }
+		    }
+
+		    int dist = d[len - 1];
+
+		    return dist;
+        }
 
 		#endregion
 
@@ -63,35 +109,39 @@ namespace BlueSimilarity
 		/// <summary>
 		///     Normalized similarity from 0 to 1 where the 1 is total similarity
 		/// </summary>
-		/// <param name="first">the first token</param>
-		/// <param name="second">the second token</param>
+		/// <param name="first">the pattern token</param>
+		/// <param name="second">the text token</param>
 		/// <returns>returns the number of edit distance</returns>
 		public double GetSimilarity(Token first, Token second)
 		{
-			return NativeEntryPoint.NormLevSim(first.Value, second.Value);
+		    return GetSimilarity(first.Value, second.Value);
 		}
 
 		/// <summary>
 		///     Normalized similarity from 0 to 1 where the 1 is total similarity
 		/// </summary>
-		/// <param name="first">the first token</param>
-		/// <param name="second">the second token</param>
+		/// <param name="pattern">the pattern token</param>
+		/// <param name="text">the text token</param>
 		/// <returns>returns the number of edit distance</returns>
-		public double GetSimilarity(string first, string second)
+		public double GetSimilarity(string pattern, string text)
 		{
-			return NativeEntryPoint.NormLevSim(first, second);
-		}
+		    int distance = GetDistance(pattern, text);
+
+		    double result = 1.0 - distance / (double)Math.Max(pattern.Length, text.Length);
+
+		    return result;
+        }
 
 		/// <summary>
 		///     Normalized similarity from 0 to 1 where the 1 is total similarity
 		/// </summary>
-		/// <param name="first">the first normalized string</param>
-		/// <param name="second">the second normalized string</param>
+		/// <param name="first">the pattern normalized string</param>
+		/// <param name="second">the text normalized string</param>
 		/// <returns>returns the number of edit distance</returns>
 		public double GetSimilarity(NormalizedString first, NormalizedString second)
 		{
-			return NativeEntryPoint.NormLevSim(first.Value, second.Value);
-		}
+		    return GetSimilarity(first.Value, second.Value);
+        }
 
 		#endregion
 	}

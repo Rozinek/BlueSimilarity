@@ -54,7 +54,7 @@ namespace BlueSimilarity.Indexing
 		/// </summary>
 		/// <param name="word">The word.</param>
 		/// <returns>System.Double.</returns>
-		internal double GetSemanticWeight(string word)
+		public double GetSemanticWeight(string word)
 		{
 			if (string.IsNullOrWhiteSpace(word))
 				throw new ArgumentException("word");
@@ -66,7 +66,7 @@ namespace BlueSimilarity.Indexing
 			return ComputeSemanticWeight(words, TotalWords);
 		}
 
-		internal double[] GetSemanticWeight(string[] words)
+	    public double[] GetSemanticWeight(string[] words)
 		{
 			var semanticArray = new double[words.Length];
 			for (var i = 0; i < semanticArray.Length; i++)

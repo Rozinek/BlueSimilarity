@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BlueSimilarity.Types
 {
-	internal static class TypeConversion
+	public static class TypeConversion
 	{
 		#region Static and contants fields
 
@@ -40,7 +40,7 @@ namespace BlueSimilarity.Types
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
-		internal static int GetQgramLength<T>() where T : IQgram
+		public static int GetQgramLength<T>() where T : IQgram
 		{
 			return TypeConversionDictionary[typeof (T)];
 		}

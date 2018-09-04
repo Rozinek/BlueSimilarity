@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Linq;
 using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
@@ -15,15 +16,16 @@ namespace BlueSimilarity
 	/// </summary>
 	public class SoftTFIDF : IBagOfWordsSimilarity, ISemantic
 	{
-
 		private const TokenSimilarity DefaultTokenSimilarity = TokenSimilarity.Jaro;
-		#region Constructors
+        private const double DefaultThreshold = 0.9;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SoftTFIDF"/> class.
-		/// </summary>
-		/// <param name="learnedVocabulary">The learned vocabulary.</param>
-		public SoftTFIDF(SemanticVocabulary learnedVocabulary)
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SoftTFIDF"/> class.
+        /// </summary>
+        /// <param name="learnedVocabulary">The learned vocabulary.</param>
+        public SoftTFIDF(SemanticVocabulary learnedVocabulary)
 			: this(learnedVocabulary, DefaultTokenSimilarity)
 		{			
 		}
@@ -54,13 +56,54 @@ namespace BlueSimilarity
 			var patternWeights = Vocabulary.GetSemanticWeight(patternTokens);
 			var targetWeights = Vocabulary.GetSemanticWeight(targetTokens);
 
-			return NativeEntryPoint.SoftTFIDFNative(
-					patternTokens, patternWeights, patternTokens.Length,
-					targetTokens, targetWeights, targetTokens.Length,
-					InternalTokenSimilarity);
-		}
+		    SimMetric simMetric = SimHelpers.GetSimMetric(InternalTokenSimilarity);
 
-		public bool IsSymmetric
+		    // unit vectorizing
+		    Utils.UnitVectorizing(patternWeights);
+		    Utils.UnitVectorizing(targetWeights);
+
+		    double finalScore = 0;
+		    for (int p = 0; p < patternTokens.Length; p++)
+		    {
+		        var pattern = patternTokens[p];
+
+		        if (pattern == null)
+		        {
+		            continue;
+		        }
+
+		        double maxOverToken = SimHelpers.MinimumScore;
+		        double weightOverToken = 0;
+		        for (int t = 0; t < targetTokens.Length; t++)
+		        {
+		            var target = targetTokens[t];
+
+		            if (target == null)
+		            {
+		                continue;
+		            }
+
+		            double currentScore = simMetric(pattern, target);
+
+		            if (currentScore > DefaultThreshold && currentScore > maxOverToken)
+		            {
+		                maxOverToken = currentScore;
+		                weightOverToken = patternWeights[p] * targetWeights[t];
+		            }
+
+		            // if score achieves maximum score then breaks the loop and increases the performance
+		            if (Utils.Equals(currentScore, SimHelpers.MaximumScore))
+		            {
+		                break;
+		            }
+		        }
+		        finalScore += weightOverToken * maxOverToken;
+		    }
+
+		    return finalScore;
+        }
+
+        public bool IsSymmetric
 		{
 			get { return true; }
 		}

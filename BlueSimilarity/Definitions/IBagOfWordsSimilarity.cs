@@ -7,7 +7,6 @@ namespace BlueSimilarity.Definitions
 	/// <summary>
 	/// Defines similarity between more tokens
 	/// </summary>
-	[ContractClass(typeof(BagOfWordsSimilarityContract))]
 	public interface IBagOfWordsSimilarity
 	{
 		/// <summary>

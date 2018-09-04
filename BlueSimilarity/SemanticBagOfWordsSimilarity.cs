@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using System.Linq;
 using BlueSimilarity.Containers;
 using BlueSimilarity.Definitions;
@@ -23,7 +24,6 @@ namespace BlueSimilarity
 		#endregion
 
 		#region Constructors
-
 
 		public SemanticBagOfWordsSimilarity(SemanticVocabulary learnedVocabulary)
 			: this(learnedVocabulary, DefaultTokenSimilarity, DefaultIsSymmetric)
@@ -71,18 +71,75 @@ namespace BlueSimilarity
 			var patternWeights = Vocabulary.GetSemanticWeight(tokensPattern);
 			var targetWeights = Vocabulary.GetSemanticWeight(tokensTarget);
 
-			return NativeEntryPoint.SemanticBagOfTokensSim(tokensPattern, patternWeights, tokensPattern.Length, tokensTarget,
-				targetWeights, tokensTarget.Length, InternalTokenSimilarity, IsSymmetric);
-		}
+		    SimMetric simMetric = SimHelpers.GetSimMetric(InternalTokenSimilarity);
 
-		/// <summary>
-		/// Gets the similarity between array of tokens. The position of token in array
-		/// doesn't have an impact on resulting score.
-		/// </summary>
-		/// <param name="tokensPattern">The tokens pattern.</param>
-		/// <param name="tokensTarget">The tokens target.</param>
-		/// <returns>The score between 0 and 1</returns>
-		public double GetSimilarity(NormalizedString[] tokensPattern, NormalizedString[] tokensTarget)
+		    int pLen = tokensPattern.Length;
+		    int tLen = tokensTarget.Length;
+
+		    // re-calculate similarity symmetric vs. not symmetric
+		    if (IsSymmetric && pLen > tLen)
+		    {
+		        Utils.Swap(ref tokensPattern, ref tokensTarget);
+		        Utils.Swap(ref patternWeights, ref targetWeights);
+		        Utils.Swap(ref pLen, ref tLen);
+		    }
+
+		    double sumOverTokens = 0;
+		    double sumWeights = 0;
+		    for (int p = 0; p < tokensPattern.Length; p++)
+		    {
+		        string pattern = tokensPattern[p];
+		        double pWeight = patternWeights[p];
+
+		        if (pattern == null)
+		        {
+		            continue;
+		        }
+
+		        double maxOverToken = SimHelpers.MinimumScore;
+		        double weightOverToken = Math.Pow(pWeight, 2.0);
+
+		        for (int t = 0; t < tokensTarget.Length; p++)
+		        {
+		            string target = tokensTarget[t];
+		            double tWeight = targetWeights[t];
+
+                    if (target == null)
+		            {
+		                continue;
+		            }
+
+		            double currentScore = simMetric(pattern, target);
+
+		            if (currentScore > maxOverToken)
+		            {
+		                maxOverToken = currentScore;
+		                weightOverToken = pWeight * tWeight;
+		            }
+
+		            // if score achieves maximum score then breaks the loop and increases the performance
+		            if (Utils.Equals(currentScore, SimHelpers.MaximumScore))
+		            {
+		                break;
+		            }
+
+		        }
+		        sumOverTokens += weightOverToken * maxOverToken;
+		        sumWeights += weightOverToken;
+		    }
+
+		    return sumOverTokens / sumWeights;
+
+        }
+
+        /// <summary>
+        /// Gets the similarity between array of tokens. The position of token in array
+        /// doesn't have an impact on resulting score.
+        /// </summary>
+        /// <param name="tokensPattern">The tokens pattern.</param>
+        /// <param name="tokensTarget">The tokens target.</param>
+        /// <returns>The score between 0 and 1</returns>
+        public double GetSimilarity(NormalizedString[] tokensPattern, NormalizedString[] tokensTarget)
 		{
 			return GetSimilarity(tokensPattern.Select(x => x.Value).ToArray(), tokensTarget.Select(x => x.Value).ToArray());
 		}
